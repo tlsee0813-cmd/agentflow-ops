@@ -74,5 +74,5 @@ Oracle 최신 main은 현재 npm 배포판보다 로그인 UI 판정 수정과 �
 
 먼저 계정 도구의 종료 방식·설정 변경·재개 대상을 비교하고, 이 노트북에서 계정 교체·같은 총괄 재개를 확인한다. 그다음 Pro 질문·회수와 기존 Claude·Cloud·화면·GitHub 흐름을 비교표로 대조한다. 반복되는 좁은 작업에 이득이 있을 때 DSH 한 개를 추가한다. 제품 연구와 이 도구 조립은 별도 저장소에서 관리한다.
 
-계정 후보의 현재 우선 비교 순서와 종료·설정 변경 차이는 [ACCOUNT_DECISION_KO](ACCOUNT_DECISION_KO.md)를 따른다. CLI 허용 조건에서 Switchy의 열린 세션 routing을 먼저 비교하되 실제 전환 합격 전에는 자동 활성화하지 않는다.
+계정 후보의 현재 우선 비교 순서와 종료·설정 변경 차이는 [ACCOUNT_DECISION_KO](ACCOUNT_DECISION_KO.md)를 따른다. Switchy 1.0.39는 실제 준비 후 접근 제한 차이로 보류·중지했다. QuotaCrew 원본 CLI 준비와 실제 전환의 미실행 상태는 STATUS를 따른다.
 

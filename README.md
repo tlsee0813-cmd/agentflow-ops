@@ -8,10 +8,10 @@
 
 | 역할 | 우선 후보·도구 | 확인 상태 |
 | --- | --- | --- |
-| 계정 전환·한도 후 같은 대화 재개 | **Switchy / QuotaCrew / codex-switch 비교** | 정상 종료와 자동 재개 방식 비교, 로컬 전환 미실행 |
+| 계정 전환·한도 후 같은 대화 재개 | **QuotaCrew / codex-switch 비교** | QuotaCrew CLI 설치·초기화·빈 프로필 2개·진단 확인. Switchy 1.0.39는 보류·중지. 실제 교체 미실행 |
 | 웹 Pro 질문·비동기 답변 회수 | **Oracle 0.22.0** | 설치·입력 렌더·MCP dry run 성공, 실제 브라우저 왕복 미실행 |
 | CLI에서 MCP 호출 | **mcporter 0.16.0** | Oracle 도구 5개 조회·dry run 성공 |
-| 화면 보기·이미지·조작 | **기존 브라우저 도구 유지** | 기존 경로 사용. Chrome DevTools MCP 1.12.0은 추가 후보 |
+| 화면 보기·이미지·조작 | **기존 브라우저 도구 유지** | Work 로컬 브라우저 비활성화로 점검 대기. Chrome DevTools MCP는 추가 후보 |
 | Codex Cloud | **현재 Codex CLI·기존 브라우저** | CLI 도움말·실제 목록 조회 성공, 제출/완료 회수는 미실행 |
 | Claude 위임 | **기존 Claude Code 사용 환경** | 현재 로컬 PATH에서는 CLI 미발견, 기존 경로 유지 |
 | DeepSeek | **DSH의 기존 headless 실행** | 후순위 |
@@ -29,10 +29,14 @@ Get-Content -LiteralPath requests/pro-review.json -Raw -Encoding utf8 |
   pnpm exec mcporter call oracle.consult --args - --output json --config config/mcporter.json
 ~~~
 
+현재 이 세션의 Work 로컬 브라우저 기능은 비활성화 오류를 반환하므로 실제 브라우저 왕복은 대기 상태입니다. QuotaCrew 원본 CLI·초기화·빈 프로필 두 개까지 준비했으며 실제 로그인·전환·자동 감시는 실행하지 않았습니다.
+
 예시 요청은 **dryRun=true**입니다. 실제 질문을 보내거나 브라우저를 조작하지 않습니다. 연결할 때는 [실행 안내](docs/RUNBOOK_KO.md)를 따릅니다. 자격증명·브라우저 프로필·계정 데이터는 공개 저장소에 넣지 않습니다.
 
 - [채택 판단과 전체 작업 흐름](docs/DESIGN_KO.md)
 - [계정 전환 방식과 우선 확인 순서](docs/ACCOUNT_DECISION_KO.md)
+- [QuotaCrew 원본 CLI 준비](docs/QUOTACREW_CLI_KO.md)
+- [Switchy 준비 후 보류 기록](docs/SWITCHY_CONTROL_KO.md)
 - [이전 작업과의 비교 기준](docs/COMPARISON_KO.md)
 - [실행·회수 안내](docs/RUNBOOK_KO.md)
 - [현재 상태와 다음 단계](docs/STATUS.md)

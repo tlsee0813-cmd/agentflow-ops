@@ -79,10 +79,16 @@
       "reviewed": "9667dd561b6507e4ec0ea09fc9f1055e1f242f84",
       "release": "v0.3.0",
       "publishedOn": "2026-10-19",
-      "status": "desktop-automation-alternative-not-installed",
+      "status": "base-cli-initialized-two-empty-profiles-doctor-observed-no-login-switch-or-watcher",
       "license": "MIT",
       "url": "https://github.com/erkanpulat/codex-quotacrew",
-      "reviewedSourceUrl": "https://github.com/erkanpulat/codex-quotacrew/tree/9667dd561b6507e4ec0ea09fc9f1055e1f242f84"
+      "reviewedSourceUrl": "https://github.com/erkanpulat/codex-quotacrew/tree/9667dd561b6507e4ec0ea09fc9f1055e1f242f84",
+      "installation": {
+        "sourceArchiveSha256": "a74e2d1f4672179ac9a31932577a6264cde418773d0be9d7adc6526275a8352d",
+        "python": "3.12.14",
+        "guiExtraInstalled": false,
+        "version": "0.3.0"
+      }
     },
     {
       "name": "mcporter",
@@ -170,10 +176,16 @@
       "reviewed": "fd5cbf163aaa745a2b53f6f7f87c43ce25a8bd0a",
       "release": "v1.0.39",
       "publishedOn": "2026-10-19",
-      "status": "first-cli-routing-comparison-candidate-not-installed",
+      "status": "held-access-control-gap-process-stopped-profiles-restored",
       "license": "MIT",
       "url": "https://github.com/registered2nd/switchy",
-      "reviewedSourceUrl": "https://github.com/registered2nd/switchy/tree/fd5cbf163aaa745a2b53f6f7f87c43ce25a8bd0a"
+      "reviewedSourceUrl": "https://github.com/registered2nd/switchy/tree/fd5cbf163aaa745a2b53f6f7f87c43ce25a8bd0a",
+      "artifact": {
+        "extractedBinarySha256": "42603b1cce48a7f9e8be321549f214f7a601d15ff0669f4d4958b38266b6eccf",
+        "bytes": 10121216,
+        "name": "Switchy_1.0.39_x64_en-US.msi",
+        "sha256": "b1ffbadf89b9f0fc236bfc7cb6f4e81c1b7519b533e15452147d3ed684d6b42b"
+      }
     },
     {
       "name": "codex-switch-account",

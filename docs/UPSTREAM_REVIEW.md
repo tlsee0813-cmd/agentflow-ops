@@ -1,6 +1,6 @@
 # 오픈소스 채택 검토
 
-2026-10-23 코드 기준. 전체 SHA는 [upstreams.lock.json](../upstreams.lock.json)에 보관한다. 현재 실행 여부는 [STATUS](STATUS.md)에만 기록한다.
+2026-10-23 당시 소스 비교 기록이다. 아래 첫 후보·패치 제안은 실행 채택을 뜻하지 않으며, 현재 채택 판단은 ACCOUNT_DECISION_KO를 우선한다. 전체 SHA는 [upstreams.lock.json](../upstreams.lock.json)에 보관한다. 현재 실행 여부는 [STATUS](STATUS.md)에만 기록한다.
 
 ## Oracle — 먼저 재사용
 
@@ -16,7 +16,7 @@ MIT 라이선스다. 이번 저장소는 패키지를 의존성으로 사용하�
 
 `2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c`, MIT. README의 자동 회전 없음과 별개로 Windows 코드에 `--switch-account`가 있다. 이메일 또는 Key 하나가 일치하면 추가 확인 대화 없이 전환 요청을 큐에 넣는다. [Program](https://github.com/Gaebabi/codex-switch/blob/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c/src/windows/Program.cs) · [MainWindow](https://github.com/Gaebabi/codex-switch/blob/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c/src/windows/MainWindow.cs#L746-L751)
 
-CLI exit 0는 전환 완료가 아니다. 기존 `last-switch.json`의 새 plan·대상·Finished·실패/불확실 수와 실제 재개를 확인하는 얇은 wrapper를 붙일 수 있다. 기본 Capture는 모든 active thread이며 재개 문장은 `Continue`다. 우리 환경에 맞게 지정 thread만 계획에 담고, 한도 후 idle인 총괄도 명시 선택할 수 있도록 좁은 패치를 먼저 검토한다. [Capture/재개](https://github.com/Gaebabi/codex-switch/blob/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c/src/application/DesktopSwitchBackend.cs) · [완료 상태 저장](https://github.com/Gaebabi/codex-switch/blob/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c/src/windows/MainWindow.cs#L686-L698)
+CLI exit 0는 전환 완료가 아니다. 기존 `last-switch.json`의 새 plan·대상·Finished·실패/불확실 수와 실제 재개를 대조해야 한다. 별도 wrapper는 만들지 않았다. 기본 Capture는 모든 active thread이며 재개 문장은 `Continue`다. 지정 thread 선택 범위는 실제 사용 전에 확인할 차이다. 자체 패치는 만들지 않았다. [Capture/재개](https://github.com/Gaebabi/codex-switch/blob/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c/src/application/DesktopSwitchBackend.cs) · [완료 상태 저장](https://github.com/Gaebabi/codex-switch/blob/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c/src/windows/MainWindow.cs#L686-L698)
 
 Windows 경로는 Codex desktop 재실행을 포함한다. CLI 총괄도 허용되지만 앱을 전혀 사용하지 않는 Windows 전용 전환을 이미 제공한다고 설명하지 않는다. 소스 package 버전 1.41.2와 README의 릴리스 파일 1.41.1도 같은 실행물로 단정하지 않는다.
 
@@ -75,7 +75,7 @@ Desktop/IDE 자동 재개는 upstream도 experimental이다. 로컬 CLI/App Serv
 대안으로 [agent-browser 0.39.2](https://github.com/vercel-labs/agent-browser/tree/50c34e78c98dbe8add0b3ff36b4bcd7a47f1022b)와 [Playwright MCP 0.0.83](https://github.com/microsoft/playwright-mcp/tree/f183dad4a52965583e3cc1d59b88cdc279e2e57d)도 확인했다. 둘 다 Apache-2.0이며 기존 Chrome CDP 경로가 있다. 여러 도구를 동시에 추가할 근거는 부족하므로 현재 화면 도구를 유지하고 필요한 경우 한 후보만 도입한다.
 
 
-계정 후보의 현재 우선 비교 순서와 종료·설정 변경 차이는 [ACCOUNT_DECISION_KO](ACCOUNT_DECISION_KO.md)를 따른다. CLI 허용 조건에서 Switchy의 열린 세션 routing을 먼저 비교하되 실제 전환 합격 전에는 자동 활성화하지 않는다.
+계정 후보의 현재 우선 비교 순서와 종료·설정 변경 차이는 [ACCOUNT_DECISION_KO](ACCOUNT_DECISION_KO.md)를 따른다. Switchy 1.0.39는 실제 준비 후 접근 제한 차이로 보류·중지했다. QuotaCrew 원본 CLI 준비와 실제 전환의 미실행 상태는 STATUS를 따른다.
 
 
 ### 추가 CLI wrapper 제외

@@ -46,9 +46,9 @@ custom slug는 3~5단어이고 충돌 시 접미사가 붙을 수 있다. 요청
 
 ## 계정 교체
 
-[QuotaCrew v0.3.0 원본 릴리스](https://github.com/erkanpulat/codex-quotacrew/releases/tag/v0.3.0)의 Windows 설치판 또는 portable과 upstream 안내를 사용한다. Python은 배포판에 포함된다. 이 저장소가 계정 데이터를 보관하거나 자체 auth writer를 제공하지 않는다.
+Switchy 1.0.39는 접근 제한 누락을 확인해 보류하고 중지했다. [보류 근거](ACCOUNT_DECISION_KO.md)와 [STATUS](STATUS.md)를 먼저 읽는다. 현재 원본 QuotaCrew 0.3.0 기본 CLI를 Python 3.12.14 venv에 설치했다. [CLI 준비 안내](QUOTACREW_CLI_KO.md)를 따른다. 원본 init·빈 프로필 두 개·doctor 관찰까지 완료했다. GUI·실제 로그인·전환·자동 감시는 실행하지 않았다.
 
-QuotaCrew의 Windows Desktop 전환은 강제 종료 경로이며 인증 저장소를 file로 바꾼다. codex-switch는 정상 종료 요청 경로가 있어 먼저 비교한다. QuotaCrew를 확정된 기본 계정 도구로 자동 활성화하지 않는다.
+원본 profile add → profile login은 도구 소유 CODEX_HOME에 정상 로그인한다. main auth를 가져오는 CLI는 확인되지 않았다. Windows 실제 전환은 Desktop 강제 종료와 재시작을 포함할 수 있고, packaged Desktop의 자식에서 실행하면 전환을 거부한다. CLI 설치만으로 무중단 전환이나 상시 자동 감시가 준비됐다고 판단하지 않는다.
 
 기존 계정 관리자와 동시에 자동 전환을 켜지 않는다. QuotaCrew에서 설치된 Codex와 지정 대화의 지원 상태를 확인하고, 전환 전후 실제 계정·같은 대화·재개된 작업·외부 작업 링크·GitHub 접근을 대조한다. 그 다음 upstream의 감시·자동 전환·continuation 설정을 사용한다. 자동 재개가 지원되지 않는 연결은 미지원으로 남기며 다른 세션으로 몰래 대체하지 않는다.
 
