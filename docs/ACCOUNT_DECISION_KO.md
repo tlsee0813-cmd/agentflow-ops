@@ -4,6 +4,13 @@
 
 판단 순서는 **계정 교체 품질 → 기존 작업 기능 유지 → 그에 필요한 기존 OSS 추가**다. 같은 노트북의 대화·브라우저 기억 유지는 사용자 확인 전제다.
 
+## 현재 조합
+
+원본 Gaebabi Codex Switch 1.41.1을 계정 전환기로 사용한다. 같은 Business workspace의 다른 사용자를 구분하는 원래 Key와 DPAPI·정상 Desktop 종료·같은 thread 재개 기능을 재사용한다. 실제 import/독립 실행/quota 조회는 완료했고 실제 전환/재개는 아직 확인 중이다.
+
+원본 Windows 등록 CLI가 없어서 원본 reader·parser·vault API를 연결한 일회성 어댑터만 추가했다. 원본 engine fork나 QuotaCrew identity 개조를 하지 않는다. 기존 canonical도 별도 항목으로 보존했고 main auth/config는 import 전후 동일했다. [이번 결과](../results/codex-switch-import-2026-10-23/RESULT.md)와 [운영](ACCOUNT_OPERATIONS_KO.md)을 따른다.
+
+이 선택만으로 한도 후 자동 계정 선택 정책까지 충족한 것은 아니다. 첫 기준인 실제 교체와 동일 총괄 재개부터 확인한다.
 ## 실제 사용자 로그인 후 판정 수정
 
 두 로그인은 같은 Business 워크스페이스의 서로 다른 사용자였다. 새 native 조회에서 email은 다르지만 snapshot account_id가 같았다. QuotaCrew는 이를 중복 등록으로 거부했고, 그 ID를 전환 검증에도 쓰므로 이 환경에서 보류한다. [실제 관찰과 원인](../results/quotacrew-business-identity-2026-10-23/RESULT.md)을 우선한다.

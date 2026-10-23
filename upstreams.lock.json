@@ -23,11 +23,20 @@
       "name": "codex-switch",
       "repo": "Gaebabi/codex-switch",
       "reviewed": "2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c",
-      "status": "fallback-not-installed",
+      "status": "original-portable-three-vault-identities-independent-live-quota-observed-switch-pending",
       "license": "MIT",
       "url": "https://github.com/Gaebabi/codex-switch",
       "reviewedSourceUrl": "https://github.com/Gaebabi/codex-switch/tree/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c",
-      "sameWorkspaceIdentityReview": "workspace-plus-user-sub-key-source-confirmed-runtime-not-tested"
+      "sameWorkspaceIdentityReview": "workspace-plus-user-sub-key-source-confirmed-runtime-not-tested",
+      "installed": {
+        "oneTimeInternalApiAdapter": true,
+        "binaryBuildCommit": "98af9e4687d26bcc14198d8adc71922f0ca46d89",
+        "release": "v1.41.1",
+        "executableSha256": "7d6ec6782c968c23380979dc5a50bc687d63c4a5fa255e0e5556b12a50c21059",
+        "archiveSha256": "4484e440d53964bfa34f1bb0b3b9fd9a6a2901a6025cb684c21927b519184da1",
+        "sourceModification": false,
+        "tagCommit": "bfd96517e08d9e697c201ae7dc11588e12763c51"
+      }
     },
     {
       "name": "chatgpt-browser-channel",

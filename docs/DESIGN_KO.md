@@ -26,7 +26,7 @@ CC Switch의 최신판에도 실제 공식 계정 direct 변경이 있다. 그�
 
 ~~~mermaid
 flowchart LR
-  A[QuotaCrew: 계정 확인·교체·재개] --> C[로컬 총괄]
+  A[원본 계정 전환기: 확인·교체·재개] --> C[로컬 총괄]
   G[GitHub: 작업 기준·현재 상태] --> C
   C --> P[Oracle: Pro 조사·비판]
   C --> L[기존 Claude 환경: 구현·검토]

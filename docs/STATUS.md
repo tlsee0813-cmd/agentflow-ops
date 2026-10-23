@@ -1,24 +1,27 @@
 # 현재 상태
 
-**2026-10-23 · 두 사용자 로그인 후 QuotaCrew의 같은 Business 워크스페이스 구분 문제를 확인했다. 실제 전환은 미실행이며 QuotaCrew 0.3.0을 보류한다.**
+**2026-10-23 · 원본 Codex Switch 1.41.1에 두 Business 사용자와 기존 현재 로그인을 보관하고 독립 실행·실제 quota 조회까지 완료했다. 실제 계정 교체/동일 대화 재개는 다음 검증이다.**
 
-## 최신 관찰과 판단
+## 최신 완료와 근거
 
-- 사용자가 서로 다른 두 사용자로 정상 로그인했다. 각 프로필의 새 native 조회에서 account_id는 같고 email은 달랐다. 계정 원문은 출력하지 않았다.
-- primary는 auth/binding이 모두 있다. secondary는 auth는 있으나 QuotaCrew의 중복 account_id 제한으로 binding이 완료되지 않았다.
-- 초기 중복 오류만 보고 사용자가 같은 계정을 골랐다고 단정한 것은 잘못이었다. 같은 Business 워크스페이스의 사용자 구분 문제다. 추가 로그인 반복을 요청하지 않는다.
-- QuotaCrew는 이 ID를 활성 계정과 전환 검증에도 쓰므로 DB 중복 제한만 풀지 않는다. 실제 전환 후보로 보류했다.
-- 기존 후보 Gaebabi codex-switch의 workspace+user subject 구분 구조와 원래 등록/전환 경로를 확인하고 있다. 아직 설치·전환 성공으로 기록하지 않는다.
-- Switchy 1.0.39는 제어 경로 검토 후 중지·보류 상태를 유지한다. 신규 PowerShell profile은 원래 부재 상태로 복원했다.
-- 어느 도구에서도 자동 회전·감시나 실제 main 계정 전환을 수행하지 않았다. 기존 총괄은 계속 동작 중이다.
+- QuotaCrew 0.3.0은 같은 workspace의 다른 사용자를 혼동해 보류한다. 두 사용자 정상 로그인은 유효하며 다시 로그인시키지 않았다.
+- 원본 Gaebabi Codex Switch는 workspace+JWT sub로 사용자를 구분한다. 원본 EXE/전환 엔진을 유지하고, 버전 고정 내부 API용 일회성 가져오기 어댑터만 추가했다.
+- Q 원본 reader → 메모리 pipe → G 원본 parser/vault/DPAPI로 두 사용자를 가져왔다. 현재 canonical은 두 Business 프로필 밖의 별도 identity여서 세 번째 항목으로 보존했다. 실제 import exit 0, 계정 수 3, main auth/config 각각 전후 동일.
+- 원본 DLL·DPAPI를 사용하는 synthetic 검사 20개와 독립 소스 검토를 마쳤다. 실행 중 manager에서 wrapper가 인증 접근 전에 거부하는 것도 확인했다. 가짜 검사와 실제 계정 전환을 섞지 않는다.
+- 독립 utility 실행에 성공했다. MSIX 논리/물리 경로 차이를 해결했고 Codex 부모 계보가 없다. 임시 실행 task 잔류 0, 사용자 시작 메뉴에 AgentFlow Accounts 바로가기 생성.
+- 독립 process가 시작된 뒤 세 프로필 모두 원본 quota CheckedAt이 갱신됐고 ordinaryUsageAllowed=true였다. 별도 CLI override는 필요하지 않았다.
+- secondary 대상 원본 credential backend 검사 통과. 원본 Desktop 진단은 exit 0/36 samples/owner RPC 확인. 원본 monitor의 active root 집합에는 현재 총괄 UUID 하나만 있었다.
+- Switchy 1.0.39는 중지·보류, 원래 없던 PowerShell profile 상태 복원 완료를 유지한다.
 
-[Business 사용자 구분 관찰](../results/quotacrew-business-identity-2026-10-23/RESULT.md) · [계정 채택 판단](ACCOUNT_DECISION_KO.md) · [이전 QuotaCrew 준비 영수증](../results/quotacrew-preparation-2026-10-23/RESULT.md) · [Switchy 준비/보류](../results/switchy-preparation-2026-10-23/RESULT.md)
+[가져오기·독립 실행 결과](../results/codex-switch-import-2026-10-23/RESULT.md) · [원본 portable 영수증](../results/codex-switch-preparation-2026-10-23/RESULT.md) · [계정 운영](ACCOUNT_OPERATIONS_KO.md) · [이전 identity 문제](../results/quotacrew-business-identity-2026-10-23/RESULT.md)
 
-## 남은 실제 관문
+## 다음 실제 관문
 
-같은 워크스페이스의 다른 사용자를 정확히 등록·선택·검증하는 기존 도구를 사용해야 한다. 소스의 identity 구분, 실제 등록, 실제 전환, 같은 총괄 재개, 모델·도구 유지 결과를 따로 확인한다.
+원본 manager가 현재 총괄의 active root 한 개를 정확히 포착하는지 다시 확인한 뒤, secondary의 실제 Key로 native 전환 요청을 한 번 보낸다. 현재 GitHub 기준과 로컬 상태를 저장하고 원본 정상 종료·앱 실행·동일 UUID 재개 결과를 확인한다. CLI의 exit 0만으로 성공을 표시하지 않는다.
 
-현재 exec는 packaged Codex Desktop의 자식이다. Desktop 종료가 포함된 도구를 이 총괄의 자식에서 자기 전환하는 방식으로 실행하지 않는다. 소스 보호 조건을 우회하지 않는다. 두 프로필의 인증은 로컬 도구 저장소에 비공개로 남기며 임의 auth writer나 DB 수정으로 옮기지 않는다.
+재개됐을 때는 요청을 다시 전송하기 전에 원본 PendingSwitch/last-switch와 canonical Key를 대조한다. 같은 thread UUID·모델/도구·작업 폴더·GitHub 접근 확인이 남아 있다. 자세한 절차는 ACCOUNT_OPERATIONS_KO를 따른다.
+
+현재 기능은 수동 native 계정 전환과 원본의 적격 대화 자동 재개다. 한도 소진 후 계정을 자동 선택·회전하는 정책은 아직 설정하지 않았다. 웹 Pro·Cloud·Claude 등의 실제 동등성 관문도 그대로 남아 있다.
 
 ## 브라우저 접근 제한
 

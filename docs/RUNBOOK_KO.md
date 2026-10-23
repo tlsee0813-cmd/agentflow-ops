@@ -46,13 +46,11 @@ custom slug는 3~5단어이고 충돌 시 접미사가 붙을 수 있다. 요청
 
 ## 계정 교체
 
-[현재 판정](ACCOUNT_DECISION_KO.md)과 [STATUS](STATUS.md)를 먼저 읽는다. Switchy 1.0.39는 제어 경로 문제로 중지했다. QuotaCrew 0.3.0도 같은 Business workspace의 다른 사용자를 중복 계정으로 처리하는 실제 호환 문제로 보류했다. 설치된 QuotaCrew의 binding·DB를 우회해 실제 switch를 실행하지 않는다.
+현재 원본은 Codex Switch 1.41.1이다. 사용자 시작 메뉴의 AgentFlow Accounts를 사용한다. 실제 경로·같은 workspace 사용자 구분·native CLI·완료 판정은 [계정 운영](ACCOUNT_OPERATIONS_KO.md)을 먼저 읽는다.
 
-두 사용자 인증은 비공개 로컬 프로필에 보관돼 있다. 추가 로그인 반복을 요구하지 않으며, 다른 도구로의 이전은 원본이 지원하는 경로를 확인한 뒤 판단한다. workspace ID가 같다는 사실만으로 같은 사용자나 같은 quota라고 판단하지 않는다.
+두 Business 사용자와 기존 canonical 로그인의 원본 DPAPI vault 보관, 독립 실행, 실제 quota 조회까지 완료했다. 계정 전환·같은 thread 재개·도구 동등성은 별도 관문이다. `--switch-account`의 인수는 실제 Key 또는 이메일이며 표시 별칭이 아니다. 단순 exit 0는 요청 전달일 수 있다.
 
-선택할 기존 도구는 workspace+user identity를 저장·활성 선택·전환 검증 모두에 사용해야 한다. CLI 전환 요청 exit 0과 실제 완료·계정 적용·같은 대화 재개를 구분한다. 기존 관리자 둘의 자동 전환을 동시에 켜지 않는다.
-
-Desktop 종료가 포함되는 전환은 현재 packaged Desktop의 자식 총괄에서 실행하지 않는다. 독립 실행 경로와 [비교 관문](COMPARISON_KO.md)을 확인한 후 실제 전환을 점검한다. 기억 이전 코드를 새로 만들지 않는다.
+가져오기 스크립트는 버전 고정 내부 API를 연결한 일회성 준비다. G가 실행 중인 채로 재실행하지 않으며, 정상 계정 관리·새 로그인·갱신은 원본 UI를 사용한다. 다른 전환 관리자와 자동 회전을 동시에 켜지 않는다.
 
 ## 화면과 이미지
 

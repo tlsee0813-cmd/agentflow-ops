@@ -8,7 +8,7 @@
 
 | 역할 | 우선 후보·도구 | 확인 상태 |
 | --- | --- | --- |
-| 계정 전환·한도 후 같은 대화 재개 | **codex-switch 호환성 확인 중** | QuotaCrew는 같은 Business workspace 사용자 구분 문제로 보류. Switchy도 보류·중지. 실제 교체 미실행 |
+| 계정 전환·한도 후 같은 대화 재개 | **Codex Switch 1.41.1 원본** | 두 Business 사용자+기존 로그인 보관, 독립 실행·실제 quota 조회 완료. 실제 교체/복귀 검증 대기 |
 | 웹 Pro 질문·비동기 답변 회수 | **Oracle 0.22.0** | 설치·입력 렌더·MCP dry run 성공, 실제 브라우저 왕복 미실행 |
 | CLI에서 MCP 호출 | **mcporter 0.16.0** | Oracle 도구 5개 조회·dry run 성공 |
 | 화면 보기·이미지·조작 | **기존 브라우저 도구 유지** | Work 로컬 브라우저 비활성화로 점검 대기. Chrome DevTools MCP는 추가 후보 |
@@ -29,13 +29,14 @@ Get-Content -LiteralPath requests/pro-review.json -Raw -Encoding utf8 |
   pnpm exec mcporter call oracle.consult --args - --output json --config config/mcporter.json
 ~~~
 
-현재 이 세션의 Work 로컬 브라우저 기능은 비활성화 오류를 반환하므로 실제 브라우저 왕복은 대기 상태입니다. 서로 다른 두 사용자 로그인은 진행했지만 QuotaCrew가 같은 Business workspace ID를 중복 계정으로 처리해 보류했습니다. 실제 전환·자동 감시는 실행하지 않았습니다.
+현재 이 세션의 Work 로컬 브라우저 기능은 비활성화 오류를 반환하므로 실제 브라우저 왕복은 대기 상태입니다. 추가 재로그인 없이 두 Business 사용자를 Codex Switch의 원본 암호화 vault로 가져왔고, 기존 현재 로그인도 보존했습니다. 실제 전환/복귀와 한도 후 자동 회전은 아직 합격으로 표시하지 않습니다.
 
 예시 요청은 **dryRun=true**입니다. 실제 질문을 보내거나 브라우저를 조작하지 않습니다. 연결할 때는 [실행 안내](docs/RUNBOOK_KO.md)를 따릅니다. 자격증명·브라우저 프로필·계정 데이터는 공개 저장소에 넣지 않습니다.
 
 - [채택 판단과 전체 작업 흐름](docs/DESIGN_KO.md)
 - [계정 전환 방식과 우선 확인 순서](docs/ACCOUNT_DECISION_KO.md)
-- [QuotaCrew 원본 CLI 준비](docs/QUOTACREW_CLI_KO.md)
+- [현재 계정 운영과 가져오기 범위](docs/ACCOUNT_OPERATIONS_KO.md)
+- [보류한 QuotaCrew 초기 준비](docs/QUOTACREW_CLI_KO.md)
 - [Switchy 준비 후 보류 기록](docs/SWITCHY_CONTROL_KO.md)
 - [이전 작업과의 비교 기준](docs/COMPARISON_KO.md)
 - [실행·회수 안내](docs/RUNBOOK_KO.md)
