@@ -300,46 +300,62 @@ foreach($case in $cases.GetEnumerator()) {
     Reset-RunnerFixture
     try { & $case.Value; $passed++ } catch { throw ('Supervisor regression failed: '+$case.Key+'. '+$_.Exception.Message) }
 }
-# Exercise the real bounded bridge read against fake RPC responses. No native
-# assemblies, CLI, credentials or sockets are opened by these replacements.
+# Owner snapshot projection and framed reads use synthetic memory streams only.
 $bridgeAst=[Management.Automation.Language.Parser]::ParseFile((Join-Path $PSScriptRoot 'native-account-bridge.ps1'),[ref]$null,[ref]$null)
-$bridgeRead=@($bridgeAst.EndBlock.Statements | Where-Object {$_ -is [Management.Automation.Language.FunctionDefinitionAst] -and $_.Name -ceq 'Get-NativeLatestTurnDisposition'})[0]
-. ([scriptblock]::Create($bridgeRead.Extent.Text))
-function New-NativeBridgeObject($Type,[object[]]$Arguments=@()) { return [pscustomobject]@{Synthetic=$true} }
-function Invoke-NativeBridgeMethod($Type,[string]$Name,$Target,[object[]]$Arguments=@()) {
-    switch($Name) {
-        'FindAsync' { return [pscustomobject]@{CliPath='never-launched'} }
-        'InitializeAsync' { return }
-        'RequestAsync' {
-            $script:requestCalls++
-            Assert-Runner ($Arguments[0] -ceq 'thread/turns/list' -and $Arguments[1]['threadId'] -ceq 'fixture-thread' -and
-                $Arguments[1]['limit'] -eq 1 -and $Arguments[1]['sortDirection'] -ceq 'desc' -and $Arguments[1]['itemsView'] -ceq 'notLoaded')
-            $document=[Text.Json.JsonDocument]::Parse($script:fakeResponse)
-            try{return $document.RootElement.Clone()}finally{$document.Dispose()}
-        }
-        'DisposeAsync' {
-            $disposal=[pscustomobject]@{}
-            $disposal | Add-Member -MemberType ScriptMethod -Name AsTask -Value {return [Threading.Tasks.Task]::CompletedTask}
-            return $disposal
-        }
-        default { throw 'Unexpected synthetic RPC method.' }
-    }
+Initialize-NativeSnapshotTap
+function New-TestSnapshot {
+    return @{threadRuntimeStatus=@{type='active'};turns=@();turnHistory=@{kind='canonical';history=@{
+        islands=@(@{newerBoundary=@{status='exhausted'};entries=@(@{value='entity-current'})})
+        entitiesByKey=@{'entity-current'=@{turnId='running-turn';status='inProgress';error=$null}}
+    }}}
 }
-$fakeContext=[pscustomobject]@{Disposed=$false;CurrentThreadId='fixture-thread';CodexHome='never-read';Types=@{RuntimeLocator='fake';CodexRpc='fake'}}
-$bridgeCases=@(
-    @{json='{"data":[{"id":"active-turn","status":"inProgress"}]}';status='inProgress';quota=$false;rejected=$false},
-    @{json='{"data":[{"id":"failed-turn","status":"failed","error":{"codexErrorInfo":"usageLimitExceeded"}}]}';status='failed';quota=$true;rejected=$false},
-    @{json='{"data":[{"id":"rate-turn","status":"failed","error":{"codexErrorInfo":"rateLimitExceeded"}}]}';status='failed';quota=$false;rejected=$false},
-    @{json='{"data":[]}';status=$null;quota=$false;rejected=$false},
-    @{json='{"data":{}}';rejected=$true},
-    @{json='{"data":[{"id":"one","status":"failed"},{"id":"two","status":"failed"}]}';rejected=$true}
-)
-foreach($bridgeCase in $bridgeCases) {
-    $script:requestCalls=0;$script:fakeResponse=$bridgeCase.json;$rejected=$false
-    try{$bridgeResult=Get-NativeLatestTurnDisposition $fakeContext}
-    catch{$rejected=$true;Assert-Runner ($_.Exception.Message -ceq 'Native latest-turn inspection unavailable.')}
-    Assert-Runner ($rejected -eq $bridgeCase.rejected -and $script:requestCalls -eq 1)
-    if(-not $rejected){Assert-Runner ($bridgeResult.LastTurnStatus -ceq $bridgeCase.status -and $bridgeResult.UsageLimitErrorConfirmed -eq $bridgeCase.quota)}
+function Project-TestSnapshot($Value) {
+    $document=[Text.Json.JsonDocument]::Parse((ConvertTo-Json -InputObject $Value -Depth 30 -Compress))
+    try{return [AgentFlowOps.NativeSnapshotTap]::Project($document.RootElement)}finally{$document.Dispose()}
+}
+$snapshotCases=[ordered]@{
+    'canonical tail active turn is observable'={ Assert-Runner ((Project-TestSnapshot $state).Observable) }
+    'unknown canonical newer boundary is not latest'={ $state.turnHistory.history.islands[0].newerBoundary.status='available';Assert-Runner (-not (Project-TestSnapshot $state).Observable) }
+    'missing canonical entity never falls back to legacy'={ $state.turnHistory.history.entitiesByKey.Clear();$state.turns=@(@{turnId='legacy';status='inProgress'});Assert-Runner (-not (Project-TestSnapshot $state).Observable) }
+    'different legacy overlay is ambiguous'={ $state.turns=@(@{turnId='different';status='inProgress'});Assert-Runner (-not (Project-TestSnapshot $state).Observable) }
+    'same overlay identity and status is supported'={ $state.turns=@(@{turnId='running-turn';status='inProgress'});Assert-Runner ((Project-TestSnapshot $state).Observable) }
+    'unknown runtime cannot prove observability'={ $state.threadRuntimeStatus.type='unknown';Assert-Runner (-not (Project-TestSnapshot $state).Observable) }
+    'runtime idle contradicting active turn is unknown'={ $state.threadRuntimeStatus.type='idle';Assert-Runner (-not (Project-TestSnapshot $state).Observable) }
+    'exact quota error on failed canonical turn is accepted'={ $state.threadRuntimeStatus.type='idle';$state.turnHistory.history.entitiesByKey['entity-current'].status='failed';$state.turnHistory.history.entitiesByKey['entity-current'].error=@{codexErrorInfo='usageLimitExceeded'};Assert-Runner ((Project-TestSnapshot $state).UsageLimitErrorConfirmed) }
+    'rate limit does not prove quota'={ $state.threadRuntimeStatus.type='idle';$state.turnHistory.history.entitiesByKey['entity-current'].status='failed';$state.turnHistory.history.entitiesByKey['entity-current'].error=@{codexErrorInfo='rateLimitExceeded'};Assert-Runner (-not (Project-TestSnapshot $state).UsageLimitErrorConfirmed) }
+    'legacy snapshot without canonical history still works'={ $state.Remove('turnHistory');$state.turns=@(@{turnId='legacy';status='inProgress'});Assert-Runner ((Project-TestSnapshot $state).Observable) }
+    'only latest island exhausted tail is considered'={ $state.turnHistory.history.islands=@(@{newerBoundary=@{status='available'};entries=@(@{value='old'})},$state.turnHistory.history.islands[0]);Assert-Runner ((Project-TestSnapshot $state).TurnId -ceq 'running-turn') }
+}
+foreach($snapshotCase in $snapshotCases.GetEnumerator()) {
+    $state=New-TestSnapshot
+    try{& $snapshotCase.Value}catch{throw ('Snapshot regression failed: '+$snapshotCase.Key+'. '+$_.Exception.Message)}
     $passed++
 }
+foreach($frameCase in @('valid','split','wrong-owner','wrong-thread','wrong-version','negative-revision','patch-only')) {
+    $message=@{type='broadcast';method='thread-stream-state-changed';version=11;sourceClientId='expected-owner';params=@{hostId='local';conversationId='expected-thread';change=@{type='snapshot';revision=5;conversationState=(New-TestSnapshot)}}}
+    switch($frameCase){
+        'wrong-owner'{$message.sourceClientId='other-owner'}
+        'wrong-thread'{$message.params.conversationId='other-thread'}
+        'wrong-version'{$message.version=12}
+        'negative-revision'{$message.params.change.revision=-1}
+        'patch-only'{$message.params.change=@{type='patches';revision=5;patches=@()}}
+    }
+    $body=[Text.Encoding]::UTF8.GetBytes((ConvertTo-Json -InputObject $message -Depth 30 -Compress))
+    $memory=[IO.MemoryStream]::new();$memory.Write([BitConverter]::GetBytes([int]$body.Length));$memory.Write($body);$memory.Position=0
+    $tap=[AgentFlowOps.NativeSnapshotTap]::new($memory,'expected-thread');$tap.SetOwner('expected-owner')
+    $buffer=[byte[]]::new($(if($frameCase -ceq 'split'){3}else{$body.Length+4}))
+    $rejected=$false
+    try{while($tap.Read($buffer,0,$buffer.Length) -gt 0){}}catch{$rejected=$true}
+    if($frameCase -cin @('valid','split')){Assert-Runner (-not $rejected -and $tap.Result.IsCompletedSuccessfully -and $tap.Result.Result.Observable)}
+    elseif($frameCase -cin @('wrong-thread','patch-only')){Assert-Runner (-not $rejected -and -not $tap.Result.IsCompleted)}
+    else{Assert-Runner $rejected}
+    $tap.Dispose();$passed++
+}
+# An unobservable owner snapshot never falls back to the stored CLI app-server.
+$bridgeRead=@($bridgeAst.EndBlock.Statements | Where-Object {$_ -is [Management.Automation.Language.FunctionDefinitionAst] -and $_.Name -ceq 'Get-NativeLatestTurnDisposition'})[0]
+. ([scriptblock]::Create($bridgeRead.Extent.Text))
+function Get-NativeOwnerTurnDisposition($Context){return [pscustomobject]@{Observable=$false}}
+$rejected=$false
+try{$null=Get-NativeLatestTurnDisposition @{}}catch{$rejected=$_.Exception.Message -ceq 'Native latest-turn inspection unavailable.'}
+Assert-Runner $rejected;$passed++
 [pscustomobject]@{passed=$true;syntheticCases=$passed;liveAccountAccess=$false;processOrSwitchExecution=$false}

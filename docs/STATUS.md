@@ -29,10 +29,14 @@
 - `ops-cli-result-review`는 worker 유실이다. 원본 메타데이터 running을 실행 성공으로 세거나 같은 작업을 다시 보내지 않는다.
 - `result`는 진행 줄을 포함한 전체 원본 로그다. 상태/완료 조건을 따로 확인하고 공개용 결과만 검토해 GitHub에 남긴다. 인증·프로필·비공개 원문은 올리지 않는다.
 
-## 재개한 계정 작업
+## 계정 전환
 
-Codex Switch 원본과 보관된 프로필을 유지한다. 한도 소진 후 Business 두 사용자 → Plus·크레딧 → Pro 비상용 순서와 Business 회복 후 복귀 로직을 보완했다. 정책 26개·실행기 45개 합성 검사가 통과했다. 현재 Pro는 아직 사용 가능하므로 교체하지 않았다.
+사용자 요청으로 **Pro → 첫 번째 Business 실제 전환 및 같은 대화 자동 재개**를 검증했다. 새 원본 receipt의 목표 계정·시각·ID, 현재 계정, 같은 UUID와 설정 해시, 재개 후 실제 도구 실행이 일치했다. [실전 기록](../results/account-priority-2026-10-24/LIVE_SWITCH.md).
 
-**자동 실행은 꺼져 있다.** 대기 감시를 잠깐 실행했지만 현재 Work 대화의 active 표시와 native 최신 턴이 일치하지 않아 중지했다. config.enabled=false, task Ready, 시작 트리거 없음이다. 새 Codex 총괄 UUID의 현재 턴 관찰 확인 후 활성화해야 한다. 실제 전환·같은 대화 재개는 미검증이다. 계정 교체 대상은 총괄 Codex뿐이며 Pro·Claude 브라우저 로그인은 유지한다. [계정 운영](ACCOUNT_OPERATIONS_KO.md) · [검증 기록](../results/account-priority-2026-10-24/RESULT.md).
+**자동 감시는 2026-10-24 00:41 KST에 활성화했다.** config.enabled=true, 예약 작업 Running, 현재 두 번째 Business와 이 대화의 실제 진행 중 턴이 일치하는 관찰 기록을 확인했다. 현재 상태는 waiting_for_current_account_exhaustion이며 미해결 전환은 없다. 첫 번째 Business가 소진된 때에는 아직 감시가 꺼져 있어 사용자가 수동 전환했다. 자연 한도 소진 → 자동 전환 → 재개 전체와 계정 순환은 별도 실전 미검증이다. 계정 순서는 Business 두 사용자 → Plus·크레딧 → Pro 비상용, 회복 후 Business 복귀를 유지한다.
+
+계정 교체 대상은 총괄 Codex뿐이다. 전환 후 Claude 로그인·기존 답변, Oracle 기록, GitHub 접근과 DSH 설치/키 존재를 확인했다. 외부 모델에 새 질문을 전부 재전송하지 않았다. [계정 운영](ACCOUNT_OPERATIONS_KO.md) · [검증 이력](../results/account-priority-2026-10-24/RESULT.md).
 
 과거 설치·연결 실패는 [초기 시험](../results/harness-smoke-2026-10-23/RESULT.md)과 Git 이력에 남아 있다. 과거의 미연결 문장을 현재 상태로 해석하지 않는다. 연구 문서는 당시 판단이며 현재 연결 성공의 증거가 아니다.
+
+공통 스킬·로컬 Git 인증·외부 워커 설정과 계정별 연결 범위는 [공통 환경](SHARED_SETUP_KO.md)에 정리했다. 로컬 Git 비대화형 push 권한 확인을 통과했다.

@@ -2,9 +2,11 @@
 
 현재 실행 결과는 [STATUS](STATUS.md)를 먼저 읽는다. 비밀번호를 문서에 적는 방식 대신 이미 로그인한 인증을 원본 전환기의 Windows 사용자 DPAPI vault에 보관한다. 실제 계정 정보와 vault는 GitHub에 넣지 않는다.
 
-2026-10-24 현재: 우선순위·같은 대화 재개 로직을 보완했지만 **자동 실행은 꺼져 있다**. 잠깐 대기 감시를 실행한 결과 현재 Work 총괄의 monitor는 active인데 native 최신 턴은 interrupted여서 대상을 일관되게 관찰하지 못했다. 계정 교체 없이 감시를 중지했고 private config는 enabled=false, 예약 작업은 Ready·시작 트리거 0개다. 실제 전환·한도 실패 자동 재개는 아직 검증하지 않았다.
+2026-10-24 현재: 사용자 요청으로 **Pro → 첫 번째 Business 실제 전환 및 같은 대화의 자동 재개**를 검증했다. 원본 receipt, 현재 계정, UUID, 설정 해시와 재개된 총괄의 실제 도구 실행이 일치했다. [실전 기록](../results/account-priority-2026-10-24/LIVE_SWITCH.md). 자연 한도 소진이나 전체 계정 순환을 실계정으로 검증했다는 뜻은 아니다.
 
-사용자가 정한 순서는 Business 두 사용자 → Plus·보유 크레딧 → Pro 비상용이다. 현재 사용 가능한 Pro는 최초 한도 소진까지 유지하고, 정책이 시작된 후에는 Business의 실제 회복을 확인해 안전 경계에 복귀한다. vault 네 역할 매핑 및 캐시 한도 데이터는 확인했다. 아래 세 항목 가져오기는 최초 준비 당시 기록이다.
+현재 감시는 2026-10-24 00:41 KST에 활성화했다. config.enabled=true·예약 작업 Running이며 현재 두 번째 Business·같은 UUID·실제 inProgress 턴·관찰 계정 일치를 확인했다. 최신 앱 canonical turnHistory를 원본 지원 IPC snapshot에서 읽는 작은 호환 어댑터로 해결했다. 별도 stdio app-server의 저장 이력 fallback은 제거했다. Work 자체가 미지원이라는 해석은 정정한다. 지원된 owner history hydration 1회 실패 후 해당 호출은 재시도하지 않았다.
+
+우선순위는 Business 두 사용자 → Plus·보유 크레딧 → Pro 비상용이다. 실전 시험 후 첫 번째 Business 소진 시 사용자가 수동 전환해 현재 두 번째 Business이며, 실제 한도 회복을 확인한 안전 경계에서 Business 우선으로 돌아온다. 자동 실행의 최신 상태는 STATUS를 따른다. 아래는 기존 대상 연결 절차와 원본 도구 정보다.
 
 ## 새 Codex 총괄에 연결할 때만 필요한 설정
 
@@ -12,7 +14,7 @@
 
 1. 새 세션이 Codex 앱의 로컬 Codex 총괄인지 확인하고 실제 thread UUID를 얻는다. 원래 Work 총괄이나 이번 Ops 대화의 UUID를 그대로 복사하지 않는다.
 2. 기존 private config `.ops/account-priority/current-test/config.json`은 네 역할의 원본 Key와 설치 경로를 보관한다. 값을 출력하지 않고 새 `.ops/account-priority/<thread UUID>/config.json`으로 필요한 설정만 옮기며 threadId를 바꾼다. 기존 ledger를 복사하거나 transition/resume claim을 지우지 않는다. 사용자 전용 ACL을 유지한다.
-3. 원본 native monitor의 active/idle과 `thread/turns/list(limit=1, sortDirection=desc, itemsView=notLoaded)`의 현재 턴이 일치하는지 읽기 전용으로 확인한다. 특히 실제 진행 중 턴이 inProgress로 관찰돼야 실패 계정 귀속을 검증할 수 있다. 불일치 시 `target_turn_not_observable`로 보류한다. 지원하지 않는 API를 다른 경로로 우회하지 않는다.
+3. 원본 native monitor의 active/idle과 실제 Desktop owner snapshot의 현재 턴이 일치하는지 읽기 전용으로 확인한다. 호환 어댑터는 원본 IPC 연결·발견·follow 기능을 재사용하고 canonical turnHistory의 최신 턴 ID·상태·한도 오류만 반환한다. 실제 진행 중 턴은 inProgress여야 한다. owner·UUID·프로토콜·revision·최신 경계가 확인되지 않으면 중지한다. 별도 app-server의 저장 이력으로 대체하지 않는다.
 4. config를 enabled=true로 정한 뒤 `run-account-priority.ps1 -ConfigPath ... -CheckOnly`를 실행한다. 이 모드는 전환·재개·ledger 쓰기를 하지 않는다. 상태가 `disabled`일 때는 연결 확인 성공으로 세지 않는다.
 5. 기존 예약 작업을 조회해 Ready/중지 상태와 전환 중인 기록이 없음을 확인한다. 기존 실행기와 원본 프로그램의 미해결 전환이 있으면 먼저 원본 receipt로 확인한다. 같은 사용자 task가 이전 config를 가리키면 중지된 그 task만 제거한 뒤 새 config로 `start-account-priority.ps1 -ConfigPath ...`를 명시적으로 실행한다. launcher는 다른 config의 task를 자동 덮어쓰지 않는다.
 6. Running 상태, 해당 UUID의 관찰 기록, fresh 상태를 확인한다. 최초 실제 한도 사건 후 원본 전환 receipt·계정 일치·같은 UUID·설정 해시·새 턴 접수까지 확인해야 전환+재개 성공이다. 대기 감시 기동만으로 이를 통과 처리하지 않는다.
@@ -25,7 +27,7 @@ launcher는 Windows Task Scheduler의 현재 사용자 Interactive/Limited 작�
 - 원본 active 턴/계정 관찰을 고정하고, 사용자가 중간에 계정을 바꾸면 실패를 새 계정에 잘못 귀속하지 않는다.
 - 확정 실패는 계정별로 남긴다. 오래된 정상 quota나 단순 시간 경과로 실패를 없애지 않는다. 서로 다른 bucket·window를 섞어 회복으로 오판하지 않는다.
 - 전환 및 Resume 전 claim을 저장하고 불명확한 결과에 재전송하지 않는다. 실제 새 사용자 턴이 확인되면 미확인 Resume를 중복 실행하지 않고 정리한다.
-- monitor 메타데이터가 부족하면 최신 턴 하나만 읽는다. 대화 전체를 반복해서 모델 문맥에 넣지 않는다. 대상 상태 불일치나 API 미지원은 전환을 막는다.
+- monitor의 legacy 턴 필드가 비어 있으면 실제 owner snapshot에서 canonical 최신 턴을 투영한다. 원문은 모델 문맥이나 디스크에 저장하지 않는다. local IPC 전체 snapshot을 잠깐 읽는 비용은 있으며 이번 긴 대화에서 약 5.1 MiB·1초였다. polling은 30초다. 대상·owner·최신 경계·상태 불일치나 API 미지원은 전환을 막는다.
 - native 원본 전환 엔진·ResumeAsync를 사용한다. 실패 대화의 설정 해시와 계정·UUID를 대조한다. 마지막 idle 확인 직후 외부에서 새 작업이 시작되는 경쟁 가능성은 남아 있어 완전한 무중단을 보장하지 않는다.
 
 [검증·활성화 상태 기록](../results/account-priority-2026-10-24/RESULT.md). 원본 엔진·빌드 정보와 수동 전환 절차는 아래에 이어진다.

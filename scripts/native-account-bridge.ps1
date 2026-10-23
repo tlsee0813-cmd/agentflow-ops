@@ -167,30 +167,143 @@ function ConvertFrom-NativeLatestTurnDisposition {
     return [pscustomobject]@{LastTurnStatus=$status;TurnId=$turnId;UsageLimitErrorConfirmed=[bool]$confirmed}
 }
 
-function Get-NativeLatestTurnDisposition {
+function Initialize-NativeSnapshotTap {
+    if ('AgentFlowOps.NativeSnapshotTap' -as [type]) { return }
+    # Compatibility projection only. Original monitor owns connection, framing,
+    # discovery and subscription. This stream observes one full owner snapshot;
+    # patches and conversation items are never retained or exposed.
+    Add-Type -TypeDefinition @'
+using System;
+using System.IO;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
+namespace AgentFlowOps {
+ public sealed class NativeTurnMetadata {
+  public bool Observable {get;set;}
+  public string RuntimeStatus {get;set;}
+  public string TurnId {get;set;}
+  public string LastTurnStatus {get;set;}
+  public bool UsageLimitErrorConfirmed {get;set;}
+ }
+ public sealed class NativeSnapshotTap : Stream {
+  readonly Stream inner; readonly string thread; string owner;
+  readonly byte[] header=new byte[4]; int headerUsed,bodyUsed; byte[] body;
+  readonly TaskCompletionSource<NativeTurnMetadata> result=new(TaskCreationOptions.RunContinuationsAsynchronously);
+  public NativeSnapshotTap(Stream inner,string thread){this.inner=inner;this.thread=thread;}
+  public void SetOwner(string owner){this.owner=owner;}
+  public Task<NativeTurnMetadata> Result=>result.Task;
+  public int SnapshotBytes {get;private set;}
+  static string Str(JsonElement e,string name)=>e.ValueKind==JsonValueKind.Object && e.TryGetProperty(name,out var v) && v.ValueKind==JsonValueKind.String?v.GetString():null;
+  static bool Obj(JsonElement e,string name,out JsonElement v){v=default;return e.ValueKind==JsonValueKind.Object && e.TryGetProperty(name,out v) && v.ValueKind==JsonValueKind.Object;}
+  public static NativeTurnMetadata Project(JsonElement state){
+   var answer=new NativeTurnMetadata();
+   if(!Obj(state,"threadRuntimeStatus",out var runtime))return answer;
+   answer.RuntimeStatus=Str(runtime,"type");
+   if(answer.RuntimeStatus!="active" && answer.RuntimeStatus!="idle")return answer;
+   JsonElement turn=default;
+   bool canonical=state.TryGetProperty("turnHistory",out var th) && Str(th,"kind")=="canonical";
+   if(canonical){
+    if(!Obj(th,"history",out var history) || !history.TryGetProperty("islands",out var islands) || islands.ValueKind!=JsonValueKind.Array || islands.GetArrayLength()==0 || !Obj(history,"entitiesByKey",out var entities))return answer;
+    var tail=islands[islands.GetArrayLength()-1];
+    if(!Obj(tail,"newerBoundary",out var boundary) || Str(boundary,"status")!="exhausted" || !tail.TryGetProperty("entries",out var entries) || entries.ValueKind!=JsonValueKind.Array || entries.GetArrayLength()==0)return answer;
+    var key=Str(entries[entries.GetArrayLength()-1],"value");
+    if(key==null || !entities.TryGetProperty(key,out turn) || turn.ValueKind!=JsonValueKind.Object)return answer;
+   }else{
+    if(state.TryGetProperty("turnHistory",out th) && th.ValueKind!=JsonValueKind.Null)return answer;
+    if(!state.TryGetProperty("turns",out var turns) || turns.ValueKind!=JsonValueKind.Array || turns.GetArrayLength()==0)return answer;
+    turn=turns[turns.GetArrayLength()-1];
+   }
+   var id=Str(turn,"turnId");var status=Str(turn,"status");
+   if(string.IsNullOrWhiteSpace(id) || !(status=="inProgress" || status=="completed" || status=="failed" || status=="interrupted"))return answer;
+   if(canonical && state.TryGetProperty("turns",out var overlay) && overlay.ValueKind==JsonValueKind.Array && overlay.GetArrayLength()>0){
+    var last=overlay[overlay.GetArrayLength()-1];
+    if(Str(last,"turnId")!=id || Str(last,"status")!=status)return answer;
+   }
+   if((answer.RuntimeStatus=="active")!=(status=="inProgress"))return answer;
+   answer.Observable=true;answer.TurnId=id;answer.LastTurnStatus=status;
+   answer.UsageLimitErrorConfirmed=(status=="failed" || status=="interrupted") && Obj(turn,"error",out var error) && Str(error,"codexErrorInfo")=="usageLimitExceeded";
+   return answer;
+  }
+  void Inspect(byte[] bytes){
+   if(result.Task.IsCompleted || owner==null)return;
+   using var document=JsonDocument.Parse(bytes);
+   var message=document.RootElement;
+   if(Str(message,"type")!="broadcast" || Str(message,"method")!="thread-stream-state-changed")return;
+   if(!Obj(message,"params",out var p) || Str(p,"hostId")!="local" || Str(p,"conversationId")!=thread)return;
+   if(Str(message,"sourceClientId")!=owner || !message.TryGetProperty("version",out var version) || !version.TryGetInt32(out var v) || v!=11)throw new InvalidDataException("Native snapshot identity rejected.");
+   if(!Obj(p,"change",out var change) || Str(change,"type")!="snapshot")return;
+   if(!change.TryGetProperty("revision",out var revision) || !revision.TryGetInt64(out var r) || r<0 || !Obj(change,"conversationState",out var state))throw new InvalidDataException("Native snapshot state rejected.");
+   SnapshotBytes=bytes.Length;result.TrySetResult(Project(state));
+  }
+  void Capture(ReadOnlySpan<byte> bytes){
+   while(!bytes.IsEmpty){
+    if(body==null){int n=Math.Min(4-headerUsed,bytes.Length);bytes.Slice(0,n).CopyTo(header.AsSpan(headerUsed));headerUsed+=n;bytes=bytes.Slice(n);if(headerUsed<4)continue;
+     int size=System.Buffers.Binary.BinaryPrimitives.ReadInt32LittleEndian(header);if(size<=0 || size>268435456)throw new InvalidDataException("Native snapshot frame rejected.");body=new byte[size];bodyUsed=0;}
+    int take=Math.Min(body.Length-bodyUsed,bytes.Length);bytes.Slice(0,take).CopyTo(body.AsSpan(bodyUsed));bodyUsed+=take;bytes=bytes.Slice(take);
+    if(bodyUsed==body.Length){try{Inspect(body);}catch{result.TrySetException(new InvalidDataException("Native snapshot projection failed."));throw;}finally{Array.Clear(body);body=null;bodyUsed=0;headerUsed=0;}}
+   }
+  }
+  public override async ValueTask<int> ReadAsync(Memory<byte> buffer,CancellationToken cancellation=default){int n=await inner.ReadAsync(buffer,cancellation);Capture(buffer.Span.Slice(0,n));return n;}
+  public override int Read(byte[] b,int o,int c){int n=inner.Read(b,o,c);Capture(b.AsSpan(o,n));return n;}
+  public override ValueTask WriteAsync(ReadOnlyMemory<byte> b,CancellationToken c=default)=>inner.WriteAsync(b,c);
+  public override Task WriteAsync(byte[] b,int o,int n,CancellationToken c)=>inner.WriteAsync(b,o,n,c);
+  public override void Write(byte[] b,int o,int c)=>inner.Write(b,o,c);
+  public override bool CanRead=>inner.CanRead;public override bool CanWrite=>inner.CanWrite;public override bool CanSeek=>false;
+  public override long Length=>throw new NotSupportedException();public override long Position{get=>throw new NotSupportedException();set=>throw new NotSupportedException();}
+  public override void Flush()=>inner.Flush();public override long Seek(long o,SeekOrigin s)=>throw new NotSupportedException();public override void SetLength(long l)=>throw new NotSupportedException();
+  protected override void Dispose(bool disposing){if(disposing){if(body!=null)Array.Clear(body);inner.Dispose();}base.Dispose(disposing);}
+ }
+}
+'@
+}
+
+function Get-NativeOwnerTurnDisposition {
     param([Parameter(Mandatory)]$Context)
     if($Context.Disposed){throw 'Native bridge closed.'}
-    $rpc=$null
-    try{
-        $installation=Invoke-NativeBridgeMethod $Context.Types.RuntimeLocator 'FindAsync' $null @([Threading.CancellationToken]::None)
-        $rpc=New-NativeBridgeObject $Context.Types.CodexRpc @([string]$installation.CliPath,[string]$Context.CodexHome,[bool]$true)
-        $null=Invoke-NativeBridgeMethod $Context.Types.CodexRpc 'InitializeAsync' $rpc @([Threading.CancellationToken]::None)
+    Initialize-NativeSnapshotTap
+    $sampler=$null;$pipe=$null;$tap=$null;$reader=$null
+    $cancel=[Threading.CancellationTokenSource]::new([TimeSpan]::FromSeconds(12))
+    try {
+        # Original methods and parser retain the native protocol/security checks.
+        $sampler=New-NativeBridgeObject $Context.Types.DesktopSessionMonitor @([string]$Context.CodexHome)
+        $pipe=Invoke-NativeBridgeMethod $Context.Types.DesktopSessionMonitor 'ConnectAsync' $sampler @($cancel.Token)
+        $tap=[AgentFlowOps.NativeSnapshotTap]::new($pipe,[string]$Context.CurrentThreadId)
+        $flags=[Reflection.BindingFlags]'Instance,NonPublic'
+        $readMethod=$Context.Types.DesktopSessionMonitor.GetMethod('ReadAsync',$flags)
+        $reader=$readMethod.Invoke($sampler,[object[]]@($tap,$cancel.Token))
+        $initialize=[Collections.Generic.Dictionary[string,object]]::new();$initialize.Add('clientType','codex-account-desk')
+        $null=Invoke-NativeBridgeMethod $Context.Types.DesktopSessionMonitor 'RequestAsync' $sampler @($tap,'initialize',$initialize,[int]0,$cancel.Token,$null,$null)
         $parameters=[Collections.Generic.Dictionary[string,object]]::new()
-        $parameters.Add('threadId',[string]$Context.CurrentThreadId);$parameters.Add('limit',[uint32]1)
-        $parameters.Add('sortDirection',[string]'desc');$parameters.Add('itemsView',[string]'notLoaded')
-        $result=Invoke-NativeBridgeMethod $Context.Types.CodexRpc 'RequestAsync' $rpc @([string]'thread/turns/list',$parameters,[Threading.CancellationToken]::None,$null)
-        $projection=ConvertFrom-Json -InputObject $result.GetRawText() -AsHashtable -Depth 100
-        if (-not $projection.ContainsKey('data') -or $projection.data -isnot [Collections.IList] -or $projection.data.Count -gt 1) { throw 'Native turn page rejected.' }
-        # The response is scoped to the exact threadId above and contains at most
-        # one turn, without conversation items or any full-history hydration.
-        return ConvertFrom-NativeLatestTurnDisposition -Thread @{id=$Context.CurrentThreadId;turns=$projection.data} -ExpectedThreadId $Context.CurrentThreadId
-    }catch{
-        # Unsupported methods, unreadable state and RPC errors stop the caller.
-        # Do not silently retry through a different history or account API.
-        throw [InvalidOperationException]::new('Native latest-turn inspection unavailable.')
-    }finally{
-        if($null -ne $rpc){$dispose=Invoke-NativeBridgeMethod $Context.Types.CodexRpc 'DisposeAsync' $rpc; $null=$dispose.AsTask().GetAwaiter().GetResult()}
+        $parameters.Add('hostId','local');$parameters.Add('conversationId',[string]$Context.CurrentThreadId)
+        $ownerResponse=Invoke-NativeBridgeMethod $Context.Types.DesktopSessionMonitor 'RequestAsync' $sampler @($tap,'thread-owner-discovery',$parameters,[int]1,$cancel.Token,$null,$null)
+        $ownerId=$ownerResponse.GetProperty('handledByClientId').GetString()
+        if($ownerResponse.GetProperty('resultType').GetString() -cne 'success' -or [string]::IsNullOrWhiteSpace($ownerId)){throw 'Native owner unavailable.'}
+        $tap.SetOwner($ownerId)
+        $nativeLedger=$Context.Types.DesktopSessionMonitor.GetField('_ledger',$flags).GetValue($sampler)
+        $null=Invoke-NativeBridgeMethod ($nativeLedger.GetType()) 'Discover' $nativeLedger @([string]$Context.CurrentThreadId,[string]$ownerId)
+        $null=Invoke-NativeBridgeMethod $Context.Types.DesktopSessionMonitor 'FollowAsync' $sampler @($tap,[string]$Context.CurrentThreadId,[bool]$true,$cancel.Token)
+        $result=$tap.Result.WaitAsync($cancel.Token).GetAwaiter().GetResult()
+        return [pscustomobject]@{Observable=$result.Observable;RuntimeStatus=$result.RuntimeStatus;TurnId=$result.TurnId
+            LastTurnStatus=$result.LastTurnStatus;UsageLimitErrorConfirmed=$result.UsageLimitErrorConfirmed;Source='owner_snapshot';SnapshotBytes=$tap.SnapshotBytes}
+    } catch { throw [InvalidOperationException]::new('Native owner snapshot inspection unavailable.') }
+    finally {
+        $cancel.Cancel()
+        if($null -ne $tap){$tap.Dispose()}elseif($null -ne $pipe){$pipe.Dispose()}
+        if($null -ne $reader){try{$null=$reader.GetAwaiter().GetResult()}catch{}}
+        if($null -ne $sampler){try{$null=Dispose-NativeAccountBridgeContext ([pscustomobject]@{Disposed=$false;Monitor=$sampler;Types=$Context.Types})}catch{}}
+        $cancel.Dispose()
     }
+}
+
+function Get-NativeLatestTurnDisposition {
+    param([Parameter(Mandatory)]$Context)
+    # A separately launched app-server can normalize another process's running
+    # turn as interrupted. Only the actual desktop owner proves live turn state.
+    try {$latest=Get-NativeOwnerTurnDisposition $Context}
+    catch {throw [InvalidOperationException]::new('Native latest-turn inspection unavailable.')}
+    if (-not $latest.Observable) { throw [InvalidOperationException]::new('Native latest-turn inspection unavailable.') }
+    return $latest
 }
 
 function Invoke-NativeThreadResume {

@@ -27,7 +27,8 @@ Codex 앱 총괄에는 개인 스킬 `agentflow-coordinator`를 사용한다. �
 
 ## 실행과 보관
 
-- 계정 전환 작업은 사용자 요청으로 재개했다. 현재 사용 가능한 Pro를 즉시 교체하지 않고 최초 한도 소진 후 정책을 시작한다. 실제 자동 실행 여부·대상 thread·미검증은 docs/ACCOUNT_OPERATIONS_KO.md와 STATUS를 확인한다. 외부 워커가 계정 설정을 변경하지 않는다.
+- 계정 전환 작업은 사용자 요청으로 재개했고 Pro → 첫 번째 Business 실제 전환과 같은 대화 재개를 확인했다. 현재 계정과 자동 감시 상태는 최신 STATUS를 따른다. 실제 자동 실행 여부·대상 thread·미검증은 docs/ACCOUNT_OPERATIONS_KO.md와 STATUS를 확인한다. 외부 워커가 계정 설정을 변경하지 않는다.
+- 저장소 fetch·commit·push는 공통 로컬 Git 인증을 우선 사용한다. 계정별 GitHub connector가 없어도 같은 checkout에서 작업한다. 스킬·Oracle·Claude·DSH를 계정마다 재설치하지 않는다. 공통/계정별 범위는 docs/SHARED_SETUP_KO.md를 참고한다.
 - 계정 교체 대상은 총괄 Codex뿐이다. 웹 ChatGPT Pro·Claude 등 외부 작업용 로그인·대화·브라우저 프로필은 유지한다. 총괄 계정을 바꿨다는 이유로 외부 세션을 로그아웃·복제·재생성하지 않는다.
 - 그 다음은 기존 Pro 조사, Claude 위임, Cloud 검증, 화면 조작·이미지 확인, GitHub 결과 회수가 그대로 또는 더 편해지는지다.
 - 새 watcher, 세션 저장소, 작업 큐, 범용 실행기를 만들기 전에 기존 upstream 기능과 최근 release/issue를 확인한다.
