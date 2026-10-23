@@ -1,6 +1,6 @@
 # 조립 방향과 선택 근거
 
-2026-10-23 기준. 현재 계정 후보의 우선 비교 순서는 [ACCOUNT_DECISION_KO](ACCOUNT_DECISION_KO.md), 실제 실행 여부는 [STATUS](STATUS.md)에 모읍니다.
+2026-10-23 초기 조립 방향이다. 이후 실제 Business 사용자 로그인에서 QuotaCrew identity 문제가 확인돼 보류했다. 아래 후보의 기능 설명은 현재 채택 완료를 뜻하지 않는다. 현재 계정 후보의 우선 비교 순서는 [ACCOUNT_DECISION_KO](ACCOUNT_DECISION_KO.md), 실제 실행 여부는 [STATUS](STATUS.md)에 모읍니다.
 
 ## 판단 순서
 

@@ -82,3 +82,7 @@ Desktop/IDE 자동 재개는 upstream도 experimental이다. 로컬 CLI/App Serv
 
 [yunkai93/codex-switch-account](https://github.com/yunkai93/codex-switch-account/tree/218dde4287194d798f88a23c1a1f78411f1a3d17)도 한도 후 자동 resume 후보로 확인했다. MIT, 마지막 커밋 2026-06-04, GitHub release 없음. native PowerShell/CMD 미지원이고 별도 shared home의 초기 복사 범위가 config·installation_id·version뿐이어서, 현재 Windows 작업과 기존 skills/plugins를 그대로 쓰기 위한 첫 선택에서는 제외한다. 일반 실행의 대화 ID 추정도 최신 history/rollout fallback이므로 동시 세션에서 확실한 현재 대화 식별로 확대하지 않는다.
 
+
+## 실제 Business 사용자 로그인 후 판정 수정
+
+QuotaCrew의 원본 계정 binding과 전환 검증이 workspace account_id를 사용자 고유 ID처럼 사용해 실제로 서로 다른 사용자 등록이 충돌했다. 이 환경에서는 보류하며 DB 중복 제한만 제거하지 않는다. Gaebabi와 CC Switch의 workspace+user subject 구분, JJLiebig의 같은 충돌 가능성은 [실제 관찰과 후속 소스 비교](../results/quotacrew-business-identity-2026-10-23/RESULT.md)에 모았다. 초기 자동화 기능 폭만으로 현재 후보를 확정하지 않는다.

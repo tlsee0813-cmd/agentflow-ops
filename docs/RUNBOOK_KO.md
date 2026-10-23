@@ -46,13 +46,13 @@ custom slug는 3~5단어이고 충돌 시 접미사가 붙을 수 있다. 요청
 
 ## 계정 교체
 
-Switchy 1.0.39는 접근 제한 누락을 확인해 보류하고 중지했다. [보류 근거](ACCOUNT_DECISION_KO.md)와 [STATUS](STATUS.md)를 먼저 읽는다. 현재 원본 QuotaCrew 0.3.0 기본 CLI를 Python 3.12.14 venv에 설치했다. [CLI 준비 안내](QUOTACREW_CLI_KO.md)를 따른다. 원본 init·빈 프로필 두 개·doctor 관찰까지 완료했다. GUI·실제 로그인·전환·자동 감시는 실행하지 않았다.
+[현재 판정](ACCOUNT_DECISION_KO.md)과 [STATUS](STATUS.md)를 먼저 읽는다. Switchy 1.0.39는 제어 경로 문제로 중지했다. QuotaCrew 0.3.0도 같은 Business workspace의 다른 사용자를 중복 계정으로 처리하는 실제 호환 문제로 보류했다. 설치된 QuotaCrew의 binding·DB를 우회해 실제 switch를 실행하지 않는다.
 
-원본 profile add → profile login은 도구 소유 CODEX_HOME에 정상 로그인한다. main auth를 가져오는 CLI는 확인되지 않았다. Windows 실제 전환은 Desktop 강제 종료와 재시작을 포함할 수 있고, packaged Desktop의 자식에서 실행하면 전환을 거부한다. CLI 설치만으로 무중단 전환이나 상시 자동 감시가 준비됐다고 판단하지 않는다.
+두 사용자 인증은 비공개 로컬 프로필에 보관돼 있다. 추가 로그인 반복을 요구하지 않으며, 다른 도구로의 이전은 원본이 지원하는 경로를 확인한 뒤 판단한다. workspace ID가 같다는 사실만으로 같은 사용자나 같은 quota라고 판단하지 않는다.
 
-기존 계정 관리자와 동시에 자동 전환을 켜지 않는다. QuotaCrew에서 설치된 Codex와 지정 대화의 지원 상태를 확인하고, 전환 전후 실제 계정·같은 대화·재개된 작업·외부 작업 링크·GitHub 접근을 대조한다. 그 다음 upstream의 감시·자동 전환·continuation 설정을 사용한다. 자동 재개가 지원되지 않는 연결은 미지원으로 남기며 다른 세션으로 몰래 대체하지 않는다.
+선택할 기존 도구는 workspace+user identity를 저장·활성 선택·전환 검증 모두에 사용해야 한다. CLI 전환 요청 exit 0과 실제 완료·계정 적용·같은 대화 재개를 구분한다. 기존 관리자 둘의 자동 전환을 동시에 켜지 않는다.
 
-[비교 관문](COMPARISON_KO.md)을 사용하고, 실제 결과는 STATUS와 결과 문서에 기록한다. 기존 총괄이 커밋·전송 중인 순간에 이 실행 프로세스가 자기 계정을 바꾸는 방식으로 점검하지 않는다.
+Desktop 종료가 포함되는 전환은 현재 packaged Desktop의 자식 총괄에서 실행하지 않는다. 독립 실행 경로와 [비교 관문](COMPARISON_KO.md)을 확인한 후 실제 전환을 점검한다. 기억 이전 코드를 새로 만들지 않는다.
 
 ## 화면과 이미지
 

@@ -1,5 +1,7 @@
 # QuotaCrew CLI 준비 결과
 
+**이후 정상 로그인에서 같은 Business workspace의 사용자 identity 충돌을 확인해 보류했다. [후속 실제 결과](../quotacrew-business-identity-2026-10-23/RESULT.md)를 우선한다.** 아래는 로그인 전 준비 영수증이다.
+
 2026-10-23. 원본 CLI 설치, 정상 초기화, 로그인 대기용 빈 프로필 두 개 생성과 doctor 관찰을 완료했다. 실제 로그인·계정 교체·자동 재개 성공을 의미하지 않는다.
 
 ## 설치 영수증

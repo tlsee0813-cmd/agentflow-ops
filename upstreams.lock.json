@@ -26,7 +26,8 @@
       "status": "fallback-not-installed",
       "license": "MIT",
       "url": "https://github.com/Gaebabi/codex-switch",
-      "reviewedSourceUrl": "https://github.com/Gaebabi/codex-switch/tree/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c"
+      "reviewedSourceUrl": "https://github.com/Gaebabi/codex-switch/tree/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c",
+      "sameWorkspaceIdentityReview": "workspace-plus-user-sub-key-source-confirmed-runtime-not-tested"
     },
     {
       "name": "chatgpt-browser-channel",
@@ -79,7 +80,7 @@
       "reviewed": "9667dd561b6507e4ec0ea09fc9f1055e1f242f84",
       "release": "v0.3.0",
       "publishedOn": "2026-10-19",
-      "status": "base-cli-initialized-two-empty-profiles-doctor-observed-no-login-switch-or-watcher",
+      "status": "held-same-business-workspace-distinct-users-collide-no-switch",
       "license": "MIT",
       "url": "https://github.com/erkanpulat/codex-quotacrew",
       "reviewedSourceUrl": "https://github.com/erkanpulat/codex-quotacrew/tree/9667dd561b6507e4ec0ea09fc9f1055e1f242f84",
@@ -138,7 +139,12 @@
       "license": "MIT",
       "release": "v4.0.18",
       "url": "https://github.com/farion1231/cc-switch",
-      "reviewedSourceUrl": "https://github.com/farion1231/cc-switch/tree/79ba7982aa3980b001c0b68efde05505884c1f8b"
+      "reviewedSourceUrl": "https://github.com/farion1231/cc-switch/tree/79ba7982aa3980b001c0b68efde05505884c1f8b",
+      "sameWorkspaceIdentityReviewedRelease": {
+        "release": "v4.0.18",
+        "status": "source-support-confirmed-not-installed-or-switched",
+        "source": "cb90a2440d1a771d67f46b65b2e0f2ea5106ce85"
+      }
     },
     {
       "name": "CLIProxyAPI",
