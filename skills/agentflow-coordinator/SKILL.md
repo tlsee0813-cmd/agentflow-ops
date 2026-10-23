@@ -29,7 +29,7 @@ Ops 스크립트 호출만 runtime.json의 opsRoot에서 실행한다. 제품의
 | 채널 | 실행과 회수 | 필요한 문서 |
 |---|---|---|
 | 웹 Pro | `node scripts/pro-task.mjs submit .ops/작업.json`; 원본 sessionId로 `status` / `result` | `docs/PRO_TASK_CLI_KO.md` |
-| Claude Code | 허용된 브라우저 도구로 repo·SHA·범위를 전달; 브랜치/커밋을 회수 | `docs/COORDINATOR_STATE.md`의 기존 주제 링크 |
+| Claude Code | 허용된 브라우저 도구로 repo·SHA·범위를 전달; 브랜치/커밋을 회수. 로컬 origin/main과 실제 원격 HEAD를 구분 | `docs/COORDINATOR_STATE.md`의 기존 주제 링크 |
 | Cloud | 실제 연결 상태에 맞는 task 도구 또는 브라우저; 실행 환경·기준 SHA를 먼저 확인 | `docs/CLOUD_CHANNEL_KO.md` |
 | DeepSeek/DSH | 인증·설치 확인 후 원본 headless 실행 | `docs/DEEPSEEK_WORKER_KO.md` |
 | 화면 조사·조작 | 현재 세션에서 허용된 브라우저 도구 | 해당 도구의 사용 지침 |
@@ -46,4 +46,4 @@ Pro 작업 JSON은 `.ops`에 둘 수 있지만 첨부 `files`는 Git ignore 대�
 
 공유할 코드·결정·증거는 GitHub에 둔다. 인증키·프로필·비공개 원문은 `.ops` 등 로컬 비공개 경로에 둔다. 진행 중 작업의 기록은 세션 재시작 복구용이며 별도 자동 큐나 백그라운드 스케줄러가 아니다.
 
-계정 자동 전환은 현재 범위에서 제외한다. 사용자가 선택한 총괄 모델·계정과 외부 Pro/Claude 로그인은 유지한다. 새로운 사용자의 범위 지시가 이 운영 지침보다 우선한다.
+계정 운영의 실제 활성화 여부와 대상 thread는 STATUS 및 ACCOUNT_OPERATIONS를 따른다. 이 제품 조정 스킬을 실행한다는 이유만으로 전환기를 켜거나 대상 thread를 바꾸지 않는다. 사용자가 선택한 총괄 모델과 외부 Pro/Claude 로그인은 유지한다. 새로운 사용자의 범위 지시가 이 운영 지침보다 우선한다.

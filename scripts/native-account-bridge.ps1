@@ -176,10 +176,18 @@ function Get-NativeLatestTurnDisposition {
         $rpc=New-NativeBridgeObject $Context.Types.CodexRpc @([string]$installation.CliPath,[string]$Context.CodexHome,[bool]$true)
         $null=Invoke-NativeBridgeMethod $Context.Types.CodexRpc 'InitializeAsync' $rpc @([Threading.CancellationToken]::None)
         $parameters=[Collections.Generic.Dictionary[string,object]]::new()
-        $parameters.Add('threadId',[string]$Context.CurrentThreadId);$parameters.Add('includeTurns',$true)
-        $result=Invoke-NativeBridgeMethod $Context.Types.CodexRpc 'RequestAsync' $rpc @([string]'thread/read',$parameters,[Threading.CancellationToken]::None,$null)
+        $parameters.Add('threadId',[string]$Context.CurrentThreadId);$parameters.Add('limit',[uint32]1)
+        $parameters.Add('sortDirection',[string]'desc');$parameters.Add('itemsView',[string]'notLoaded')
+        $result=Invoke-NativeBridgeMethod $Context.Types.CodexRpc 'RequestAsync' $rpc @([string]'thread/turns/list',$parameters,[Threading.CancellationToken]::None,$null)
         $projection=ConvertFrom-Json -InputObject $result.GetRawText() -AsHashtable -Depth 100
-        return ConvertFrom-NativeLatestTurnDisposition -Thread $projection.thread -ExpectedThreadId $Context.CurrentThreadId
+        if (-not $projection.ContainsKey('data') -or $projection.data -isnot [Collections.IList] -or $projection.data.Count -gt 1) { throw 'Native turn page rejected.' }
+        # The response is scoped to the exact threadId above and contains at most
+        # one turn, without conversation items or any full-history hydration.
+        return ConvertFrom-NativeLatestTurnDisposition -Thread @{id=$Context.CurrentThreadId;turns=$projection.data} -ExpectedThreadId $Context.CurrentThreadId
+    }catch{
+        # Unsupported methods, unreadable state and RPC errors stop the caller.
+        # Do not silently retry through a different history or account API.
+        throw [InvalidOperationException]::new('Native latest-turn inspection unavailable.')
     }finally{
         if($null -ne $rpc){$dispose=Invoke-NativeBridgeMethod $Context.Types.CodexRpc 'DisposeAsync' $rpc; $null=$dispose.AsTask().GetAwaiter().GetResult()}
     }

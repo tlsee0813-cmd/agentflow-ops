@@ -1,6 +1,6 @@
 # 현재 상태
 
-2026-10-23. **Codex 앱 총괄용 하네스**를 구성했다. 계정 자동 전환은 사용자 지시로 제외하며 현재 선택한 계정을 유지한다. 제품의 진행 상태는 해당 제품 저장소의 ACTIVE 등에서 별도로 확인한다.
+2026-10-24. **Codex 앱 총괄용 하네스**를 구성했다. 사용자 별도 새 세션 시험을 검토했고 계정 자동 전환 로직을 보완했다. 실제 활성화 여부는 아래 계정 상태를 따른다. 제품의 진행 상태는 해당 제품 저장소의 ACTIVE 등에서 별도로 확인한다.
 
 ## 새 총괄 세션
 
@@ -20,7 +20,7 @@
 
 [Pro 실행 방법](PRO_TASK_CLI_KO.md) · [Cloud 사용 범위](CLOUD_CHANNEL_KO.md) · [분배 기준](HARNESS_RUNBOOK_KO.md).
 
-[총괄 스킬·DeepSeek 연결 결과](../results/coordinator-harness-2026-10-23/RESULT.md): 개인 스킬 설치/재설치·형식 검사, 독립 새 문맥의 Pro dry-run, 실제 Pro 스킬 검토와 수정, DeepSeek 실제 분류 응답을 확인했다. 새 Codex 앱 세션의 UI 스킬 목록 발견과 모든 채널을 이용한 제품 작업 전체는 아직 별도 실행하지 않았다.
+[총괄 스킬·DeepSeek 연결 결과](../results/coordinator-harness-2026-10-23/RESULT.md) 이후 [실제 새 세션 시험](../results/new-session-2026-10-23/RESULT.md)에서 Pro·Claude·DeepSeek 왕복과 IAB 화면·링크 조작을 확인했다. 시험 전후 운영 설정과 제품은 바꾸지 않았다. 모든 채널로 한 제품 변경을 완수하거나 계정 교체 후 동등성까지 검증했다는 뜻은 아니다. 원래 프로젝트 총괄에게 전달할 [환경 설명·인수인계 요청](../prompts/ORIGINAL_COORDINATOR_HANDOFF_KO.md)을 준비했다.
 
 ## 완료 근거와 회수 규칙
 
@@ -29,8 +29,10 @@
 - `ops-cli-result-review`는 worker 유실이다. 원본 메타데이터 running을 실행 성공으로 세거나 같은 작업을 다시 보내지 않는다.
 - `result`는 진행 줄을 포함한 전체 원본 로그다. 상태/완료 조건을 따로 확인하고 공개용 결과만 검토해 GitHub에 남긴다. 인증·프로필·비공개 원문은 올리지 않는다.
 
-## 제외한 계정 작업
+## 재개한 계정 작업
 
-Codex Switch 원본과 보관된 프로필은 유지한다. 자동 정책·전환 시험은 실행하지 않는다. 계정 교체 대상은 총괄 Codex뿐이며 Pro·Claude 브라우저 로그인은 유지한다. 재개 요청 때만 [계정 운영](ACCOUNT_OPERATIONS_KO.md)을 읽는다.
+Codex Switch 원본과 보관된 프로필을 유지한다. 한도 소진 후 Business 두 사용자 → Plus·크레딧 → Pro 비상용 순서와 Business 회복 후 복귀 로직을 보완했다. 정책 26개·실행기 45개 합성 검사가 통과했다. 현재 Pro는 아직 사용 가능하므로 교체하지 않았다.
+
+**자동 실행은 꺼져 있다.** 대기 감시를 잠깐 실행했지만 현재 Work 대화의 active 표시와 native 최신 턴이 일치하지 않아 중지했다. config.enabled=false, task Ready, 시작 트리거 없음이다. 새 Codex 총괄 UUID의 현재 턴 관찰 확인 후 활성화해야 한다. 실제 전환·같은 대화 재개는 미검증이다. 계정 교체 대상은 총괄 Codex뿐이며 Pro·Claude 브라우저 로그인은 유지한다. [계정 운영](ACCOUNT_OPERATIONS_KO.md) · [검증 기록](../results/account-priority-2026-10-24/RESULT.md).
 
 과거 설치·연결 실패는 [초기 시험](../results/harness-smoke-2026-10-23/RESULT.md)과 Git 이력에 남아 있다. 과거의 미연결 문장을 현재 상태로 해석하지 않는다. 연구 문서는 당시 판단이며 현재 연결 성공의 증거가 아니다.

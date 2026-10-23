@@ -1,0 +1,54 @@
+{
+  "suiteId": "AF-ST-20261023-233533-34c50d",
+  "head": "bb4dced6956bcef1ac90e1e804a8ee0339b05c78",
+  "headUnchanged": true,
+  "gitClean": true,
+  "protectedFiles": [
+    {
+      "sha256": "9B3F4A8DE606CD10E0639CC4AD34F244CCBBF17ABDC77D229B29A74DEF186559",
+      "unchanged": true,
+      "path": "STATUS.md"
+    },
+    {
+      "sha256": "74858E9D074D2168E97FD6A6E2231F3E22FFB1B86DA99E1F00F9DA996BA35F39",
+      "unchanged": true,
+      "path": "COORDINATOR_STATE.md"
+    },
+    {
+      "sha256": "4009AD4F0732450E049262ADF80E2C058A4CFAC88979E145A4EC1EE6818CD7B2",
+      "unchanged": true,
+      "path": "AGENTS.md"
+    },
+    {
+      "sha256": "B0457B9095DCDD15BF137F9E9A01217193F8369E6F518EE40943C29493321139",
+      "unchanged": true,
+      "path": "mcporter.json"
+    },
+    {
+      "sha256": "49606083CBDBBDDDD917A4866D645673221599CC545874795BE5C1687B316050",
+      "unchanged": true,
+      "path": "pro-task.mjs"
+    },
+    {
+      "sha256": "ED886487FC3064091D6A611AE1DC54A4061692CE772C7FB8E98174601C6D4056",
+      "unchanged": true,
+      "path": "dsh-worker.mjs"
+    }
+  ],
+  "pro": {
+    "model": "gpt-6-pro",
+    "sessionId": "st-233533-34c50d-pro",
+    "resultExit": 0,
+    "resultChars": 2886,
+    "status": "completed"
+  },
+  "deepseek": {
+    "status": "completed",
+    "usage": null,
+    "text": "{\"A\":\"과일\",\"B\":\"교통수단\",\"C\":\"날씨\",\"testId\":\"AF-ST-20261023-233533-34c50d-deepseek\"}",
+    "sessionId": "session-a8708eeb-3d2d-41fd-af2f-7f252323390f",
+    "exitCode": 0,
+    "turnReason": "completed"
+  },
+  "sourceResultSha256": "C7FD70AEE8EE47DE4EF786F241D5EF37F40223FD895AF614768357D74DE805AA"
+}
