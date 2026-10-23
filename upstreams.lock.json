@@ -1,0 +1,188 @@
+{
+  "formatVersion": 1,
+  "reviewedOn": "2026-10-23",
+  "purpose": "Source review and assembly choices; not a declaration of runtime integration success",
+  "upstreams": [
+    {
+      "name": "oracle",
+      "repo": "steipete/oracle",
+      "reviewed": "998d11bce7e253fbcde319ec5a3c0174f1748469",
+      "status": "installed-pro-path-not-live-verified",
+      "license": "MIT",
+      "package": {
+        "name": "@steipete/oracle",
+        "version": "0.22.0",
+        "sourceCommitFromRegistryProvenance": "bfd25bd1d85c028af60bb708391d49e936c40701",
+        "integrity": "sha512-rr8hDqWgrlbHQ2s1o291rbMTt69CKbhOg/WQuONNWbJvqlSkLUbBq0ziGLXH/LcGBDJsFth93QOmacwvcy4dAw==",
+        "provenanceSignatureVerified": false
+      },
+      "url": "https://github.com/steipete/oracle",
+      "reviewedSourceUrl": "https://github.com/steipete/oracle/tree/998d11bce7e253fbcde319ec5a3c0174f1748469"
+    },
+    {
+      "name": "codex-switch",
+      "repo": "Gaebabi/codex-switch",
+      "reviewed": "2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c",
+      "status": "fallback-not-installed",
+      "license": "MIT",
+      "url": "https://github.com/Gaebabi/codex-switch",
+      "reviewedSourceUrl": "https://github.com/Gaebabi/codex-switch/tree/2779bfc135e4b3a2c9b7ab1141938c0605ac8e2c"
+    },
+    {
+      "name": "chatgpt-browser-channel",
+      "repo": "tejasdc/chatgpt-browser-channel",
+      "reviewed": "df26898e6b80f74a84354b53b711a969ce83b4a8",
+      "status": "reference-receipts-and-recovery",
+      "license": "MIT",
+      "url": "https://github.com/tejasdc/chatgpt-browser-channel",
+      "reviewedSourceUrl": "https://github.com/tejasdc/chatgpt-browser-channel/tree/df26898e6b80f74a84354b53b711a969ce83b4a8"
+    },
+    {
+      "name": "BrowserChatBridge-Plugin",
+      "repo": "satabd/BrowserChatBridge-Plugin",
+      "reviewed": "ae1b61808124f7f97665807994fa1f31f8c409e4",
+      "status": "fallback-not-installed",
+      "license": "MIT",
+      "url": "https://github.com/satabd/BrowserChatBridge-Plugin",
+      "reviewedSourceUrl": "https://github.com/satabd/BrowserChatBridge-Plugin/tree/ae1b61808124f7f97665807994fa1f31f8c409e4"
+    },
+    {
+      "name": "omp-openai-account-pool",
+      "repo": "realestsora/omp-openai-account-pool",
+      "reviewed": "ff0cc0fae04c91749557592c41138541524549e9",
+      "status": "reference-only",
+      "license": "MIT declared in package.json; no LICENSE file found at reviewed commit",
+      "url": "https://github.com/realestsora/omp-openai-account-pool",
+      "reviewedSourceUrl": "https://github.com/realestsora/omp-openai-account-pool/tree/ff0cc0fae04c91749557592c41138541524549e9"
+    },
+    {
+      "name": "handova",
+      "repo": "DeveloperAspire/handova",
+      "reviewed": "7e74dbff39fab0ca82099feb93c11c383fd65444",
+      "status": "deferred-no-migration-needed",
+      "license": "MIT",
+      "url": "https://github.com/DeveloperAspire/handova",
+      "reviewedSourceUrl": "https://github.com/DeveloperAspire/handova/tree/7e74dbff39fab0ca82099feb93c11c383fd65444"
+    },
+    {
+      "name": "grokbot-dsh-orchestrator-vn",
+      "repo": "diginno-net/grokbot-dsh-orchestrator-vn",
+      "reviewed": "5b6c9392c86bbeeeb6263bc54375abf607c3ef60",
+      "status": "deferred-worker",
+      "license": "MIT scripts/config; CC BY 4.0 docs",
+      "url": "https://github.com/diginno-net/grokbot-dsh-orchestrator-vn",
+      "reviewedSourceUrl": "https://github.com/diginno-net/grokbot-dsh-orchestrator-vn/tree/5b6c9392c86bbeeeb6263bc54375abf607c3ef60"
+    },
+    {
+      "name": "codex-quotacrew",
+      "repo": "erkanpulat/codex-quotacrew",
+      "reviewed": "9667dd561b6507e4ec0ea09fc9f1055e1f242f84",
+      "release": "v0.3.0",
+      "publishedOn": "2026-10-19",
+      "status": "desktop-automation-alternative-not-installed",
+      "license": "MIT",
+      "url": "https://github.com/erkanpulat/codex-quotacrew",
+      "reviewedSourceUrl": "https://github.com/erkanpulat/codex-quotacrew/tree/9667dd561b6507e4ec0ea09fc9f1055e1f242f84"
+    },
+    {
+      "name": "mcporter",
+      "repo": "openclaw/mcporter",
+      "reviewed": "5f9eee19b4216359e5937032705f7ce274b2ef4d",
+      "status": "installed-oracle-bridge",
+      "license": "MIT",
+      "package": {
+        "name": "mcporter",
+        "version": "0.16.0",
+        "sourceCommitFromRegistryProvenance": "9a8ed529e313f452a0ce977894cb63c4620ddd7c",
+        "integrity": "sha512-CrCc2zcDZ7B8WC1wTQNR1VuHjALnVoHb51Tt1p40c019jAkflZf/PJjqo44l0S15iBAJKa6hOq/zVlgI0Pxh8Q==",
+        "provenanceSignatureVerified": false
+      },
+      "url": "https://github.com/openclaw/mcporter",
+      "reviewedSourceUrl": "https://github.com/openclaw/mcporter/tree/5f9eee19b4216359e5937032705f7ce274b2ef4d"
+    },
+    {
+      "name": "chrome-devtools-mcp",
+      "repo": "ChromeDevTools/chrome-devtools-mcp",
+      "reviewed": "0ca821f3ac7d8e4d843efc3d7399d6b8d3f4d77d",
+      "status": "installed-optional-not-browser-verified",
+      "license": "Apache-2.0",
+      "package": {
+        "name": "chrome-devtools-mcp",
+        "version": "1.12.0",
+        "sourceCommit": "af2834411a564d366f9cab63efb046d9084f4dba"
+      },
+      "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+      "reviewedSourceUrl": "https://github.com/ChromeDevTools/chrome-devtools-mcp/tree/0ca821f3ac7d8e4d843efc3d7399d6b8d3f4d77d"
+    },
+    {
+      "name": "codex-account-switcher",
+      "repo": "JJLiebig/codex-account-switcher",
+      "reviewed": "045cb4f6ce2136ef3ecb2386d6f8aa841367c3ca",
+      "status": "cli-fallback-only",
+      "license": "MIT",
+      "release": "v0.1.10",
+      "url": "https://github.com/JJLiebig/codex-account-switcher",
+      "reviewedSourceUrl": "https://github.com/JJLiebig/codex-account-switcher/tree/045cb4f6ce2136ef3ecb2386d6f8aa841367c3ca"
+    },
+    {
+      "name": "cc-switch",
+      "repo": "farion1231/cc-switch",
+      "reviewed": "79ba7982aa3980b001c0b68efde05505884c1f8b",
+      "status": "not-selected-broader-provider-manager",
+      "license": "MIT",
+      "release": "v4.0.18",
+      "url": "https://github.com/farion1231/cc-switch",
+      "reviewedSourceUrl": "https://github.com/farion1231/cc-switch/tree/79ba7982aa3980b001c0b68efde05505884c1f8b"
+    },
+    {
+      "name": "CLIProxyAPI",
+      "repo": "router-for-me/CLIProxyAPI",
+      "reviewed": "d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683",
+      "status": "not-selected-extra-proxy-runtime",
+      "license": "MIT",
+      "release": "v8.0.40",
+      "url": "https://github.com/router-for-me/CLIProxyAPI",
+      "reviewedSourceUrl": "https://github.com/router-for-me/CLIProxyAPI/tree/d946c4fba6fc9a5cfbca1f3d85184d62ad2fb683"
+    },
+    {
+      "name": "agent-browser",
+      "repo": "vercel-labs/agent-browser",
+      "reviewed": "50c34e78c98dbe8add0b3ff36b4bcd7a47f1022b",
+      "status": "alternative-not-installed",
+      "license": "Apache-2.0",
+      "release": "0.39.2",
+      "url": "https://github.com/vercel-labs/agent-browser",
+      "reviewedSourceUrl": "https://github.com/vercel-labs/agent-browser/tree/50c34e78c98dbe8add0b3ff36b4bcd7a47f1022b"
+    },
+    {
+      "name": "playwright-mcp",
+      "repo": "microsoft/playwright-mcp",
+      "reviewed": "f183dad4a52965583e3cc1d59b88cdc279e2e57d",
+      "status": "alternative-not-installed",
+      "license": "Apache-2.0",
+      "release": "0.0.83",
+      "url": "https://github.com/microsoft/playwright-mcp",
+      "reviewedSourceUrl": "https://github.com/microsoft/playwright-mcp/tree/f183dad4a52965583e3cc1d59b88cdc279e2e57d"
+    },
+    {
+      "name": "switchy",
+      "repo": "registered2nd/switchy",
+      "reviewed": "fd5cbf163aaa745a2b53f6f7f87c43ce25a8bd0a",
+      "release": "v1.0.39",
+      "publishedOn": "2026-10-19",
+      "status": "first-cli-routing-comparison-candidate-not-installed",
+      "license": "MIT",
+      "url": "https://github.com/registered2nd/switchy",
+      "reviewedSourceUrl": "https://github.com/registered2nd/switchy/tree/fd5cbf163aaa745a2b53f6f7f87c43ce25a8bd0a"
+    },
+    {
+      "name": "codex-switch-account",
+      "repo": "yunkai93/codex-switch-account",
+      "reviewed": "218dde4287194d798f88a23c1a1f78411f1a3d17",
+      "status": "excluded-native-windows-unsupported",
+      "license": "MIT",
+      "url": "https://github.com/yunkai93/codex-switch-account",
+      "reviewedSourceUrl": "https://github.com/yunkai93/codex-switch-account/tree/218dde4287194d798f88a23c1a1f78411f1a3d17"
+    }
+  ]
+}

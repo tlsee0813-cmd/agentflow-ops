@@ -1,0 +1,14 @@
+{
+  "engine": "browser",
+  "model": "gpt-6-pro",
+  "browserThinkingTime": "pro",
+  "browserArchive": "never",
+  "browserAttachments": "always",
+  "prompt": "Review the AgentFlow Ops assembly choices. This request is a dry run only.",
+  "files": [
+    "docs/DESIGN_KO.md"
+  ],
+  "waitForCompletion": false,
+  "dryRun": true,
+  "slug": "oracle-assembly-review"
+}

@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "oracle": {
+      "command": "node",
+      "args": [
+        "REPO_ROOT/node_modules/@steipete/oracle/dist/bin/oracle-mcp.js"
+      ],
+      "cwd": "REPO_ROOT"
+    },
+    "chrome-devtools": {
+      "command": "node",
+      "args": [
+        "REPO_ROOT/node_modules/chrome-devtools-mcp/build/src/bin/chrome-devtools-mcp.js",
+        "--autoConnect",
+        "--experimentalVision",
+        "--no-usage-statistics"
+      ],
+      "cwd": "REPO_ROOT"
+    }
+  }
+}

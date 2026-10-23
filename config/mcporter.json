@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "oracle": {
+      "description": "Web Pro questions and native Oracle sessions",
+      "command": "node",
+      "args": [
+        "node_modules/@steipete/oracle/dist/bin/oracle-mcp.js"
+      ],
+      "cwd": ".."
+    }
+  },
+  "imports": []
+}

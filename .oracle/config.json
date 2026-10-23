@@ -1,0 +1,11 @@
+{
+  "engine": "browser",
+  "model": "gpt-6-pro",
+  "browser": {
+    "attachRunning": true,
+    "manualLogin": false,
+    "cookieSync": false,
+    "modelStrategy": "select",
+    "archiveConversations": "never"
+  }
+}

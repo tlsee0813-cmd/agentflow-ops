@@ -1,0 +1,9 @@
+node_modules/
+.ops/
+.env
+.env.*
+!.env.example
+auth.json
+cookies*.json
+*browser-profile*/
+*.log
