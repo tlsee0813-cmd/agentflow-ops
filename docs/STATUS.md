@@ -31,11 +31,11 @@
 
 ## 계정 전환
 
-사용자 요청으로 **Pro → 첫 번째 Business 실제 전환 및 같은 대화 자동 재개**를 검증했다. 새 원본 receipt의 목표 계정·시각·ID, 현재 계정, 같은 UUID와 설정 해시, 재개 후 실제 도구 실행이 일치했다. [실전 기록](../results/account-priority-2026-10-24/LIVE_SWITCH.md).
+**자동 순환은 Business 두 사용자와 지정 Plus 크레딧 계정 세 개만 사용한다.** Business 소진 시 다른 Business가 가능하면 그 계정으로, 아니면 Plus로 전환한다. Plus에서 작업하는 동안 Business 한도가 실제 회복되면 바로 Business로 전환한다. 매번 원본 Codex Switch의 Capture → 계정 변경 → 앱 재시작 → 같은 대화 재개를 사용하며 전체 세션 idle을 기다리지 않는다. Pro는 자동 선택 대상에서 제외한다.
 
-**자동 감시는 2026-10-24 00:41 KST에 활성화했다.** config.enabled=true, 예약 작업 Running, 현재 두 번째 Business와 이 대화의 실제 진행 중 턴이 일치하는 관찰 기록을 확인했다. 현재 상태는 waiting_for_current_account_exhaustion이며 미해결 전환은 없다. 첫 번째 Business가 소진된 때에는 아직 감시가 꺼져 있어 사용자가 수동 전환했다. 자연 한도 소진 → 자동 전환 → 재개 전체와 계정 순환은 별도 실전 미검증이다. 계정 순서는 Business 두 사용자 → Plus·크레딧 → Pro 비상용, 회복 후 Business 복귀를 유지한다.
+명시적인 실제 Pro → Business 전환과 같은 대화 자동 재개는 검증했다. 처음 활성화했던 감시는 실제 소진 시 불필요한 idle 조건 때문에 대기했고, 이 결함을 수정했다. 자연 한도 소진 후 자동 전환·재개의 성공 여부는 실제 receipt로 별도 확인한다. [실전 기록](../results/account-priority-2026-10-24/LIVE_SWITCH.md).
 
-계정 교체 대상은 총괄 Codex뿐이다. 전환 후 Claude 로그인·기존 답변, Oracle 기록, GitHub 접근과 DSH 설치/키 존재를 확인했다. 외부 모델에 새 질문을 전부 재전송하지 않았다. [계정 운영](ACCOUNT_OPERATIONS_KO.md) · [검증 이력](../results/account-priority-2026-10-24/RESULT.md).
+최종 수정본은 2026-10-24 01:03 KST 재기동했다. enabled=true·예약 작업 Running이며 사용자가 수동 선택한 사용 가능 Pro에서 소진 대기 중이다. 자동 선택 대상에 Pro를 넣지는 않는다. 실행기 68개·정책 26개 검사와 독립 검토를 통과했다. 계정 교체 대상은 총괄 Codex뿐이다. 전환 후 Claude 로그인·기존 답변, Oracle 기록, GitHub 접근과 DSH 설치/키 존재를 확인했다. [계정 운영](ACCOUNT_OPERATIONS_KO.md) · [공통 환경](SHARED_SETUP_KO.md).
 
 과거 설치·연결 실패는 [초기 시험](../results/harness-smoke-2026-10-23/RESULT.md)과 Git 이력에 남아 있다. 과거의 미연결 문장을 현재 상태로 해석하지 않는다. 연구 문서는 당시 판단이며 현재 연결 성공의 증거가 아니다.
 

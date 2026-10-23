@@ -180,10 +180,7 @@ function Get-AccountPriorityDecision {
     if (-not $byRole.ContainsKey('fallback') -or $byRole['fallback'].eligibility.state -ne 'blocked') {
         return [pscustomobject]@{ action = 'hold'; targetKey = $null; reason = 'fallback_not_confirmed_blocked'; nextCheck = $next.ToString('o') }
     }
-    if ($byRole.ContainsKey('emergency') -and $byRole['emergency'].eligibility.state -eq 'usable') {
-        if ($currentRole -eq 'emergency') { $action = 'hold'; $target = $null; $reason = 'current_emergency_usable' }
-        else { $action = 'switch'; $target = $byRole['emergency'].key; $reason = 'all_higher_confirmed_blocked' }
-        return [pscustomobject]@{ action = $action; targetKey = $target; reason = $reason; nextCheck = $next.ToString('o') }
-    }
+    # Pro may remain a manually selected current account, but is never an
+    # automatic destination. Exhausted Business/Plus does not authorize Pro.
     return [pscustomobject]@{ action = 'hold'; targetKey = $null; reason = 'no_confirmed_available_account'; nextCheck = $next.ToString('o') }
 }

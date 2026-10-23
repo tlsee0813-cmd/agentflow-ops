@@ -179,8 +179,17 @@ function Test-PriorityManager {
     return $matches -eq 1
 }
 function Get-PriorityBoundary {
+    param([switch]$NativeCapture)
     $thread = Get-NativeThreadState $context
     $monitor = Get-NativeBridgeMonitor $context
+    if($NativeCapture) {
+        # Native Capture owns all active roots and their continuations. Do not
+        # require idle merely because the exhausted turn is still in progress.
+        $unknownRoots=@($monitor.Threads | Where-Object { $_.Status -cnotin @('idle','active') -or $_.Waiting })
+        $safe=$thread.Available -and $thread.CurrentFound -and $thread.CurrentStatus -cin @('idle','active') -and
+            -not $thread.Waiting -and $thread.Queued -eq 0 -and -not $thread.QueueProblemPresent -and $unknownRoots.Count -eq 0
+        return [pscustomobject]@{Safe=[bool]$safe;Thread=$thread}
+    }
     $unsafeRoots = @($monitor.Threads | Where-Object { $_.Status -cne 'idle' -or $_.Waiting })
     $safe = $thread.Available -and $thread.CurrentFound -and $thread.CurrentStatus -ceq 'idle' -and
         -not $thread.Waiting -and $thread.OtherActiveCount -eq 0 -and $thread.Queued -eq 0 -and
@@ -236,7 +245,7 @@ function Read-PriorityReceipt {
 }
 function Complete-PriorityTransition($Claim, [DateTimeOffset]$ReceiptAt, [string]$Reason) {
     if (-not $CheckOnly) {
-        $ledger.lastCompleted=$Claim; $ledger.lastSwitchAt=$ReceiptAt.ToString('o'); $ledger.transition=$null
+        $ledger.lastCompleted=$Claim; $ledger.lastSwitchAt=$ReceiptAt.ToString('o'); $ledger.transition=$null; $ledger.canonicalKey=$Claim.targetKey
         Save-PriorityJson $statePath $ledger
     }
     Write-PriorityStatus $Reason (Get-PriorityRole $Claim.targetKey)
@@ -245,18 +254,31 @@ function Resolve-PriorityTransition($Snapshot) {
     $claim=$ledger.transition; $receipt=Read-PriorityReceipt
     $receiptAt=if($null -ne $receipt){ConvertTo-AccountPolicyTime $receipt.at}else{$null}
     $claimAt=ConvertTo-AccountPolicyTime $claim.createdAt
+    $chats=ConvertTo-AccountPolicyNumber (Get-AccountPolicyField $receipt 'chats')
+    $resumed=ConvertTo-AccountPolicyNumber (Get-AccountPolicyField $receipt 'resumed')
+    $nativeResumesVerified=$null -ne $chats -and $chats -ge 0 -and $chats -eq [Math]::Floor($chats) -and $null -ne $resumed -and $resumed -eq $chats
     $matched=$null -ne $receipt -and $null -ne $receiptAt -and $null -ne $claimAt -and
         $receiptAt -ge $claimAt -and $receipt.Id -cne $claim.priorReceiptId -and
         $receipt.TargetAccountKey -ceq $claim.targetKey -and $receipt.phase -ceq 'Finished' -and
-        $receipt.AccountApplied -eq $true -and $receipt.chats -eq 0 -and
+        $receipt.AccountApplied -eq $true -and $nativeResumesVerified -and
         $receipt.failed -eq 0 -and $receipt.unconfirmed -eq 0 -and [string]::IsNullOrEmpty($receipt.error) -and
         $null -eq $Snapshot.PendingSwitch -and $Snapshot.CurrentKey -ceq $claim.targetKey
     if (-not $matched) {
         Write-PriorityStatus 'transition_unresolved_no_retry' (Get-PriorityRole $Snapshot.CurrentKey) (Get-PriorityRole $claim.targetKey); return
     }
+    if ($chats -gt 0 -and ($null -eq $claim.resume -or (Get-AccountPolicyField $claim 'nativeCurrentCapture') -eq $true)) {
+        # Native resumed counts Resumed/AlreadyRunning/Completed. A verified
+        # captured-chat receipt is final; never add a second synthetic Continue.
+        Complete-PriorityTransition $claim $receiptAt 'native_capture_switch_and_resume_verified'; return
+    }
     if ($null -eq $claim.resume) { Complete-PriorityTransition $claim $receiptAt 'native_boundary_switch_verified'; return }
-    $boundary=Get-PriorityBoundary
-    if (-not $boundary.Safe) { Write-PriorityStatus 'waiting_for_resume_boundary' (Get-PriorityRole $Snapshot.CurrentKey); return }
+    # This continuation targets only the idle failed root. Other chats already
+    # resumed by the native engine must not make this root wait for global idle.
+    $resumeThread=Get-NativeThreadState $context
+    if (-not $resumeThread.Available -or -not $resumeThread.CurrentFound -or $resumeThread.CurrentStatus -cne 'idle' -or
+        $resumeThread.Waiting -or $resumeThread.Queued -ne 0 -or $resumeThread.QueueProblemPresent) {
+        Write-PriorityStatus 'waiting_for_resume_boundary' (Get-PriorityRole $Snapshot.CurrentKey); return
+    }
     $latest=Get-NativeLatestTurnDisposition $context
     if ($claim.resume.phase -cne 'pending') {
         if (-not [string]::IsNullOrWhiteSpace($latest.TurnId) -and $latest.TurnId -cne $claim.resume.turnId -and
@@ -305,14 +327,35 @@ function Invoke-PriorityCycle {
         return
     }
     if ($null -ne $snapshot.PendingSwitch) { Write-PriorityStatus 'native_transition_pending' $currentRole; return }
+    $previousKey=if($ledger.ContainsKey('canonicalKey')){$ledger.canonicalKey}elseif($null -ne $ledger.observation){$ledger.observation.accountKey}elseif($null -ne $ledger.lastCompleted){$ledger.lastCompleted.targetKey}else{$null}
+    if ($null -ne $previousKey -and $previousKey -cne $snapshot.CurrentKey) {
+        $ledger.armed=$false
+        $ledger.failures.Remove($snapshot.CurrentKey)
+        if($null -ne $ledger.observation){$ledger.observation.ambiguous=$true}
+    }
+    $ledger.canonicalKey=$snapshot.CurrentKey
     $profiles = @(ConvertTo-PriorityProfiles $snapshot $now)
-    $evidence=Update-PriorityTurnEvidence $snapshot $now
-    if ($evidence.IdentityMismatch -or (($evidence.State.CurrentStatus -ceq 'active') -ne ($evidence.Latest.LastTurnStatus -ceq 'inProgress'))) {
+    $rawExhausted=Test-PriorityInitialExhaustion $profiles $snapshot.CurrentKey $now
+    $rawCurrent=@($profiles | Where-Object {$_.key -ceq $snapshot.CurrentKey})
+    $quotaBlocked=$rawCurrent.Count -eq 1 -and (Get-AccountPolicyEligibility $rawCurrent[0] $now 120).state -ceq 'blocked'
+    $quotaThread=Get-NativeThreadState $context
+    $quotaOnly=$quotaBlocked -and $quotaThread.CurrentStatus -ceq 'active'
+    if($quotaOnly){
+        # Actual fresh exhaustion is sufficient for the native active-capture
+        # path. Its engine owns live turn discovery and continuation.
+        $evidence=[pscustomobject]@{BoundFailure=$false;State=$quotaThread;Latest=$null;IdentityMismatch=$false}
+    }else{$evidence=Update-PriorityTurnEvidence $snapshot $now}
+    if (-not $quotaOnly -and ($evidence.IdentityMismatch -or (($evidence.State.CurrentStatus -ceq 'active') -ne ($evidence.Latest.LastTurnStatus -ceq 'inProgress')))) {
         Write-PriorityStatus 'target_turn_not_observable' $currentRole; return
+    }
+    # A manually selected usable Pro is never preempted by an inherited armed
+    # flag, including older v2 ledgers without canonicalKey.
+    if($currentRole -ceq 'emergency' -and -not $rawExhausted -and -not $evidence.BoundFailure){
+        Write-PriorityStatus 'waiting_for_current_account_exhaustion' $currentRole;return
     }
     Set-PriorityFailureProjection $profiles $now
     if (-not $ledger.armed) {
-        if (-not $evidence.BoundFailure -and -not (Test-PriorityInitialExhaustion $profiles $snapshot.CurrentKey $now)) {
+        if ($currentRole -cne 'fallback' -and -not $evidence.BoundFailure -and -not $rawExhausted) {
             Write-PriorityStatus 'waiting_for_current_account_exhaustion' $currentRole; return
         }
         $ledger.armed=$true
@@ -321,13 +364,16 @@ function Invoke-PriorityCycle {
     $decision = Get-AccountPriorityDecision -Profiles $profiles -CurrentKey $snapshot.CurrentKey -Now $now -LastSwitchAt $ledger.lastSwitchAt
     if ($decision.action -cne 'switch') { Write-PriorityStatus $decision.reason $currentRole; return }
     $targetRole = Get-PriorityRole $decision.targetKey
-    $boundary = Get-PriorityBoundary
-    if (-not $boundary.Safe) { Write-PriorityStatus 'waiting_for_all_roots_idle' $currentRole $targetRole; return }
+    # Every selected transition, including Business recovery during Plus work,
+    # uses the native Capture/switch/Resume lifecycle immediately.
+    $allowCapture=$true
+    $boundary = Get-PriorityBoundary -NativeCapture:$allowCapture
+    if (-not $boundary.Safe) { Write-PriorityStatus 'native_capture_not_ready' $currentRole $targetRole; return }
     if ($CheckOnly) { Write-PriorityStatus 'boundary_switch_candidate_not_sent' $currentRole $targetRole; return }
     # No turn cancellation. Recheck the boundary immediately
     # before the claim; native Capture still has an unavoidable external-input race.
     $again = Get-NativePrioritySnapshot $context
-    $boundaryAgain = Get-PriorityBoundary
+    $boundaryAgain = Get-PriorityBoundary -NativeCapture:$allowCapture
     $enabledNow = Read-PriorityJson $configPathFull
     if (-not $boundaryAgain.Safe -or $again.CurrentKey -cne $snapshot.CurrentKey -or $null -ne $again.PendingSwitch -or
         $enabledNow.enabled -isnot [bool] -or -not $enabledNow.enabled -or
@@ -342,15 +388,17 @@ function Invoke-PriorityCycle {
     if ((Get-FileHash -LiteralPath $executable -Algorithm SHA256).Hash -ine $config.executableSha256) { throw 'Priority executable rejected.' }
     $prior = Read-PriorityReceipt
     $resume=$null
-    $latest=Get-NativeLatestTurnDisposition $context
-    $settings=Get-NativeThreadState $context -IncludeSettings
-    $currentFailure=$ledger.failures[$snapshot.CurrentKey]
-    if ($evidence.BoundFailure -and $latest.UsageLimitErrorConfirmed -and $null -ne $currentFailure -and
-        $latest.TurnId -ceq $currentFailure.turnId -and
-        $settings.SettingsVerified -and $settings.SettingsHash -ceq $currentFailure.settingsHash) {
-        $resume=@{phase='pending';turnId=$latest.TurnId;settingsHash=$settings.SettingsHash;messageId=[guid]::NewGuid().ToString('D')}
+    if($evidence.BoundFailure -and $boundaryAgain.Thread.CurrentStatus -ceq 'idle'){
+        $latest=Get-NativeLatestTurnDisposition $context
+        $settings=Get-NativeThreadState $context -IncludeSettings
+        $currentFailure=$ledger.failures[$snapshot.CurrentKey]
+        if ($latest.UsageLimitErrorConfirmed -and $null -ne $currentFailure -and
+            $latest.TurnId -ceq $currentFailure.turnId -and
+            $settings.SettingsVerified -and $settings.SettingsHash -ceq $currentFailure.settingsHash) {
+            $resume=@{phase='pending';turnId=$latest.TurnId;settingsHash=$settings.SettingsHash;messageId=[guid]::NewGuid().ToString('D')}
+        }
     }
-    $lastBoundary=Get-PriorityBoundary
+    $lastBoundary=Get-PriorityBoundary -NativeCapture:$allowCapture
     $lastSnapshot=Get-NativePrioritySnapshot $context
     if (-not $lastBoundary.Safe -or $lastSnapshot.CurrentKey -cne $snapshot.CurrentKey -or
         $null -ne $lastSnapshot.PendingSwitch -or -not (Test-PriorityManager)) {
@@ -358,7 +406,7 @@ function Invoke-PriorityCycle {
     }
     $ledger.transition = @{id=[guid]::NewGuid().ToString('N'); createdAt=[DateTimeOffset]::UtcNow.ToString('o')
         sourceKey=$snapshot.CurrentKey; targetKey=$decision.targetKey; priorReceiptId=if($null -ne $prior){$prior.Id}else{$null}
-        phase='claimed_before_dispatch'; resume=$resume}
+        phase='claimed_before_dispatch'; nativeCurrentCapture=($lastBoundary.Thread.CurrentStatus -ceq 'active'); resume=$resume}
     Save-PriorityJson $statePath $ledger
     # From this point, crash/timeout/error means unresolved. Never repeat the CLI.
     $start = [Diagnostics.ProcessStartInfo]::new($executable)

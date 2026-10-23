@@ -323,7 +323,7 @@ function Invoke-NativeThreadResume {
     if($snapshot.CurrentKey -cne $TargetAccountKey -or $null -ne $snapshot.PendingSwitch){throw 'Native resume account changed.'}
     $state=Get-NativeThreadState $Context -IncludeSettings
     if(-not $state.Available -or -not $state.CurrentFound -or $state.CurrentStatus -cne 'idle' -or
-        $state.Waiting -or $state.OtherActiveCount -ne 0 -or $state.Queued -ne 0 -or $state.QueueProblemPresent -or
+        $state.Waiting -or $state.Queued -ne 0 -or $state.QueueProblemPresent -or
         -not $state.SettingsVerified -or $state.SettingsHash -cne $ExpectedSettingsHash){throw 'Native resume state rejected.'}
     $latest=Get-NativeLatestTurnDisposition $Context
     if(-not $latest.UsageLimitErrorConfirmed -or $latest.TurnId -cne $OriginalTurnId){throw 'Native resume turn changed.'}

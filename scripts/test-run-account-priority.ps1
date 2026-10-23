@@ -55,7 +55,7 @@ function Reset-RunnerFixture {
     }
     $script:snapshot=[pscustomobject]@{CurrentKey='e';PendingSwitch=$null;Accounts=$accounts}
     $script:receipt=@{at=$script:now.ToString('o');Id='new-receipt';TargetAccountKey='p';phase='Finished';AccountApplied=$true
-        chats=0;failed=0;unconfirmed=0;error=$null}
+        chats=0;resumed=0;failed=0;unconfirmed=0;error=$null}
 }
 function Set-RunnerClaim([bool]$Resume=$true) {
     $script:ledger.transition=@{createdAt=$script:now.AddSeconds(-2).ToString('o');priorReceiptId='old-receipt';targetKey='p'
@@ -145,7 +145,7 @@ $cases=[ordered]@{
     }
     'different known monitor and RPC turn IDs block observation and arming'={
         $script:monitorIdOverride='monitor-current-turn';$script:threadState.CurrentStatus='active';$script:latest.LastTurnStatus='inProgress';$script:latest.TurnId='different-rpc-turn'
-        $script:snapshot.Accounts[3].Buckets[0].Primary.UsedPercent=100
+        $script:CheckOnly=$true
         Invoke-PriorityCycle
         Assert-Runner ($null -eq $script:ledger.observation -and $script:reason -ceq 'target_turn_not_observable' -and -not $script:ledger.armed -and $script:saves -eq 0)
     }
@@ -246,10 +246,71 @@ $cases=[ordered]@{
         Resolve-PriorityTransition $script:snapshot
         Assert-Runner ($script:reason -ceq 'transition_unresolved_no_retry' -and $null -ne $script:ledger.transition -and $script:resumeCalls -eq 0)
     }
-    'native active capture despite boundary requires manual audit'={
+    'native capture without confirmed resumed count remains unresolved'={
         Set-RunnerClaim; $script:receipt.chats=1
         Resolve-PriorityTransition $script:snapshot
         Assert-Runner ($script:reason -ceq 'transition_unresolved_no_retry' -and $script:resumeCalls -eq 0)
+    }
+    'native captured chats finish without a second Continue'={
+        Set-RunnerClaim $false;$script:receipt.chats=2;$script:receipt.resumed=2
+        Resolve-PriorityTransition $script:snapshot
+        Assert-Runner ($null -eq $script:ledger.transition -and $script:resumeCalls -eq 0 -and $script:reason -ceq 'native_capture_switch_and_resume_verified')
+    }
+    'native current capture supersedes stale pending continuation'={
+        Set-RunnerClaim;$script:ledger.transition.nativeCurrentCapture=$true;$script:receipt.chats=1;$script:receipt.resumed=1
+        Resolve-PriorityTransition $script:snapshot
+        Assert-Runner ($null -eq $script:ledger.transition -and $script:resumeCalls -eq 0)
+    }
+    'native captured another root does not omit idle failed target resume'={
+        Set-RunnerClaim;$script:receipt.chats=1;$script:receipt.resumed=1
+        $script:threadState.OtherActiveCount=1
+        $script:roots+= [pscustomobject]@{Id='native-resumed-other';Status='active';Waiting=$false}
+        Resolve-PriorityTransition $script:snapshot
+        Assert-Runner ($null -eq $script:ledger.transition -and $script:resumeCalls -eq 1 -and $script:reason -ceq 'native_switch_and_resume_verified')
+    }
+    'native resume partial count is never success or retried'={
+        Set-RunnerClaim $false;$script:receipt.chats=2;$script:receipt.resumed=1
+        Resolve-PriorityTransition $script:snapshot
+        Assert-Runner ($null -ne $script:ledger.transition -and $script:resumeCalls -eq 0 -and $script:reason -ceq 'transition_unresolved_no_retry')
+    }
+    'exhausted active current account permits native capture immediately'={
+        $script:CheckOnly=$true;$script:snapshot.CurrentKey='s';$script:snapshot.Accounts[1].Buckets[0].Primary.UsedPercent=100
+        $script:threadState.CurrentStatus='active';$script:latest.LastTurnStatus='inProgress';$script:threadState.OtherActiveCount=1
+        $script:roots=@([pscustomobject]@{Id='fixture-thread';Status='active';Waiting=$false},[pscustomobject]@{Id='other';Status='active';Waiting=$false})
+        Invoke-PriorityCycle
+        Assert-Runner ($script:reason -ceq 'boundary_switch_candidate_not_sent' -and $script:fullTurnReads -eq 0)
+    }
+    'Business recovery from usable Plus credits captures active work immediately'={
+        $script:CheckOnly=$true;$script:ledger.armed=$true;$script:ledger.canonicalKey='f';$script:snapshot.CurrentKey='f'
+        $script:snapshot.Accounts[2].Buckets[0].Primary.UsedPercent=100;$script:snapshot.Accounts[2].Buckets[0].CreditBalance=5
+        $script:threadState.CurrentStatus='active';$script:latest.LastTurnStatus='inProgress'
+        $script:roots=@([pscustomobject]@{Id='fixture-thread';Status='active';Waiting=$false})
+        Invoke-PriorityCycle
+        Assert-Runner ($script:reason -ceq 'boundary_switch_candidate_not_sent')
+    }
+    'manual usable Pro does not inherit armed rotation from earlier account'={
+        $script:CheckOnly=$true;$script:ledger.armed=$true;$script:ledger.canonicalKey='s'
+        Invoke-PriorityCycle
+        Assert-Runner (-not $script:ledger.armed -and $script:reason -ceq 'waiting_for_current_account_exhaustion')
+    }
+    'manual usable Pro ignores its older quota refusal marker'={
+        $script:CheckOnly=$true;$script:ledger.armed=$true;$script:ledger.canonicalKey='s'
+        $script:ledger.failures['e']=@{accountKey='e';turnId='older-failed-turn';at=$script:now.AddSeconds(-10).ToString('o');ordinaryBlockedSeen=$false;quotaWindows=@()}
+        Invoke-PriorityCycle
+        Assert-Runner (-not $script:ledger.armed -and $script:reason -ceq 'waiting_for_current_account_exhaustion' -and -not $script:ledger.failures.ContainsKey('e'))
+    }
+    'older v2 armed ledger cannot preempt manually selected usable Pro'={
+        $script:CheckOnly=$true;$script:ledger.armed=$true
+        $script:ledger.observation=@{accountKey='e';turnId='older-turn';at=$script:now.ToString('o');ambiguous=$false}
+        Invoke-PriorityCycle
+        Assert-Runner ($script:reason -ceq 'waiting_for_current_account_exhaustion')
+    }
+    'unarmed manual Plus returns to available Business during active work'={
+        $script:CheckOnly=$true;$script:snapshot.CurrentKey='f';$script:ledger.armed=$false
+        $script:threadState.CurrentStatus='active';$script:latest.LastTurnStatus='inProgress'
+        $script:roots=@([pscustomobject]@{Id='fixture-thread';Status='active';Waiting=$false})
+        Invoke-PriorityCycle
+        Assert-Runner ($script:reason -ceq 'boundary_switch_candidate_not_sent' -and $script:ledger.armed)
     }
     'verified idle switch without failed turn completes without Continue'={
         Set-RunnerClaim $false; Resolve-PriorityTransition $script:snapshot

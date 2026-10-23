@@ -75,10 +75,10 @@ $cases = [ordered]@{
         $d = Get-TestDecision
         Assert-Test ($d.targetKey -ceq $f.key)
     }
-    'all higher confirmed blocked permits emergency' = {
+    'all Business and Plus blocked never selects Pro automatically' = {
         Set-TestBusinessBlocked; Set-TestFallbackBlocked
         $d = Get-TestDecision
-        Assert-Test ($d.targetKey -ceq $e.key -and $d.reason -eq 'all_higher_confirmed_blocked')
+        Assert-Test ($d.action -eq 'hold' -and $null -eq $d.targetKey)
     }
     'unknown credits prevent emergency escalation' = {
         Set-TestBusinessBlocked; Set-TestFallbackBlocked
@@ -95,13 +95,13 @@ $cases = [ordered]@{
         Set-TestBusinessBlocked; Set-TestCreditTrial
         $f.creditSpendControlReached = $true
         $d = Get-TestDecision
-        Assert-Test ($d.targetKey -ceq $e.key)
+        Assert-Test ($d.action -eq 'hold' -and $null -eq $d.targetKey)
     }
     'fresh confirmed credit refusal overrides eligibility' = {
         Set-TestBusinessBlocked; Set-TestCreditTrial
         $f.creditBlockedConfirmed = $true
         $d = Get-TestDecision
-        Assert-Test ($d.targetKey -ceq $e.key)
+        Assert-Test ($d.action -eq 'hold' -and $null -eq $d.targetKey)
     }
     'stale higher Business never enables emergency' = {
         Set-TestBusinessBlocked; Set-TestFallbackBlocked
@@ -131,7 +131,7 @@ $cases = [ordered]@{
         $p.windows[0].resetAtUtc = $testNow.AddSeconds(-1).ToString('o')
         $e.windows = @(@{ windowMins = 10080; windowUsed = 51 })
         $d = Get-TestDecision
-        Assert-Test ($d.targetKey -ceq $e.key)
+        Assert-Test ($d.action -eq 'hold' -and $null -eq $d.targetKey)
     }
     'Pro weekly exhaustion does not select emergency' = {
         Set-TestBusinessBlocked; Set-TestFallbackBlocked

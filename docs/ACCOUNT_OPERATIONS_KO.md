@@ -4,9 +4,11 @@
 
 2026-10-24 현재: 사용자 요청으로 **Pro → 첫 번째 Business 실제 전환 및 같은 대화의 자동 재개**를 검증했다. 원본 receipt, 현재 계정, UUID, 설정 해시와 재개된 총괄의 실제 도구 실행이 일치했다. [실전 기록](../results/account-priority-2026-10-24/LIVE_SWITCH.md). 자연 한도 소진이나 전체 계정 순환을 실계정으로 검증했다는 뜻은 아니다.
 
-현재 감시는 2026-10-24 00:41 KST에 활성화했다. config.enabled=true·예약 작업 Running이며 현재 두 번째 Business·같은 UUID·실제 inProgress 턴·관찰 계정 일치를 확인했다. 최신 앱 canonical turnHistory를 원본 지원 IPC snapshot에서 읽는 작은 호환 어댑터로 해결했다. 별도 stdio app-server의 저장 이력 fallback은 제거했다. Work 자체가 미지원이라는 해석은 정정한다. 지원된 owner history hydration 1회 실패 후 해당 호출은 재시도하지 않았다.
+00:41 KST 첫 감시 기동은 live 턴 관찰을 확인했지만, 이후 실제 한도 소진에서 불필요한 idle 대기로 전환하지 못했다. 최신 실행기는 이 대기를 제거해 원본 전환·재개 기능을 바로 사용한다. 최신 기동 결과는 STATUS를 따른다.
 
-우선순위는 Business 두 사용자 → Plus·보유 크레딧 → Pro 비상용이다. 실전 시험 후 첫 번째 Business 소진 시 사용자가 수동 전환해 현재 두 번째 Business이며, 실제 한도 회복을 확인한 안전 경계에서 Business 우선으로 돌아온다. 자동 실행의 최신 상태는 STATUS를 따른다. 아래는 기존 대상 연결 절차와 원본 도구 정보다.
+사용자가 최종 지정한 자동 순환은 **Business 1·Business 2·지정 Plus 크레딧 계정 세 개**다. 사용 중 Business가 소진되면 다른 Business가 사용 가능할 때 그 계정으로, 아니면 Plus로 전환한다. Plus의 일반 사용 한도가 끝나도 크레딧이 사용 가능하면 계속 쓴다. 어느 Business의 5시간 한도가 실제 회복되면 작업 중이어도 그 Business로 전환하고 이어간다. Pro는 원본 vault에 남아 있어도 자동 선택 대상에서 제외한다.
+
+전환할 때는 원본 Codex Switch의 Capture → 계정 변경 → 앱 재시작 → 같은 대화 Resume를 사용한다. 한도 소진과 Business 회복 모두 전체 세션 idle을 기다리지 않는다. 사용자가 수동으로 선택한 Pro에 한도가 남아 있으면 곧바로 다시 바꾸지는 않지만 자동 순환은 위 세 계정만 선택한다. 최신 기동 상태는 STATUS를 따른다.
 
 ## 새 Codex 총괄에 연결할 때만 필요한 설정
 
@@ -23,12 +25,12 @@ launcher는 Windows Task Scheduler의 현재 사용자 Interactive/Limited 작�
 
 ## 실행기에서 보완한 것
 
-- 최초 소진 전 현재 Pro 유지; 이후 Business 우선과 Plus 크레딧·Pro 비상 순서.
+- Business 두 사용자와 Plus 크레딧만 자동 선택한다. Pro 자동 선택은 하지 않는다.
 - 원본 active 턴/계정 관찰을 고정하고, 사용자가 중간에 계정을 바꾸면 실패를 새 계정에 잘못 귀속하지 않는다.
 - 확정 실패는 계정별로 남긴다. 오래된 정상 quota나 단순 시간 경과로 실패를 없애지 않는다. 서로 다른 bucket·window를 섞어 회복으로 오판하지 않는다.
 - 전환 및 Resume 전 claim을 저장하고 불명확한 결과에 재전송하지 않는다. 실제 새 사용자 턴이 확인되면 미확인 Resume를 중복 실행하지 않고 정리한다.
 - monitor의 legacy 턴 필드가 비어 있으면 실제 owner snapshot에서 canonical 최신 턴을 투영한다. 원문은 모델 문맥이나 디스크에 저장하지 않는다. local IPC 전체 snapshot을 잠깐 읽는 비용은 있으며 이번 긴 대화에서 약 5.1 MiB·1초였다. polling은 30초다. 대상·owner·최신 경계·상태 불일치나 API 미지원은 전환을 막는다.
-- native 원본 전환 엔진·ResumeAsync를 사용한다. 실패 대화의 설정 해시와 계정·UUID를 대조한다. 마지막 idle 확인 직후 외부에서 새 작업이 시작되는 경쟁 가능성은 남아 있어 완전한 무중단을 보장하지 않는다.
+- native 원본 전환 엔진·ResumeAsync를 사용한다. 원본이 이미 재개한 대화에는 Continue를 중복 전송하지 않는다. idle 상태의 실제 실패 대화는 계정·UUID·설정 확인 후 필요한 재개만 수행한다.
 
 [검증·활성화 상태 기록](../results/account-priority-2026-10-24/RESULT.md). 원본 엔진·빌드 정보와 수동 전환 절차는 아래에 이어진다.
 
