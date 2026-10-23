@@ -4,6 +4,25 @@
 
 ## 진행 중 외부 작업
 
+### AgentFlow 제품 총괄 — 2026-10-24 완료 회수
+
+제품 수용 source는 c7329aa8b941791633d5f22da4ca105188aab0be, app tree는 af4556e7463fa76ce36938220c52447bd539cd3f다. checkpoint에 통합했고, 기록은 86a3896 및 정리 후속43af741에 공유했다. [현재 제품 상태](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/ACTIVE.md) · [수용과 최소 근거](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/2026-10-24-entry-integration-38/DECISION.md).
+
+| 담당/주제 | 고정 입력·접수 | 최종 반환·판단 |
+|---|---|---|
+| Pro 지도 가독성 | Oracle af-map-readable-delta-20261024, exec71068 | completed·exit0·7분27초. 원문3출처 대조, B는 후속 단일장면 실험후보로만 선택 |
+| Claude37 결합·1280 복귀 | 기존 session_01KJRKarPuyzvnMWCkvYQbW1, 동일 문제 후속2/4 | 0fa38e0b528c138465e46edea491cc45e06ebcfe,36fix2 조상. 늦은 회귀 보고도 회수 완료. 새 수정SHA 없음. 조기 대기열1건 제거·미접수, 메시지4만 실제 적용됨 |
+| 독립 Sol High36/38 | /root/verify36_prepare,38beb559/c7329aa | 완료. 실행·환경·대표화면은 cycle38 independent36/38에 공유. 총괄도4PNG 직접 확인 |
+| 정확 결합 CI | PR21/run39990131583,c7329aa | 양OS completed/success. Windows120546483335,Ubuntu120546548316. 첫 Windows5000ms navigation timeout과 같은SHA 재실행1회 기록. 검사 완화 없음 |
+| 정리v0 DeepSeek | session-a924bcea-2100-41b0-8112-474736972dd0, exec34123, .ops/organizer-v0-prep/DS-task.json | completed·exit0·후보3개. 입력sha256 3a16f5b0bb3d7b9b6b470176fedadb1f71fd698ba0ac1968dc76e6e7747511ae. 중복 전송 없음 |
+| 정리v0 독립 대조 | /root/organizer_inputs, 실제JSONL8사건·고정project 사본 | 완료·후보 보정 공유. 실제기록과 project/export 연결 없음. 수신dry-run NOT_RUN, 가짜handoff/anchor 없음 |
+
+[기존 공개 Pages](https://tlsee0813-cmd.github.io/agentflow-studio/)를 사용자 지시로 게시 대상으로 선택했다. gh-pages 4ebf8fa39df1353f9853aa3819c6917a609aa74b, runtime17개 Git해시/16개 HTTP해시 일치, 공개 화면 예제 왕복도 직접 확인했다. DeepSeek 실제 키 포함0건, MOCK·API호출 없음. private Sites35는 그대로이며 최신 체험본이 아니다. GitHub 연결 정상 재확인, 환경 재설치·계정 전환은 하지 않았다.
+
+[관측39와 다음 범위](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/2026-10-24-organizer-observation-39/RESULT.md): Q06 출처 있는 연결 대기 제안 최소흐름을 선택했다. Q02는 이름 후보·동일성 불명 보존만 포함한다. 자동 병합·수신계약 확장은 하지 않았고 다음 구현은 미착수다. 실제 표본과 합성project 사본 사이 연결 부재를 성공으로 포장하지 않는다.
+
+공유 근거를 GitHub에서 다시 회수했다. 이번 임시생성물 약49.5MiB를 정리했지만 강제 일괄 삭제 명령은 자동 승인 검토에서 blocked by policy로 차단됐다(세부 사유 미제공). 강제 옵션 없는 Git 제거 후 두 독립 worktree 등록은 없어졌고 잔여 약144MiB·완료 통합 브랜치는 남았다. 정확 잔여 경로는 제품 cycle38 DECISION에 기록했다. 기존 dirty 작업·원본JSONL·키·워커 환경 보존. 완료 세션을 running으로 되살리거나 재전송하지 않는다.
+
 전송 전에 채널·주제·요청 파일/slug를 `접수 확인 전`으로 적고, 접수 ID가 나오면 즉시 채운다. 새 세션은 미확인 행의 원본 접수 여부를 확인하기 전에 재전송하지 않는다. 완료되면 결과 링크를 남긴다.
 
 | 작업/담당 | 기준 SHA와 범위 | 접수 ID 또는 대화 링크 | 상태/다음 행동 | 결과 |
