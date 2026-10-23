@@ -2,6 +2,8 @@
 
 현재 실행 결과는 [STATUS](STATUS.md)를 먼저 읽는다. 비밀번호를 문서에 적는 방식 대신 이미 로그인한 인증을 원본 전환기의 Windows 사용자 DPAPI vault에 보관한다. 실제 계정 정보와 vault는 GitHub에 넣지 않는다.
 
+2026-10-23 최신 지시: 사용자가 Pro를 의도적으로 선택했으므로 계정 전환 시험과 자동 회전 활성화는 보류한다. 현재 vault 항목은 Business 2·Plus·Pro의 네 개다. 아래 세 항목 가져오기는 최초 준비 당시 기록이다. 우선순위 정책·native bridge·boundary runner 초안은 scripts에 있으나 runner 실전 전환과 한도 실패 자동 재개는 검증하지 않았다.
+
 ## 준비된 원본
 
 Gaebabi Codex Switch 1.41.1 portable을 사용한다. release tag는 bfd96517e08d9e697c201ae7dc11588e12763c51, 배포 binary build source는 98af9e4687d26bcc14198d8adc71922f0ca46d89다. workspace account ID와 JWT 사용자 sub를 함께 식별하므로 같은 Business workspace의 두 사용자를 구분한다. EXE와 전환 엔진을 수정하지 않았다.

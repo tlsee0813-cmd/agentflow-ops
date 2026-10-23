@@ -1,6 +1,17 @@
 # 현재 상태
 
-**2026-10-23 · 원본 Codex Switch 1.41.1에 두 Business 사용자와 기존 현재 로그인을 보관하고 독립 실행·실제 quota 조회까지 완료했다. 실제 계정 교체/동일 대화 재개는 다음 검증이다.**
+**2026-10-23 · 사용자 지시로 현재 Pro를 유지하며 계정 전환 시험을 보류했다. 현재 작업은 하네스·위임·회수 개선이다. 자동 계정 회전은 켜지 않았다.**
+
+## 이번 갱신
+
+- 저장소 AGENTS.md에 외부 채널 우선 배정, 내장 Sol High/Astra High 분담, 관련 문맥만 전달, 동일 주제 세션 재사용, 중복 조사·중복 검토 방지 규약을 반영했다. WORK_ORDER/WORK_RESULT를 추가했다. 이는 실행 지침이며 모델 자동 선택기나 연결 완료를 뜻하지 않는다.
+- 하네스·OSS 선택 근거는 [HARNESS_SELECTION_KO](HARNESS_SELECTION_KO.md), 운영은 [HARNESS_RUNBOOK_KO](HARNESS_RUNBOOK_KO.md)에 둔다. 실제 토큰/한도 절감은 아직 측정하지 않았다.
+- vault에는 Business 두 사용자, Plus, Pro 네 항목이 있다. 사용자가 수동으로 Pro를 선택했고 canonical과 현재 대화의 존재를 읽기 검사로 확인했다. 기존 수동 전환의 chats=0 기록은 자동 대화 재개 성공 증거가 아니다.
+- 원본 관리자 재실행과 quota 갱신 확인. 임시 실행 task는 제거했다. 관리자의 quota 조회는 원본 기능이며 자동 계정 회전은 아니다.
+- 새 브리지의 스냅샷·대화·설정 조회가 실제 환경에서 동작했다. 최근 interrupted turn은 usageLimitExceeded가 아니었다. 이 경우 한도 실패로 해석하지 않는다.
+- 우선순위 정책의 가짜 입력 26개 통과. native-account-bridge와 run-account-priority는 개발 중 코드이며 자동 전환·실패 대화 재개를 실증하지 않았다. runner는 구문 검사만 수행했고 활성화·예약하지 않았다. failed-thread Resume와 실패 당시 계정 식별은 runner에 미구현이다.
+- 향후 계정 우선순위는 Business 두 사용자 → Plus·보유 크레딧 → Pro 비상용이다. Business 실제 회복을 확인하고 안전한 시점에 돌아간다. 현재 Pro 유지 지시가 이 향후 정책보다 우선한다.
+- GitHub connector 읽기를 다시 확인했다. 아래 외부 브라우저·Claude·Cloud 제한은 이전 관찰이며 이번 하네스 조사로 연결이 복구됐다고 주장하지 않는다.
 
 ## 최신 완료와 근거
 
@@ -15,9 +26,9 @@
 
 [가져오기·독립 실행 결과](../results/codex-switch-import-2026-10-23/RESULT.md) · [원본 portable 영수증](../results/codex-switch-preparation-2026-10-23/RESULT.md) · [계정 운영](ACCOUNT_OPERATIONS_KO.md) · [이전 identity 문제](../results/quotacrew-business-identity-2026-10-23/RESULT.md)
 
-## 다음 실제 관문
+## 계정 작업 재개 시 관문 — 현재 실행하지 않음
 
-원본 manager가 현재 총괄의 active root 한 개를 정확히 포착하는지 다시 확인한 뒤, secondary의 실제 Key로 native 전환 요청을 한 번 보낸다. 현재 GitHub 기준과 로컬 상태를 저장하고 원본 정상 종료·앱 실행·동일 UUID 재개 결과를 확인한다. CLI의 exit 0만으로 성공을 표시하지 않는다.
+사용자가 계정 시험을 재개하면 fresh quota와 대화 상태, 수동 선택을 새로 확인한다. 이전 secondary 요청을 그대로 재전송하지 않는다. 원본 정상 종료·앱 실행·동일 UUID 재개 결과를 확인하고 CLI의 exit 0만으로 성공을 표시하지 않는다.
 
 재개됐을 때는 요청을 다시 전송하기 전에 원본 PendingSwitch/last-switch와 canonical Key를 대조한다. 같은 thread UUID·모델/도구·작업 폴더·GitHub 접근 확인이 남아 있다. 자세한 절차는 ACCOUNT_OPERATIONS_KO를 따른다.
 

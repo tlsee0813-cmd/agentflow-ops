@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "quotaStaleAfterSeconds": 120,
+  "pollIntervalSeconds": 60,
+  "switchCooldownSeconds": 60,
+  "profiles": [
+    { "alias": "primary", "role": "primary" },
+    { "alias": "secondary", "role": "secondary" },
+    { "alias": "fallback", "role": "fallback" },
+    { "alias": "emergency", "role": "emergency" }
+  ],
+  "creditEligibility": "creditEligible permits a credit-backed trial, not guaranteed success. A fresh confirmed credit usage-limit rejection overrides it; unknown state never enables emergency escalation."
+}
