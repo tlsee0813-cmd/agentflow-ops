@@ -11,10 +11,12 @@
 | 계정 전환·한도 후 같은 대화 재개 | **Codex Switch 1.41.1 원본** | Business 2·Plus·Pro 보관. 자동 회전 비활성, 자동 재개 미검증. 사용자 Pro 선택 유지 |
 | 작업 분배·문맥 절약 | **AGENTS.md + 좁은 작업 지시/결과 규약** | 저장소 지침 반영. 모델 자동 변경·외부 채널 자동 연결을 의미하지 않음 |
 | 웹 Pro 질문·비동기 답변 회수 | **Oracle 0.22.0** | 설치·입력 렌더·MCP dry run 성공, 실제 브라우저 왕복 미실행 |
+| 웹 Pro 직접 시험 | **기존 CUA 브라우저 도구** | 로그인 후 질문·완료·답변 회수 확인. Oracle 실행 성공과 구분 |
 | CLI에서 MCP 호출 | **mcporter 0.16.0** | Oracle 도구 5개 조회·dry run 성공 |
-| 화면 보기·이미지·조작 | **기존 브라우저 도구 유지** | Work 로컬 브라우저 비활성화로 점검 대기. Chrome DevTools MCP는 추가 후보 |
-| Codex Cloud | **현재 Codex CLI·기존 브라우저** | CLI 도움말·실제 목록 조회 성공, 제출/완료 회수는 미실행 |
-| Claude 위임 | **기존 Claude Code 사용 환경** | 현재 로컬 PATH에서는 CLI 미발견, 기존 경로 유지 |
+| 화면 보기·이미지·조작 | **기존 브라우저 도구 유지** | 현재 CUA 조작·화면 증거 보관 확인. Chrome DevTools MCP는 별도 후보 |
+| 원격 작업 | **브라우저의 기존 Cloud 환경** | 생성·실행·후속 결과 회수 확인. GitHub 직접 조회는 프록시 연결 실패; 제공 자료 검토 가능 |
+| Codex Cloud CLI | **현재 Codex CLI** | 도움말·실제 목록 조회 성공. 위 브라우저 경로와 별개 |
+| Claude 위임 | **기존 Claude Code 사용 환경** | 로컬 CLI 미발견, 웹 Code 로그인 화면 확인. 현재 앱 브라우저 로그인 필요 |
 | DeepSeek | **DSH의 기존 headless 실행** | 후순위 |
 
 QuotaCrew는 같은 Business workspace 사용자 구분 문제로 보류했습니다. 원본 Codex Switch에 연결할 우선순위 정책과 경계 전환 스크립트는 준비 중이며 실행하지 않았습니다. Oracle의 세션 저장·wait·harvest·followup을 재사용합니다.
@@ -30,7 +32,7 @@ Get-Content -LiteralPath requests/pro-review.json -Raw -Encoding utf8 |
   pnpm exec mcporter call oracle.consult --args - --output json --config config/mcporter.json
 ~~~
 
-현재 이 세션의 Work 로컬 브라우저 기능은 비활성화 오류를 반환하므로 실제 브라우저 왕복은 대기 상태입니다. 추가 재로그인 없이 두 Business 사용자를 Codex Switch의 원본 암호화 vault로 가져왔고, 기존 현재 로그인도 보존했습니다. 실제 전환/복귀와 한도 후 자동 회전은 아직 합격으로 표시하지 않습니다.
+현재 기존 CUA 도구의 웹 Pro 왕복은 확인했습니다. Oracle 자동 연결은 별도 시험이 남아 있습니다. 추가 재로그인 없이 두 Business 사용자를 Codex Switch의 원본 암호화 vault로 가져왔고 기존 로그인도 보존했습니다. 실제 전환/복귀와 한도 후 자동 회전은 아직 합격으로 표시하지 않습니다.
 
 예시 요청은 **dryRun=true**입니다. 실제 질문을 보내거나 브라우저를 조작하지 않습니다. 연결할 때는 [실행 안내](docs/RUNBOOK_KO.md)를 따릅니다. 자격증명·브라우저 프로필·계정 데이터는 공개 저장소에 넣지 않습니다.
 
@@ -38,6 +40,7 @@ Get-Content -LiteralPath requests/pro-review.json -Raw -Encoding utf8 |
 - [하네스 선택과 소스 비교](docs/HARNESS_SELECTION_KO.md)
 - [작업 분배·회수 운영](docs/HARNESS_RUNBOOK_KO.md)
 - [워커 지시](prompts/WORK_ORDER.md) · [결과 반환](prompts/WORK_RESULT.md)
+- [새 세션·웹 Pro·Cloud 시험과 화면 증거](results/harness-smoke-2026-10-23/RESULT.md)
 - [계정 전환 방식과 우선 확인 순서](docs/ACCOUNT_DECISION_KO.md)
 - [현재 계정 운영과 가져오기 범위](docs/ACCOUNT_OPERATIONS_KO.md)
 - [보류한 QuotaCrew 초기 준비](docs/QUOTACREW_CLI_KO.md)
