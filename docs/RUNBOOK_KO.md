@@ -1,6 +1,6 @@
 # AI용 실행 안내
 
-저장소 루트에서 기존 CLI/MCP를 직접 사용한다. 별도 자체 실행기는 없다.
+저장소 루트에서 기존 CLI/MCP를 사용한다. 짧은 전송·상태·회수 입구는 [PRO_TASK_CLI_KO.md](PRO_TASK_CLI_KO.md)다. 자체 큐·데몬은 없고 Oracle 세션을 그대로 사용한다.
 
 ## 설치와 도구 조회
 
@@ -11,7 +11,9 @@ pnpm exec mcporter list oracle --schema --config config/mcporter.json
 
 Node 24 이상이 필요하다. config/mcporter.json의 cwd는 설정 파일 디렉토리 기준 '..'로 저장소 루트를 가리킨다. command와 args를 나누고 Node가 패키지의 원래 MCP entrypoint를 실행한다. 절대 사용자 경로를 저장소에 넣지 않았다.
 
-Oracle 프로젝트 설정은 .oracle/config.json에 있다. browser engine, 기존 Chrome 연결, manualLogin=false, cookieSync=false, archive=never를 지정한다. Windows 기본 manual-login 프로필을 새로 만드는 경로를 선택하지 않는다. 외부 환경의 ORACLE_BROWSER_PROFILE_DIR가 설정돼 있으면 프로필 선택이 달라질 수 있으므로 실행 환경을 확인한다.
+Oracle 프로젝트 설정은 .oracle/config.json에 있다. browser engine, attachRunning=false, manualLogin=true, cookieSync=false, archive=never를 지정한다. 사용자가 로그인한 전용 프로필을 재사용한다. config/mcporter.json의 oracle.env가 ORACLE_BROWSER_PROFILE_DIR=.ops/oracle-browser-profile과 Windows CHROME_PATH를 지정한다. 프로필은 .gitignore 대상이며 공개하지 않는다.
+
+Oracle 0.22 프로젝트 설정은 manualLoginProfileDir 키를 무시하므로 위 MCP 환경값을 사용한다. 직접 Oracle CLI를 호출할 때는 `--browser-manual-login-profile-dir .ops/oracle-browser-profile`을 명시한다. MCP의 Windows Chrome 사전 탐지는 직접 CLI의 fallback과 달라 CHROME_PATH가 필요했다. 다른 설치 경로라면 실제 경로로 바꾼다.
 
 ## 모델 비연결 요청 확인
 
@@ -24,7 +26,7 @@ Get-Content -LiteralPath requests/pro-review.json -Raw -Encoding utf8 |
 
 ## Pro 질문·회수
 
-기존 Chrome의 DevTools 연결이 허용된 환경에서 dryRun=false로 바꾼 작업 요청을 consult에 전달한다. 모델과 effort를 명시하고 waitForCompletion=false로 별도 worker를 시작한다. **반환된 실제 sessionId를 작업 문서에 기록한다.**
+전용 프로필 로그인 후 `node scripts/pro-task.mjs submit 작업.json`으로 원본 CLI를 실행한다. dryRun:false와 모델·effort를 명시한다. 실행 도구가 반환한 process session을 유지하면서 다른 일을 진행하고, 원본 CLI의 `Reattach via`에 나온 실제 Oracle sessionId를 기록한다. status/result는 조회만 하며 새 질문을 보내지 않는다. 이 Windows 환경에서 mcporter detached consult는 호출 종료 시 worker가 죽었으므로 제출에 사용하지 않는다. 요청 JSON의 waitForCompletion은 넣지 않는다.
 
 ~~~powershell
 pnpm exec mcporter call oracle.wait id=ACTUAL_SESSION_ID timeoutMs=60000 --timeout 75000 --output json --config config/mcporter.json
@@ -73,7 +75,7 @@ codex cloud diff TASK_ID --attempt 1
 
 list 이외의 JSON 출력을 가정하지 않는다. 실제 환경 ID·기준 브랜치·반환 task ID를 확인하고 새 작업 하나의 결과 회수부터 연결한다. 패치를 자동 apply하지 않는다.
 
-Claude는 기존 사용 환경에 주제별로 배정한다. 이 노트북에서는 CLI가 확인되지 않았으므로 검증되지 않은 명령을 구성에 넣지 않았다. Oracle의 Anthropic API 지원을 기존 Claude 크레딧과 같은 경로로 가정하지 않는다.
+Claude는 로그인된 기존 웹 Code에서 저장소·기준 SHA·수정 경로를 지정해 주제별로 배정한다. 브랜치/커밋으로 결과를 받아 해당 SHA를 검증한다. 실제 구현 커밋 회수와 Windows 검증을 완료했다. 로컬 CLI는 별개이며 Oracle의 Anthropic API 지원을 기존 Claude 크레딧과 같은 경로로 가정하지 않는다.
 
 DSH는 이후 좁은 처리 작업 하나에 upstream headless 스크립트를 붙인다. exit code와 실제 final·산출물을 함께 확인하고, 예제 provider 설정을 사용자의 실제 결제·자격증명 경로로 오인하지 않는다.
 

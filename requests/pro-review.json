@@ -8,7 +8,6 @@
   "files": [
     "docs/DESIGN_KO.md"
   ],
-  "waitForCompletion": false,
   "dryRun": true,
   "slug": "oracle-assembly-review"
 }

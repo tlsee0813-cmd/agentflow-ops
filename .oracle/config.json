@@ -2,8 +2,8 @@
   "engine": "browser",
   "model": "gpt-6-pro",
   "browser": {
-    "attachRunning": true,
-    "manualLogin": false,
+    "attachRunning": false,
+    "manualLogin": true,
     "cookieSync": false,
     "modelStrategy": "select",
     "archiveConversations": "never"

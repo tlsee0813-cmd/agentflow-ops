@@ -8,6 +8,10 @@
   },
   "scripts": {
     "pro": "oracle",
+    "pro:task": "node scripts/pro-task.mjs",
+    "pro:doctor": "node scripts/pro-doctor.mjs",
+    "pro:bundle": "oracle --engine browser --model gpt-6-pro --render-plain --render",
+    "test:pro": "node --test tests/pro-task.test.mjs",
     "tools": "mcporter",
     "browser": "chrome-devtools-mcp"
   },

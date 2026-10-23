@@ -2,7 +2,19 @@
 
 **2026-10-23 · 사용자 지시로 현재 Pro를 유지하며 계정 전환 시험을 보류했다. 현재 작업은 하네스·위임·회수 개선이다. 자동 계정 회전은 켜지 않았다.**
 
-## 실제 왕복 시험 최신 결과
+## 지금 사용하는 경로
+
+- Pro: 사용자가 로그인한 Oracle 전용 Chrome 프로필로 원본 CLI를 실행한다. 실제 운영 지침 검토 `ops-live-routing-review`가 2분 56초에 completed였고, 새 결과 CLI로 전체 2,962자를 회수했다. model picker/Pro thinking 확인도 원본 실행 로그에 남았다.
+- 최종 submit 명령으로 `ops-doctor-live-review`를 시작해 추가 로그인 없이 2분 06초에 completed/exit 0, 전체 2,387자 회수까지 확인했다. 실행 중 총괄의 다른 작업도 이어갔다. Pro가 지적한 진단 코드의 두 오판을 채택해 수정했다.
+- `submit`은 원본 Oracle CLI 프로세스를 유지하고 Codex 실행 도구의 session으로 기다린다. 총괄은 그동안 다른 일을 한다. `status/result`는 mcporter의 Oracle sessions 조회만 사용한다. 접수 후 CLI 부모를 종료하지 않는다.
+- mcporter의 detached consult는 사용하지 않는다. ephemeral 종료가 하위 worker를 종료시켰고, keep-alive daemon은 준비 실패 및 기존 daemon 종료 확인 오류로 작동하지 않았다. daemon 메타데이터·권한을 변경해 우회하지 않았다. 유실된 `ops-cli-result-review`를 성공으로 세거나 같은 질문을 다시 보내지 않았다.
+- Claude Code: 실제 구현 3파일을 GitHub 브랜치 `claude/pensive-ride-7buz4d`, 커밋 `c03ed872c103ef2d08947148611a017eae5f8aee`로 회수했다. Windows 독립 검증에서 즉시 partial/failed 성공 오판 등을 수정했다.
+- 프로필 재사용은 `config/mcporter.json`의 상대 ORACLE_BROWSER_PROFILE_DIR와 실제 Windows CHROME_PATH로 맞췄다. Oracle 0.22가 프로젝트 manualLoginProfileDir를 무시하는 차이와 MCP Chrome 탐지 차이를 해결했다. 자격증명은 GitHub에 올리지 않는다.
+- Cloud의 직접 GitHub 조회 제한, DSH 미연결, 계정 회전 보류는 남아 있다. 이 세 가지를 현재 Pro·Claude 실무 사용의 선행 조건으로 두지 않는다.
+
+[실무 조립 결과](../results/ops-live-2026-10-23/RESULT.md) · [CLI 사용법](PRO_TASK_CLI_KO.md).
+
+## 이전 연결 시험 기록 — 당시 상태
 
 [시험 기록과 공유 화면 증거](../results/harness-smoke-2026-10-23/RESULT.md).
 
@@ -22,7 +34,7 @@
 - 새 브리지의 스냅샷·대화·설정 조회가 실제 환경에서 동작했다. 최근 interrupted turn은 usageLimitExceeded가 아니었다. 이 경우 한도 실패로 해석하지 않는다.
 - 우선순위 정책의 가짜 입력 26개 통과. native-account-bridge와 run-account-priority는 개발 중 코드이며 자동 전환·실패 대화 재개를 실증하지 않았다. runner는 구문 검사만 수행했고 활성화·예약하지 않았다. failed-thread Resume와 실패 당시 계정 식별은 runner에 미구현이다.
 - 향후 계정 우선순위는 Business 두 사용자 → Plus·보유 크레딧 → Pro 비상용이다. Business 실제 회복을 확인하고 안전한 시점에 돌아간다. 현재 Pro 유지 지시가 이 향후 정책보다 우선한다.
-- GitHub connector 읽기를 다시 확인했다. 아래 이전 관찰과 상단의 실제 왕복 결과를 구분한다. 웹 Pro·Claude는 CUA 직접 왕복을 확인했고, Cloud는 실행·자료 제공 검토까지 확인했으나 GitHub 직접 접근이 막혔다. Oracle 자동 연결은 미검증이다.
+- GitHub connector 읽기를 다시 확인했다. 아래 초기 관찰과 상단의 최신 실행 결과를 구분한다. 초기에는 CUA만 연결됐고, 이후 사용자 로그인으로 Oracle 원본 CLI도 연결했다.
 
 ## 최신 완료와 근거
 
