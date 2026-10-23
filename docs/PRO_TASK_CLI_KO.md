@@ -6,10 +6,14 @@ submit은 설치된 Oracle 0.22.0 원본 CLI를 foreground --wait로 실행한�
 node scripts/pro-task.mjs submit requests/my-request.json --dry-run
 node scripts/pro-task.mjs submit requests/my-request.json
 node scripts/pro-task.mjs status SESSION_ID
-node scripts/pro-task.mjs result SESSION_ID
+New-Item -ItemType Directory -Force .ops/results | Out-Null
+node scripts/pro-task.mjs result SESSION_ID > .ops/results/SESSION_ID.log
+$LASTEXITCODE
 ~~~
 
 요청 JSON 허용 필드는 prompt, engine(browser만), model(기본 gpt-6-pro), files, slug, dryRun, browserArchive, browserAttachments, browserThinkingTime, browserKeepBrowser, browserManualLoginProfileDir뿐이다. 알 수 없는 필드와 이전 MCP용 waitForCompletion은 오류로 거부한다. files는 저장소 루트 기준이다. 기본 수동 로그인 프로필은 .ops/oracle-browser-profile이며 경로를 명시적으로 원본 CLI에 전달한다. 로그인 방식은 저장소 Oracle 설정을 따른다.
+
+작업 JSON 자체는 `.ops`에 두어도 되지만 `files`의 첨부 경로는 다르다. Oracle 파일 수집은 `.gitignore`를 존중하므로 `.ops` 안의 파일은 실제로 존재해도 첨부되지 않는다. 추적되는 공개 파일을 첨부하거나 짧은 공개 자료를 prompt에 포함한다. 비공개 파일의 ignore 규칙을 풀어 첨부하지 않는다. 요청 준비 후 dry-run으로 파일 수집을 확인할 수 있다.
 
 ~~~json
 {"prompt":"Review the requested public code","model":"gpt-6-pro","browserThinkingTime":"pro","browserArchive":"never","browserAttachments":"always","browserKeepBrowser":true,"files":["docs/DESIGN_KO.md"]}

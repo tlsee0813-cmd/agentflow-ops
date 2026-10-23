@@ -4,10 +4,20 @@
   "purpose": "Source review and assembly choices; not a declaration of runtime integration success",
   "upstreams": [
     {
+      "name": "deepseek-harness",
+      "repo": "deepseek-ai/deepseek-harness",
+      "reviewed": "687f282e8625c6b8d11ff58211a90524be2e4317",
+      "status": "installed-narrow-headless-live-classification-completed",
+      "license": "MIT",
+      "package": { "name": "@deepseek-ai/dsh", "version": "0.2.1-rc.2" },
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "evidence": "results/coordinator-harness-2026-10-23/RESULT.md"
+    },
+    {
       "name": "oracle",
       "repo": "steipete/oracle",
       "reviewed": "998d11bce7e253fbcde319ec5a3c0174f1748469",
-      "status": "installed-pro-path-not-live-verified",
+      "status": "installed-native-cli-live-pro-submit-and-full-result-verified",
       "license": "MIT",
       "package": {
         "name": "@steipete/oracle",
@@ -78,7 +88,7 @@
       "name": "grokbot-dsh-orchestrator-vn",
       "repo": "diginno-net/grokbot-dsh-orchestrator-vn",
       "reviewed": "5b6c9392c86bbeeeb6263bc54375abf607c3ef60",
-      "status": "deferred-worker",
+      "status": "reference-only-official-dsh-headless-selected",
       "license": "MIT scripts/config; CC BY 4.0 docs",
       "url": "https://github.com/diginno-net/grokbot-dsh-orchestrator-vn",
       "reviewedSourceUrl": "https://github.com/diginno-net/grokbot-dsh-orchestrator-vn/tree/5b6c9392c86bbeeeb6263bc54375abf607c3ef60"

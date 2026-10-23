@@ -7,6 +7,10 @@
     "node": ">=24"
   },
   "scripts": {
+    "coordinator:install": "node scripts/install-coordinator-skill.mjs",
+    "dsh:doctor": "node scripts/dsh-worker.mjs doctor",
+    "dsh:run": "node scripts/dsh-worker.mjs run",
+    "test:dsh": "node --test tests/dsh-worker.test.mjs",
     "pro": "oracle",
     "pro:task": "node scripts/pro-task.mjs",
     "pro:doctor": "node scripts/pro-doctor.mjs",

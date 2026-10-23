@@ -2,6 +2,8 @@
 
 이 저장소는 기존 도구를 조립하는 운영 저장소다. 시작할 때 docs/STATUS.md의 현재 범위만 읽고, 필요한 작업에만 docs/HARNESS_RUNBOOK_KO.md를 연다. 연구 문서 전체를 매번 읽지 않는다.
 
+Codex 앱 총괄에는 개인 스킬 `agentflow-coordinator`를 사용한다. 설치는 `node scripts/install-coordinator-skill.mjs`, 새 세션 안내는 docs/NEW_CODEX_SESSION_KO.md다. 진행 중 작업과 재사용 세션은 docs/COORDINATOR_STATE.md에 기록한다. Ops 상태와 제품 저장소의 현재 상태를 구분한다. 외부 워커에는 관련 범위의 WORK_ORDER만 전달한다.
+
 ## 바로 작업하는 경로
 
 - 웹 Pro는 `node scripts/pro-task.mjs submit 작업.json`으로 보내고 반환된 sessionId로 status/result를 조회한다. 실제 요청 JSON은 dryRun:false로 지정한다. Oracle 전용 프로필 로그인은 유지한다. 화면 조작·이미지 확인이나 Oracle가 지원하지 않는 웹 기능은 기존 CUA 브라우저로 수행한다. 빈 템플릿이나 시험용 산술 질문을 다시 보내지 않는다.
