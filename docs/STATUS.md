@@ -10,7 +10,7 @@
 - 앱 안 브라우저가 다시 사용 가능했다. 사용자 웹 Pro 로그인 후 질문 접수·응답 완료·전체 답변 회수를 확인했다. 여러 줄 native 입력이 분할 전송되어 첫 시험은 불완전했고, 초안 전체 확인 후 한 번 보내는 방식으로 보완했다. 실제 경로는 CUA이며 Oracle/Chrome attach 합격은 아니다.
 - 브라우저의 기존 agentflow-studio-dev 원격 환경에서 읽기 전용 시험을 완료하고 같은 thread 후속 결과도 회수했다. checkout은 README만 있는 초기 커밋이었다. GitHub 직접 조회는 구성된 프록시 연결 실패로 막혔으며, 총괄이 connector에서 확인한 좁은 문서 발췌를 제공하자 해석·결과 회수가 됐다.
 - Cloud CLI는 여전히 목록 조회만 확인했다. 위 durable host의 브라우저 원격 작업과 CLI 작업을 합치지 않는다.
-- Claude Code 로컬 CLI·WSL 환경은 찾지 못했다. 웹 Code 주소는 로그인 화면까지 확인했으며 현재 앱 브라우저에서 사용자 로그인이 필요하다. 다른 브라우저의 기존 Claude 세션이 없다는 뜻은 아니다.
+- Claude Code 웹은 사용자 로그인 후 Ops 저장소의 새 세션에서 지정 HEAD `05a820bfb61666640684e0dab2da82f5e5e020c2` 조회·문서 읽기·10개 항목 답변 회수를 완료했다. 총괄이 펼친 두 명령의 출력에서도 HEAD 일치, AGENTS_SAME, 작업 트리 변경 0을 확인했다. 로컬 CLI·WSL 미발견과 웹 Code 실행 성공을 구분한다. 실제 구현·PR 반환과 CLI 자동 호출은 이번 시험 범위가 아니다.
 - 계정 교체는 총괄 Codex에만 적용한다. 외부 웹 Pro·Claude 등의 계정·작업 세션은 그대로 사용한다.
 
 ## 이번 갱신
@@ -22,7 +22,7 @@
 - 새 브리지의 스냅샷·대화·설정 조회가 실제 환경에서 동작했다. 최근 interrupted turn은 usageLimitExceeded가 아니었다. 이 경우 한도 실패로 해석하지 않는다.
 - 우선순위 정책의 가짜 입력 26개 통과. native-account-bridge와 run-account-priority는 개발 중 코드이며 자동 전환·실패 대화 재개를 실증하지 않았다. runner는 구문 검사만 수행했고 활성화·예약하지 않았다. failed-thread Resume와 실패 당시 계정 식별은 runner에 미구현이다.
 - 향후 계정 우선순위는 Business 두 사용자 → Plus·보유 크레딧 → Pro 비상용이다. Business 실제 회복을 확인하고 안전한 시점에 돌아간다. 현재 Pro 유지 지시가 이 향후 정책보다 우선한다.
-- GitHub connector 읽기를 다시 확인했다. 아래 외부 브라우저·Claude·Cloud 제한은 이전 관찰이며 이번 하네스 조사로 연결이 복구됐다고 주장하지 않는다.
+- GitHub connector 읽기를 다시 확인했다. 아래 이전 관찰과 상단의 실제 왕복 결과를 구분한다. 웹 Pro·Claude는 CUA 직접 왕복을 확인했고, Cloud는 실행·자료 제공 검토까지 확인했으나 GitHub 직접 접근이 막혔다. Oracle 자동 연결은 미검증이다.
 
 ## 최신 완료와 근거
 

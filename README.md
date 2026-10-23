@@ -16,7 +16,7 @@
 | 화면 보기·이미지·조작 | **기존 브라우저 도구 유지** | 현재 CUA 조작·화면 증거 보관 확인. Chrome DevTools MCP는 별도 후보 |
 | 원격 작업 | **브라우저의 기존 Cloud 환경** | 생성·실행·후속 결과 회수 확인. GitHub 직접 조회는 프록시 연결 실패; 제공 자료 검토 가능 |
 | Codex Cloud CLI | **현재 Codex CLI** | 도움말·실제 목록 조회 성공. 위 브라우저 경로와 별개 |
-| Claude 위임 | **기존 Claude Code 사용 환경** | 로컬 CLI 미발견, 웹 Code 로그인 화면 확인. 현재 앱 브라우저 로그인 필요 |
+| Claude 위임 | **기존 Claude Code 웹 환경** | 로그인 후 Ops 지정 커밋 조회·읽기 전용 실행·완료 답변 회수 확인. 로컬 CLI는 별도 미발견 |
 | DeepSeek | **DSH의 기존 headless 실행** | 후순위 |
 
 QuotaCrew는 같은 Business workspace 사용자 구분 문제로 보류했습니다. 원본 Codex Switch에 연결할 우선순위 정책과 경계 전환 스크립트는 준비 중이며 실행하지 않았습니다. Oracle의 세션 저장·wait·harvest·followup을 재사용합니다.
@@ -40,7 +40,7 @@ Get-Content -LiteralPath requests/pro-review.json -Raw -Encoding utf8 |
 - [하네스 선택과 소스 비교](docs/HARNESS_SELECTION_KO.md)
 - [작업 분배·회수 운영](docs/HARNESS_RUNBOOK_KO.md)
 - [워커 지시](prompts/WORK_ORDER.md) · [결과 반환](prompts/WORK_RESULT.md)
-- [새 세션·웹 Pro·Cloud 시험과 화면 증거](results/harness-smoke-2026-10-23/RESULT.md)
+- [새 세션·웹 Pro·Claude·Cloud 시험과 화면 증거](results/harness-smoke-2026-10-23/RESULT.md)
 - [계정 전환 방식과 우선 확인 순서](docs/ACCOUNT_DECISION_KO.md)
 - [현재 계정 운영과 가져오기 범위](docs/ACCOUNT_OPERATIONS_KO.md)
 - [보류한 QuotaCrew 초기 준비](docs/QUOTACREW_CLI_KO.md)

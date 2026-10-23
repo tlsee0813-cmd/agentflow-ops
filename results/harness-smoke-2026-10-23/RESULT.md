@@ -19,7 +19,7 @@
 | 앱 안 브라우저 / 웹 Pro | 사용자 로그인 후 UI Pro 선택, 시험 질문 접수·완료·전체 답변 회수 확인 | Oracle/Chrome attach는 별도 미검증. backend 모델 ID를 증명한 것은 아님 |
 | 브라우저 Cloud 환경 | 기존 환경에서 실행 완료, 같은 대화의 후속 입력·결과 회수도 완료 | GitHub 직접 조회는 프록시 연결 실패. 제공 자료 검토는 가능 |
 | Codex Cloud CLI | 0.163.0-alpha.11.2 목록 조회 exit 0, tasks 0 | CLI env ID와 제출·완료·회수는 별도 미검증 |
-| Claude Code | 로컬 CLI 미발견. 웹 Code는 정상 로그인 화면까지 열림 | 현재 앱 브라우저에서 사용자 로그인 필요. 기존 다른 브라우저 세션의 부재를 의미하지 않음 |
+| Claude Code | 사용자 로그인 후 웹 Code 새 세션에서 Ops 지정 HEAD 조회·읽기 전용 실행·완료 답변 회수 | 구현·PR 반환, CLI 자동 호출은 이번 시험 범위 아님. 로컬 CLI 미발견과 구분 |
 
 현재 브라우저는 이전의 Work 비활성화 오류와 달라졌다. 그러나 기존 Chrome 로그인과 새 앱 브라우저 로그인이 공유된다는 증거는 없다. Oracle Chrome attach 성공도 아직 아니다. 로그인 비밀번호·쿠키·토큰은 이 기록에 포함하지 않는다.
 
@@ -52,3 +52,20 @@
 ![Cloud 후속 결과](cloud-response.png)
 
 Claude 추가 점검: WSL 실행 파일은 있으나 배포판 목록 조회에서 WSL 미설치가 확인됐다. WSL 안의 기존 Claude 경로도 발견하지 못했다. 설치·로그인·자격증명 탐색은 하지 않았다.
+
+## Claude Code 실제 왕복
+
+사용자가 앱 브라우저에 로그인한 뒤 기존 GitHub 연결에서 `tlsee0813-cmd/agentflow-ops`와 main을 선택해 별도 읽기 전용 세션을 만들었다. UI 선택 모델은 Opus 5.5 높음, 환경은 Default였다. 추가 연결 권한이나 계정 설정을 바꾸지 않았다.
+
+- 시험 ID: `AF-CLAUDE-20261023-01`.
+- 기준 및 실제 HEAD: `05a820bfb61666640684e0dab2da82f5e5e020c2`.
+- 원본 세션: https://claude.ai/code/session_01Gm5enMS9FTPwzGVBFmKLrm (로그인 필요).
+- 입력 범위: AGENTS.md와 HARNESS_RUNBOOK의 라우팅·회수 규칙, 최대 10줄 반환, 수정·커밋·푸시·설치·계정 변경 금지.
+- 전체 초안을 locator fill로 넣고 내용을 확인한 뒤 한 번 전송했다. UI가 세션 시작·실행 중을 거쳐 ‘Claude가 응답을 완료했습니다’를 표시했다. 최종 답변은 10개 번호 항목이며 화면 줄바꿈 수와 구분한다.
+- 총괄은 답변뿐 아니라 펼친 명령 2개의 실행 출력도 확인했다. 첫 명령의 `git rev-parse HEAD`는 기준 SHA를 반환했고 `git status --porcelain`은 비어 있었다. 기준 SHA에서 런북 관련 줄을 읽었다.
+- 두 번째 명령은 기준 SHA의 역할 표를 읽고 `git diff --quiet 05a820b -- AGENTS.md` 성공 후 `AGENTS_SAME`을 출력했다. 마지막 작업 트리 상태 줄 수는 `0`이었다. AGENTS는 세션에 자동 제공됐다는 반환 설명과 일치한다.
+- 답변은 역할 분담, partial을 성공으로 간주하지 않는 규칙, 전체 결과 회수, 현재 Pro 유지, 총괄만 계정 전환하고 외부 세션은 유지한다는 범위를 올바르게 설명했다. 다른 채널 연결은 이번 Claude 시험에서 확인하지 않았다고 명시했다.
+
+판정: **Claude 웹 Code에 좁은 GitHub 작업을 배정하고 실제 실행·완료 결과를 회수하는 경로는 확인했다.** 로컬 Claude CLI나 Oracle를 통한 자동 호출 성공으로 확대하지 않는다. 코드 구현·PR 반환·비용 절감률은 이번 읽기 전용 시험으로 검증되지 않았다. 이후 좁은 구현은 이 기존 웹 경로에 배정할 수 있다.
+
+![Claude Code 최종 답변](claude-response.png)
