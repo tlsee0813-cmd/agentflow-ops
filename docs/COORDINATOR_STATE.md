@@ -58,3 +58,13 @@
 Pro/DeepSeek 완료된 지도연구·39분류를 다시 제출하지 않았다. 총괄 원문/후보72항목을39와 대조해 일치, 원본/행 해시 미검증 경계와 source 역할 보존. 원문16px·같은 제안/홈 초점 복귀 직접 UI확인. 44cfc9a를 checkpoint에 fast-forward, PR22 merged 확인. 기존Pages 배포d2ecd38141384ce54b69563f2512a15beb4a53f8; runtime20/HTTP19개 일치, 공개 화면 검토/기존예제전체왕복 직접확인. 공유근거426460c 및 정리 후속 커밋. 로컬ZIP/새 의존성 사본 없음. 키는 공개 전 실제값 대조하고 출력하지 않는다.
 
 40 완료 정리: 이번 전용 evidence/runtime 임시파일8,394,735bytes 및 병합된 source-proposals-40 브랜치만 삭제. GitHub cycle40의 대표2PNG·최소근거 유지. 기존dirty·키·원본JSONL·공용환경·이전38 잔여물은 보존. 같은 접수를 다시 제출하지 않는다.
+
+### 제품 경험41 — 진행
+기준 a88458235e7bb4956546dfdee49a4361278c4958. 사용자 품질 불만과 지속 goal에 따라 Q04/Q13 지도·선택·이어가기 경험 재구성. 이전40은 기능 수용이며 제품 완성 판정이 아님.
+| 담당 | 요청/접수 | 상태 |
+|---|---|---|
+| Pro41 | .ops/experience41-pro.json, slug af-workspace-experience-41-20261024 | Oracle af-workspace-experience-41-20261024, exec55225 running. 기존 연구 반복 없이 지속 shell/선택패널 대안·반례 |
+| 독립 Sol High 진단41 | /root/experience41_audit, exact a884582 | 실행 중, 코드 읽기만. 총괄 실제 화면과 분리 |
+
+| Claude41 | 새 주제 지도 선택·집중 이어가기, 기준a884582, product cycle41 WORK_ORDER | session_01UkFFD6VJkUvYpFHh8Zorw8 메시지1, product/workspace-experience-41. running, app UI/표시 변경 한 작성자 |
+
