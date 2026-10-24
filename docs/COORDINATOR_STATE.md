@@ -4,6 +4,11 @@
 
 ## 진행 중 외부 작업
 
+### Studio 데모43 — 사용자 반려 후 제품 구조 재설계
+
+사용자 직접 시각 피드백이 있었음을 명시한다.42 완료 판단은 제품 만족을 뜻하지 않으며 사용자 반려. 독립감사·픽셀 추가검사·증거묶음 중단, Claude Opus 한 구현 세션+총괄 사용+CI만. 제품 기준14a758c8575a976c1c95b4df5cbadaec86c834df, app9ba47af. product/studio-demo-43 브랜치 준비. Claude Opus5.5 High 새 주제 session_019mbJshQGDVwW5sqoPHeX7y / UI메시지1 접수 완료. 중복 제출 금지. 목적은 지도 중심3화면과 실제AI 응답까지 이어지는 데모, 로그 연결기 구현은 제외. 키 입력은 gitignored .ops/demo43.env, 값 기록 금지. 기존Sites35 get_site NOT_FOUND, 현재 호스팅 가능 경로만 확인 중이며 계정 전환은 하지 않는다.
+
+
 ### 시각 재설계42 — 수용·공개 검증·정리 완료
 
 경험41의 기능 통과를 시각 완성으로 오판했던 판단을 수정했다. 홈·지도·작업의 디자인을 다시 구성해 정확 source `caf6126a4a2e592dc4f17626f0440d13a1d4c188` / app tree `9ba47af6a58cf97d717e743a862553ea2cf1053d`를 수용했다. [제품 판단·최소 증거](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/2026-10-24-visual-design-42/DECISION.md). 아래 접수 이력의 준비/대기 문구는 당시 기록이다. 현재 재전송할 작업은 없다.
@@ -207,3 +212,17 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - Cloud 요청11 completed 2분·exit0·자체서버종료0 반환회수. cafZIP/runtime해시일치CSSonly. 실제5pan260/260/260/260/259.997 dragstart/cancel0·미전송buffer;1280/1440직접화면읽기·보존[2,6]/map153h630·예제storage0/빈프로젝트통과,좁은delta ACCEPT. dense68%MAP36미실행명시(Windows/CI담당). 증거JSON cad0c37bcf05a69e2e62bdbc5916d81607f9cb20889d96c147aac110bb91dfab. 추가제출없음.
 - caf 독립완료: 원본BRANCH31 10/AREA17 12/MAP36 12 exit0,동일5pan각260/cancel0,static1280왕복/다중신호이름6·독립영역2clip0. root최종4PNG직접열람. 최소caf6파일+MAP36PNG,이전6cf JSON만history6cf로보존. BUILD/SERVER소유root반환,60414 caf PID24656/session89373. 최종배포준비78356d033e455f2a255a5d03c9790495eb9c7d66/runtime9043b5c8e5645e062bef547b60b53b9305d3ec89,미push. 실제키대조newsourceblob32/runtime20일치0. Claude caf전체실행은containerrestart로첫10통과후동일checkout/build의나머지19재개(앞10반복없음),결과대기.
 - Claude caf전체29suite모두통과반환회수(재시작전10+동일checkout/build재개19,앞10반복없음). 원래app npm test는CI전용. 추가sourcepush없음. CodeReview정확caf Ubuntu120789685141 success확인,Windows120789685300진행중. 외부구현/Cloud/내부독립결과모두회수완료,남은CI/게시/정리는총괄.
+
+데모43 호스팅: 현재 연결Sites 목록0·기존35/초기프로젝트404 확인 후, 중복 없는 agentflow-studio-live appgprj_6adc5c97c7008191ae971228316427a1 한 개를 생성했다. owner-private 기본, 미게시. .openai/hosting.json 영속화·소스 helper open 완료. 입력키를 Sites secret DEEPSEEK_API_KEY(revision1)에 등록, 값 기록 없음. 배포 checkout agentflow-live-site. Claude 구현 세션 계속 실행 중, 추가 감사 배정 없음.
+데모43 후속2 준비: 작성자 빌드 통과 확인. 첫 실행 가능한 커밋 push 요청(총괄 실제키 UI 사용 준비), Sites 표준 fetch handler 경계 전달. 동일 세션에 한 번만 전송.
+데모43 후속2 UI메시지2 접수 확인. 키 인증 /models HTTP200·deepseek-flash 존재 확인(값 미출력). 작성자는 새app.ts·styles.css 재작성·빌드 완료 후 자체 화면에서 CSP 스타일 설정 문제를 수정 중이며 첫 push 대기. 독립검사 없음.
+
+- demo43 follow-up 3: fce85ad root actual DeepSeek UI call succeeded (example salon/time slot). Request pending receipt: concise answer-first rendering, selected-map space, restore own-project start, draft preservation and same-origin credentials. Same Claude session_019mbJshQGDVwW5sqoPHeX7y; no new job.
+
+- demo43 후속3 UI 접수 확인, 후속4 UI 메시지6 접수(읽지 않음). 사용자 결정: 별도 호스팅 없이 로컬 UI+DeepSeek로 완성, Pages는 정적 체험. Sites 추가 생성/배포 중단; 기존 생성 ID 유지·404 상태. fce85ad 로컬 실제 응답 성공, 화면 수용 보류(반복 답변/좌우패널/내 프로젝트 진입/초안). 로컬 Node PID12928 :4317, 실제키 값 비출력.
+
+- 사용자 결정에 따라 Sites 중단, 로컬 실제AI 사용. 만들어둔 agentflow-live-site 임시 starter 정리 시도는 자동 승인 검토 정책 거절로 실행 안 됨; 우회 재시도하지 않음. 제품/키 보존. root 소유 start-local.ps1 추가(키 내용 출력 없음), 기존 로컬 실행 재사용 확인. ACTIVE/QUESTIONS에42 사용자 반려와43 미수용을 바로잡음. Claude UI 후속3/4 모두 소비하고 구현 중.
+
+- demo43 반환/통합: Claude374f72e·PR25, 총괄 직접1280 실제DeepSeek응답/답변카드/지도초안/새프로젝트/새로고침초안 확인. root launcher+최소docs b284182, 기존공개 preview저장접두사 보정00ca5753e46d34c42a535f7acbcea9b0a88d16b2. 최종CI40076048672 Windows120819712517/Ubuntu120819712336 진행. source/static50파일 실제키일치0. Pages27505ed018676f87c725eae742c488c471a121e5(runtime e244dca61c3ac17126d8341c1ecc5dc0e191e6f6) 준비만, CI전push안함. 중복 워커없음, 작성자 반환완료·이후총괄소유.
+
+- demo43 완료:00ca575 양OS CI40076048672 success 확인 후 PR25 merge af4675b, app tree c342d89bdc8a4edecd51d4e1c8d7d3124a57dca7 동일. Pages27505ed push 및 공개 BUILD/실제UI(새프로젝트·AI서버미연결) 확인. 최소제품상태62106be8fdd5e488db45fa9d8aaefe731834fab9 push; 병합된product/studio-demo-43 remote branch 정리. 로컬 실제AI http://127.0.0.1:4317, launcher start-local.ps1, PID32812(현재기계만 유효). 키파일 기존 .ops/demo43.env 유지·Git제외; 값공개없음. Sites는사용자결정으로중단·미게시, 생성ID의404로원격정리미완; 로컬임시starter삭제는정책거절로유지. 이 한계는최종에고지. 자동로그연결은미구현이며39의실제표본을새예제로대체하지않음. 신규독립감사/픽셀증거없음.
