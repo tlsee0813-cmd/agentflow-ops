@@ -232,3 +232,6 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - Claude 기존 session_019mbJshQGDVwW5sqoPHeX7y 후속44: 기준62106be8fdd5e488db45fa9d8aaefe731834fab9, 요청 studio-map44-interactions, 접수 확인 전. UI만 담당. 총괄은 Workers 설정/통합/직접 조작/최종 CI 담당. 새 독립 감사/증거묶음 없음.
 - Cloudflare: .ops/cloudflare.env 입력 준비, DeepSeek는 기존 .ops/demo43.env 비공개 값 재사용. 인증 전 배포 주장 금지.
 - Claude 후속44 접수 확인: 동일 session_019mbJshQGDVwW5sqoPHeX7y 메시지4, Opus5.5 High 응답 중. 새 product/studio-map-44 작성 요청. 다음 회수: 중간 SHA/최종 PR.
+- map44 fix1 접수 확인 전: 같은 Claude session_019mbJshQGDVwW5sqoPHeX7y, 기준96a01453d3009318ba552141ebe0db2de819779b, PR26 Ubuntu CI40078821964/job120827896174 studio_browser.py:131 관리자 화면 dblclick이 #recent에 가림. Windows 성공. 실제 제품 가림/준비 상태를 구분해 최소 수정, force click/검사 삭제 금지. root 배포 scripts/README/workflow/ACTIVE 변경 보존. root 직접1280 드래그·휠·층위 왕복·초안·저장 배치 확인, Cloudflare 인증/서브도메인 완료.
+- map44 fix1 UI 메시지6 접수 확인, 동일 세션 구현 중. 새 제출 없음. 최종 CI/배포 총괄 담당 유지.
+- map44 fix1 반환17d8a86721f1f611c82c3e694b6d21ff3d68cf65: UI 무변경, 복귀 좌표 assertion 추가 후 전체 보기로 더블클릭 준비. 작성자6흐름/299Node 통과. root 통합 c0a805cae72458e9ac22ff53ebc463b6dce6cd99 PR26 push, 배포 준비25assets/11modules/344242bytes·실제키검사통과. 최종 CI 후 Workers 배포 예정, 미배포.
