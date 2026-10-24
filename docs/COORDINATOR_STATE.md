@@ -1,10 +1,24 @@
 # 총괄 인계 상태
 
-2026-10-23. Ops 채널 운영용이다. AgentFlow Studio 제품의 최신 진행 상태는 해당 저장소에서 별도로 읽는다. 계정 작업은 재개됐으며 실제 활성화·대상 thread는 STATUS와 ACCOUNT_OPERATIONS를 따른다.
+2026-10-24. Ops 채널 운영용이다. AgentFlow Studio 제품의 최신 상태는 해당 저장소의 ACTIVE를 따른다. 이 제품 총괄 실행은 환경 재설치나 계정 전환을 수행하지 않았다.
 
 ## 진행 중 외부 작업
 
-### AgentFlow 제품 총괄 — 2026-10-24 완료 회수
+### AgentFlow 경험41 — 최종 수용·게시·정리 완료
+
+현재 수용 source `6840496f2d4a41d7e396f0febea3cc4cb1f90702`, app tree `5f42a2c6f5cbdb295cbb7ad7a71a1e36275b66f9`. 증거9a99ad1·정리b456659는 같은 app tree이며 checkpoint에 공유했다. [최신 ACTIVE](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/ACTIVE.md) · [판단·최소 증거](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/2026-10-24-workspace-experience-41/DECISION.md).
+
+Claude41 session_01UkFFD6VJkUvYpFHh8Zorw8 최종 반환 회수 완료, 같은 문제 후속13회/UI27까지 소비 확인. Pro41 Oracle af-workspace-experience-41-20261024/exec55225 completed·exit0, 공식 대안/반례만이며 앱 화면 실행 아님. 독립 Sol6.1 High 실행/정적 담당도 완료다. 새 제출·계속 작업 중인 외부 세션은 없다. 상세 후보별 실패/접수 이력은 아래 역사로 보존한다.
+
+작성자 최종 집계 정정: 정확684 clean check·continuity 타입/구문/경계·Node287/287·static/preview build·BRANCH31 10/10. b74 관련14 browser suite,0ad 전체28 pass/2 fail(후속 수정)을 구분한다. 원래 앱 Node278/279는 Claude환경 한 건 실패이며 최종 실제 CI 양OS의 해당 단계는 통과했다. 이전 아래 작성자 중간 집계로 최종 실행을 대체하지 않는다.
+
+독립 b74에서1280/1440/125% 상당 편집 가시성·긴 동일접두어·3회 origin/커서·저장·예제·수신 경계·zero/center/wheel 복귀를 검증했다.684는 테스트 하나만 바뀌고 continuity src/public/runtime 동일. 총괄은 별도 IAB 로컬과 공개판에서 전체 흐름을 직접 확인했다. 125% 상당은 viewport/DPR 구성으로 실제 줌/사람 사용성/실제AI는 미검증이다.
+
+Code Review 정확684/run40056301818 최종 Ubuntu120760189297·Windows120760189411 completed/success. PR23 merged,checkpoint fast-forward. 기존 Pages 배포77a3c0bd18e536bcb99b342c5d5b20fd84ea32be/runtime d31f701199beb83609ef42ca11d329ff1f8170ae. 공개 runtime19개 해시 일치, 공개 예제 두 번 왕복 초안/초점/scroll0/map202.8·501.2 보존·빈 프로젝트 시작 확인. 키 실제값 대조:소스blob43/runtime20/추가문서28 모두0건. 값 자체는 공개하지 않았다.
+
+GitHub 최소 증거 회수 후41 임시185파일7,188,900bytes와 병합 branch product/workspace-experience-41 정리, 서버34680 종료. 대표6PNG(독립5+공개1)·측정/fixture·결정만 cycle41에 보관, checkout tracked/untracked clean. 이전 dirty 작업·원본 실제JSONL·공용환경·키·38 삭제 차단 잔여물은 보존했다. Pro 접수/원문은 작은 비공개 중복방지 기록으로 유지한다. Q02/Q06은39/40 범위 그대로이며 연구를 반복하지 않는다.
+
+### 이전38 제품 총괄 — 당시 완료 회수
 
 제품 수용 source는 c7329aa8b941791633d5f22da4ca105188aab0be, app tree는 af4556e7463fa76ce36938220c52447bd539cd3f다. checkpoint에 통합했고, 기록은 86a3896 및 정리 후속43af741에 공유했다. [현재 제품 상태](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/ACTIVE.md) · [수용과 최소 근거](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/2026-10-24-entry-integration-38/DECISION.md).
 
@@ -105,3 +119,5 @@ Claude41 최종후보b74b2597a8d8ab8ab8feeda27a74867520ce130b/app80097aaf62afc11
 후속13 준비: b74정확CI40055643687진행중이며root전체UI왕복통과. 앱수정없으면작성자회귀완료결과를같은대화로반환하고AUTHOR결과문서는root의증거커밋에포함해실행중CI를문서만으로취소하지않도록요청. 새실제결함발견시코드수정/새SHA는기존대로진행.
 후속13 UI27 소비,문서만push하지않음확인. 단branch31 test05 nonzero expectedheight가옛viewport-fill을검사하므로실패하여test-only6840496f2d4a41d7e396f0febea3cc4cb1f90702/app5f42a2c6f5cbdb295cbb7ad7a71a1e36275b66f9반환. rootdiff:app/continuity/tests/branch-records31_browser.py 1계산+comment만변경,src6982855/public7351e49동일. 독립b74실행증거보존·684checkout만/재실행없음,source검토최종testcontractdelta재배정. 정확최종684 CI40056301818(Ubuntu120760189297/Windows120760189411)진행중.
 작성자최종반환회수:684 clean BRANCH31 10/10,b74관련14suite통과/oldBRANCH31실패,0adNode278/279(기준선동일INVALID_EVAL_OPTIONS작성자재현)·browser26+후속static통과/WORK41당시미완료를구분. 최종CI에판정위임. 독립b74대표·저장/커서/긴이름/zero·wheel·center/수신선택안내통과,684test-only checkout/runtime동일확인. root684HEAD,IAB전체흐름통과,staticpreview기존TS5.8.3재사용빌드20파일완료. 양OS684 CI진행중,Ubuntu로그한회502는완료상태가아님. Docs최소근거정리중/게시전.
+
+최종41 마감: 위 최신 수용/배포/정리 단락을 현재 상태로 사용한다. 아래 및 앞선 후보 진행 표시는 당시 이력이며 running으로 재제출하지 않는다.
