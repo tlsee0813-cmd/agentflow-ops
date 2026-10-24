@@ -238,3 +238,8 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - map44 c0a805cae72458e9ac22ff53ebc463b6dce6cd99 최종CI40079755042 Ubuntu120830724691/Windows120830724841 success 후 PR26 merge f0eb8055bf66bceb7545f9d2a4a0d58bffa9f679. Cloudflare https://agentflow-studio.tlsee0813.workers.dev 배포/BUILD SHA/status/잘못된코드401 확인. Pages5345ca53cff559913ef2470fef8679fb3f7b0178 정적44 push. 실제UI AI는 Workers 미지원 redirect:error 때문에 AI_NETWORK_ERROR, 완료판정 보류.
 - root 서버 호환 수정660fad24d3ad91951316e7abc1ca2bffe8c3d899 PR27: redirect:manual,3xx거절 유지/키전달확장없음. 12집중검사 및 같은handler 로컬실제DeepSeek HTTP200 답변 확인. 최종CI40080458577 대기 후 동일Worker 갱신/실제UI 재확인. Claude 추가배정없음(UI변경없음).
 - 44 완료:660fad24d3ad91951316e7abc1ca2bffe8c3d899 양OS CI40080458577(Windows120832733745/Ubuntu120832733888) success. 동일Worker 갱신 뒤 실제UI DeepSeek답변/근거2개 확인, BUILD source일치. PR27 merge51bcede/app tree5f95762473609b69294e517849a83db32ab901b1동일. 제품최소상태45535fc push, PR26/27 병합원격브랜치정리. Pages5345ca5 공개BUILD확인(UI동일). 실제키출력/공개0, 기존미커밋·원문·차단된정리대상보존. 새독립감사없음. 다음은사용자피드백과실제로그연결범위;39연구반복하지않음.
+
+## 기본 결함45 — 복잡한 구조 설계 전 정비
+- 사용자 최신 결정: 지금은 땅을 평평하게 만든 단계. 기록 입력·출력/hook/인계문/저장소 분리보다 다양한 실제 소프트웨어의 구성·층위·정리 방식을 설계할 단계다. 먼저 이미 합의한 기본 결함만 수정하고, 노드 종류와 복잡한 구조 표현은 이후 사용자와 논의한다. 새 입력 UI/자동 연결/판단거리 체계 구현 금지.
+- Claude45 접수 확인 전: 같은 session_019mbJshQGDVwW5sqoPHeX7y, 기준336a1dd4047cfa1ae8da2c693dd5f6b75af59327, slug studio45-basic-fixes. 예제 주소 안정성/UTF8 전체 요청 예산과 범위 표시/사실 상태/관계 라벨/최근 기록/임시 펼침 복귀/작은 질문 입구. 제품app/continuity 코드·관련 검사만 담당. root는 최소docs·통합·직접화면·CI·기존Workers/Pages 배포. 독립감사·새연구세션 없음.
+- Claude45 동일세션 UI 접수 확인, Opus5.5 High 구현 진행. 기존 미확인 제출 없음. 다음 회수는 중간SHA/PR이며 중복전송하지 않음.
