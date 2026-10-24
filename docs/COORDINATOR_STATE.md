@@ -251,3 +251,28 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - 사용자 최신 결정: 지금은 땅을 평평하게 만든 단계. 기록 입력·출력/hook/인계문/저장소 분리보다 다양한 실제 소프트웨어의 구성·층위·정리 방식을 설계할 단계다. 먼저 이미 합의한 기본 결함만 수정하고, 노드 종류와 복잡한 구조 표현은 이후 사용자와 논의한다. 새 입력 UI/자동 연결/판단거리 체계 구현 금지.
 - Claude45 접수 확인 전: 같은 session_019mbJshQGDVwW5sqoPHeX7y, 기준336a1dd4047cfa1ae8da2c693dd5f6b75af59327, slug studio45-basic-fixes. 예제 주소 안정성/UTF8 전체 요청 예산과 범위 표시/사실 상태/관계 라벨/최근 기록/임시 펼침 복귀/작은 질문 입구. 제품app/continuity 코드·관련 검사만 담당. root는 최소docs·통합·직접화면·CI·기존Workers/Pages 배포. 독립감사·새연구세션 없음.
 - Claude45 동일세션 UI 접수 확인, Opus5.5 High 구현 진행. 기존 미확인 제출 없음. 다음 회수는 중간SHA/PR이며 중복전송하지 않음.
+
+## 설계46 — 연구 접수 전
+- 사용자 승인: 며칠간 철저한 연구·여러 Pro 병렬·Opus 다관점 분해/비교/조합. 제품 구현 중단, 하나의 살아있는 설계 문서 지속 수정. 기준 c3cd45b43adabdb73937237261260ae0beab3df8.
+- Pro R1~R8: games/web/desktop/architecture/node-editors/cross-domain/hci/evolution. 요청 .ops/af-design46-r*.json, slug af-design46-r*-20261024. 모두 접수 확인 전. 분야별 실제 요소·원출처·대안·반례 담당. 문서 총괄만 작성.
+- Pro submit 부모 exec 유지: R1=15926,R2=30156,R3=3202,R4=13283,R5=52918,R6=63288,R7=7426,R8=65929. 원본 Oracle 접수 ID 회수 중, 재전송 금지.
+- Opus 설계분해 O1 의미/유형, O2 탐색/층위, O3 시각문법: 새 주제이므로 별도 세션3개 준비. 정확 c3cd45b, 소스 읽기만, 초기 가설이며 Pro 근거 회수 후 교차 보정. 파일/PR/구현/배포 금지, 답변 반환. 접수 확인 전.
+- Pro 원본ID확인: R1 af-design46-r1-games-20261024; R2 af-design46-r2-web-20261024; R3 af-design46-r3-desktop-20261024; R4 af-design46-r4-architectu-20261024; R5 af-design46-r5-node-editors; R6 af-design46-r6-cross-domain; R7 af-design46-r7-hci-20261024; R8 af-design46-r8-evolution-20261024. 원본 동시3slot, 나머지는원본lease대기.
+- O1 session_01A5D9zAq3HxGvGr3YeMEUKs 접수확인; O2 session_01259zVkqZaQwV63QxdFR3h4 접수확인; O3 UI제출확인 URL회수중. 모두Opus5.5 High 읽기전용설계. 설계원본 docs/SOFTWARE_MAP_DESIGN_KO.md v0.1을제품a09335a로공유.
+- 2026-10-24 설계46 회수: O1/O2/O3 초기 답변 완료. O3 session_01Sc41rQNrVvHNbdwSGVbB53. Pro R3/R4/R6 원본 completed·exit0, 전체 결과 .ops/results/design46-r3/r4/r6.log 회수. R2/R5/R7 실행, R1/R8 원본 슬롯 대기. 내장 Astra 의미 반례 회수, Sol은 핵심5출처 대조 중.
+- O1 후속2 접수 확인 전: 동일 세션, 초기 C 모델의 동일성/한부모/역할계산 반례 교정. R3 VSCode·Blender 및 R4 객체/관점 근거, 독립 변경가능성으로 의미판단. 제품/파일 수정 금지, 구체 모델 대안과 실패 장면 반환.
+- O2 후속2 접수 확인 전: 동일 세션, 예약취소 조건 비교·공유저장 전환·undo 발생과 구성 구별을 이용해 A/B/C 경쟁 재설계. 전체구조와 질문별 비교를 한 캔버스에 억지로 합치지 말 것. 실제데이터와 합성장면 구별, 파일수정 금지.
+- O1/O2 후속2 UI 메시지3 접수·실행 확인. O3 후속2 접수 확인 전: 읽기설계에서 작은 독립 HTML 시각 비교 산출물로 범위 변경. 제품app/배포 수정 없음. docs/design/software-map-study.html 한 파일, 3구조/동일편집기사례/부분선택·진입·복귀·공유관계의실제조작, 임시design/software-map-46 브랜치에만commit/push. 총괄검토전병합/PR/CI/배포금지.
+- DeepSeek D1 접수 확인 전: .ops/af-design46-d1.json, Sol이 직접대조한 출처9개 요약에서 동일성/공유/구현대응/발생의 혼동만 좁게분류. 최종설계판정/웹/파일도구없음.
+- R9 접수 확인 전: .ops/af-design46-r9-visual.json, slug af-design46-r9-visual. 의미조사와독립인 실제시각구성/Felt·Kumu·Heptabase·D2 후보 비교. 기존8개재조사금지. D1 session-a9d082e5-618e-4fee-b083-6f0ddf2137e4 error·exit1·답변0, 원인정보미보존, 재전송없음.
+- Pro9개 모두 completed·exit0 전체결과회수. R9 af-design46-r9-visual/exec25257 완료. O1/O2후속2 회수; 객체표현=동일실체·모든것포함트리·고정수치상한 등 초기주장폐기. 총괄소스/실제UI통합문서 v0.2 db7890f push. O3독립디자인HTML작성중, sourcebranch아직미반환. 제품45유지.
+
+- 2026-10-25 O3 후속3 접수 확인 전: b86a9e3319e7f4903671258aa3fc7739683f0907 단일HTML 회수. 총괄 Windows1280 A선택/B/C 직접화면에서 반려: 회색표·동일크기상자·반복검증문구·빈공간, 선택시재배치. 개념비교는보존하되 D통합후보를기본으로 시각재설계. 동일세션/동일한파일 작성권한, 제품/다른docs/CI/배포 금지. 루트는 설계문서만 소유. 다음회수는 새SHA와 실제시각, 중복제출없음.
+- O3 후속3 UI 메시지5 접수·응답중 확인. O1/O2 후속3 접수 확인 전: O1은 게임/예약으로 선택문법 전이 반례, O2는 집약된가짜경로/조건비교/일부교체의 구체장면. 같은세션 짧은 후속, 파일작성없음/새원출처 재조사없음/결론만 반환.
+- O1/O2 후속3 UI5 접수·반환완료, 원문회수. 총괄은 게임사물중심개요/Building=사건/구현있어야영역자격/미정신호는충돌만/현재선만표시/그려진경로없음=무관 단정을수정. Sol문서4충돌회수, 영역과임시묶음·현행선택·합성범위·관계확인수준분리 반영. 단일문서를설계13절+근거부록으로재편. O3후속3만실행중.
+- O3 후속3 반환5a2f1df79a4c3807be55ba07a67885f28c9dda3b/단일HTML103502bytes 회수. root Windows1280 D전체/선택/편집내부/공유내부/늦은응답조건비교/복귀 직접열람. 기본과조건장면 개선, 제품수용아님. 후속4 접수확인전: 텍스트선택→편집안으로111%에서상단제목잘림 수정; 큰카드확대에그치는내부에 변경반영 세부책임 한층 실제진입; 숨은연결전체입구. 동일HTML/동일세션, noapp/CI/PR/배포.
+- O3 후속4 UI메시지7 전송표시·응답중 확인. root는HTML편집안함, 문서소유만계속. 제품문서73050df push; 이후D판정/3D·유스케이스선택추가dirty보존. Dify탭의캡처가좁은관찰범위였다는기존한계유지(PC검증으로승격안함). 연구결과중복재조사없음.
+- 2026-10-25 설계46 통합 완료: O3 후속4 반환 8432f9e87f745c9474c61fa2ddd15a3b7557cb08 회수. root Windows1280에서 내부 제목 잘림 수정, 변경 반영→세부3→전체 연결5→문서 버전→원래 선택 복귀를 직접 확인; 1440 세부 화면도 열람. 첫 ABC 반려 후 D를 선택했으며 일반 자동 배치/자동 추출/사용자 사용성 검증을 주장하지 않는다. 원본 docs/SOFTWARE_MAP_DESIGN_KO.md v0.3, 단일 HTML, 실제 PNG2개만 통합. 제품 main 8189da42abb2b3655298d90cbd26acceb66a24ad push 완료. app 변경 없음, 수용 제품45 유지.
+- 공개 설계 시안: gh-pages 8b13d973addb52e41cf72f67ddd8da9c3985c2ba, 부모407d35e6 대비 design/software-map-study.html 한 파일만 추가. https://tlsee0813-cmd.github.io/agentflow-studio/design/software-map-study.html 에서 실제 기본 D 화면 로딩 확인. 기존 Pages 제품/Workers 배포 변경 없음. 설계 산출물에 제품 CI 통과를 붙이지 않는다.
+- Dify 직접 관찰 보완: 최종 회수 중 기존 사용자 탭에서 1280 PC 전체 화면을 CDP로 확인하고 배율 메뉴/선택 가운데/전체 맞춤을 조작했다. 설정·노드·실행·게시는 건드리지 않았다. 이 확인을 이전 좁은 캡처와 구별해 설계서에 반영. 임시 viewport 복원 완료, 사용자 워크플로 화면은 공유 산출물에 넣지 않았다.
+- 설계46 접수 상태: Pro9/O1/O2/O3/내장검토 모두 반환·통합 완료, 활성 워커 없음. DeepSeek D1 실패는 재전송하지 않았고 근거에서 제외. 다음은 이 단일 설계 원본과 공개 조작 시안을 기준으로 사용자 피드백을 반영하며 새 제품 구현을 자동 시작하지 않는다.
