@@ -63,8 +63,11 @@ Pro/DeepSeek 완료된 지도연구·39분류를 다시 제출하지 않았다. 
 기준 a88458235e7bb4956546dfdee49a4361278c4958. 사용자 품질 불만과 지속 goal에 따라 Q04/Q13 지도·선택·이어가기 경험 재구성. 이전40은 기능 수용이며 제품 완성 판정이 아님.
 | 담당 | 요청/접수 | 상태 |
 |---|---|---|
-| Pro41 | .ops/experience41-pro.json, slug af-workspace-experience-41-20261024 | Oracle af-workspace-experience-41-20261024, exec55225 running. 기존 연구 반복 없이 지속 shell/선택패널 대안·반례 |
-| 독립 Sol High 진단41 | /root/experience41_audit, exact a884582 | 실행 중, 코드 읽기만. 총괄 실제 화면과 분리 |
+| Pro41 | .ops/experience41-pro.json, slug af-workspace-experience-41-20261024 | Oracle af-workspace-experience-41-20261024, exec55225 completed·exit0·6분27초, 전체6304자 회수. Dify 선택패널/VSCode preview 공식근거 총괄대조, 선택읽기/편집분리 채택 |
+| 독립 Sol High 진단41 | /root/experience41_audit, exact a884582 | 읽기 진단 및 BEFORE 실행 완료. 1280 이름11.68px/current-work y1427, 1440 이름18px 구별. 실제 localhost MOCK, 예제저장0. 반환SHA 뒤 AFTER 예정 |
 
-| Claude41 | 새 주제 지도 선택·집중 이어가기, 기준a884582, product cycle41 WORK_ORDER | session_01UkFFD6VJkUvYpFHh8Zorw8 메시지1, product/workspace-experience-41. running, app UI/표시 변경 한 작성자 |
+| Claude41 | 새 주제 지도 선택·집중 이어가기, 기준a884582, product cycle41 WORK_ORDER | session_01UkFFD6VJkUvYpFHh8Zorw8 메시지1, product/workspace-experience-41. running. 후속2 Pro반례/독립기준(UI메시지3) 소비·응답 확인. 선택패널/초안소유분리와4반례 반영 예정, 구현 중 |
+
+
+
 
