@@ -4,6 +4,21 @@
 
 ## 진행 중 외부 작업
 
+### 시각 재설계42 — 사용자 시각 품질 거절 뒤 재개
+
+경험41의 동작 수용을 시각 완성으로 오판했다. 사용자 요청은 기본 시각 품질이며 기능 추가가 아니다. 기준 b456659/app5f42, 공개41 유지. 별도 시각 재설계 goal active. 다음은 현재 상태이며 아래 접수 이력의 ‘준비/미확인’은 당시 기록이다.
+
+| 담당 | 현재 접수 | 상태·다음 행동 |
+|---|---|---|
+| Pro42 | Oracle af-visual-design-42-20261024 / exec16422 | 완료 exit0, 8m04s. 기준 PNG·공식 Dify/Linear/Penpot 비교. 총괄 소스 대조·선택 완료. 앱 실행 아님, 재제출하지 않음 |
+| DeepSeek42 | session-c9e4b2eb-3c26-4855-8908-e8514492ea2d | 완료 exit0. 고정 Dify 소스의 색·컨트롤12행 추출. 총괄 대조 완료, 재제출하지 않음 |
+| Claude42 | session_013cKbrEwsEY47DiQW4LRQce / product/visual-design-42 | Opus5.5 High, 유일 코드 작성자. 후속1/UI메시지3 소비. 새 stylesheet로 누적규칙 통합 후 HTML/렌더 구현 중. 첫 후보SHA+3PNG 대기 |
+| Codex Cloud42 | 원본 local/01a168ed-bd09-7102-a483-781946e370b6, 요청5 준비/6 baseline/7 증거회수 | GPT6.1 Sol High. 정상 Git 실패, 공개 ZIP 정상 첨부 후 기존 Chromium 독립 실행 완료. 원격소스 조회/재빌드 아님. 3PNG 웹 출력은 실패 표시여서 총괄 이미지 회수 미확인. 실행 보고·해시 회수 완료 |
+| 내부 Sol6.1 High | /root/visual42_structure, /root/visual42_verify | 구조 읽기 완료. 독립 실행 담당 준비 완료, 후보 전 checkout/build 금지. 첫 후보 뒤 단독소유 부여 예정 |
+
+총괄은 현재 공개본1280의 홈/선택지도/편집과 사용자 Dify 실제 화면을 직접 열람했다. 최소 기준3PNG/카메라JSON 및 디자인 선택 초안을 제품 cycle42에 보존(아직 미커밋). 앱 코드는 수정하지 않았다. 외부 세션 중복 제출·환경 재설치·계정 전환 없음. 첫 후보를 직접 시각 판단하고 독립 실행/최종CI를 확인하기 전 게시하지 않는다.
+
+
 ### AgentFlow 경험41 — 최종 수용·게시·정리 완료
 
 현재 수용 source `6840496f2d4a41d7e396f0febea3cc4cb1f90702`, app tree `5f42a2c6f5cbdb295cbb7ad7a71a1e36275b66f9`. 증거9a99ad1·정리b456659는 같은 app tree이며 checkpoint에 공유했다. [최신 ACTIVE](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/ACTIVE.md) · [판단·최소 증거](https://github.com/tlsee0813-cmd/agentflow-studio/blob/checkpoint/2026-10-15/docs/cycles/2026-10-24-workspace-experience-41/DECISION.md).
@@ -121,3 +136,24 @@ Claude41 최종후보b74b2597a8d8ab8ab8feeda27a74867520ce130b/app80097aaf62afc11
 작성자최종반환회수:684 clean BRANCH31 10/10,b74관련14suite통과/oldBRANCH31실패,0adNode278/279(기준선동일INVALID_EVAL_OPTIONS작성자재현)·browser26+후속static통과/WORK41당시미완료를구분. 최종CI에판정위임. 독립b74대표·저장/커서/긴이름/zero·wheel·center/수신선택안내통과,684test-only checkout/runtime동일확인. root684HEAD,IAB전체흐름통과,staticpreview기존TS5.8.3재사용빌드20파일완료. 양OS684 CI진행중,Ubuntu로그한회502는완료상태가아님. Docs최소근거정리중/게시전.
 
 최종41 마감: 위 최신 수용/배포/정리 단락을 현재 상태로 사용한다. 아래 및 앞선 후보 진행 표시는 당시 이력이며 running으로 재제출하지 않는다.
+
+Pro42 접수: Oracle af-visual-design-42-20261024, exec16422, 브라우저 Pro 전송 시작. 부모 실행 유지. /root/visual42_structure Sol6.1 High는 정확b456659 읽기전용 CSS/markup 위험 분석 접수. 소스 작성자 아님. Cloud 기존durable 조회 unavailable, 원본 웹 접근 확인중.
+
+Cloud42 준비: 기존 원본 웹세션 접근 성공. AF-VISUAL42-CLOUD-PREP, exactb456659 최신 제품 소스/기존 실행조건 확인과 대표 baseline3화면 준비 요청 예정, 접수 확인 전. 같은 연결/준비 주제 후속으로만 재사용, 원격 코드작성 금지. 프록시/설정 변경 없음.
+
+Cloud42 준비 접수: 원본 https://chatgpt.com/local/01a168ed-bd09-7102-a483-781946e370b6 에 AF-VISUAL42-CLOUD-PREP 다섯번째 요청이 실제 표시됨. GPT-6.1 Sol High 선택 확인, 반환 전. 앱도구 host오류와 웹접수성공 구분. Sol 구조읽기 완료: continuity CSS 누적override/실제markup 생성범위 및 map측정계약5개 회수, 실행아님.
+
+DeepSeek42 좁은 추출: .ops/visual42-ds.json, Dify caa64dd0172cd852570838f346e83774e4403fd7의 light.css 부분발췌+button/index.tsx 전체. 색 역할/컨트롤 규칙12행 분류, 접수 확인 전. Cloud 준비반환은 정상proxy8080 연결실패(exit128), 기존 Node/Python/Playwright/Chromium 존재. 공개 배포41의 Git archive(키없는20runtime+BUILD) 첨부로 화면실행을 준비하며 네트워크설정은 바꾸지 않는다.
+
+Cloud42 정상첨부 후속 준비: AF-VISUAL42-CLOUD-BASELINE, 공개 gh-pages77a3c0b git archive visual42-baseline-preview.zip SHA256575cbe5c63862e2f1f20396e91c4e70592c276f9b87d97b07d2a27f0c58ed806. 웹정상 파일첨부 시작, 접수 확인 전. 네트워크 우회가 아니라 사용자 승인 공개입력 전달이며 sourcecheckout독립조회와 구분. 실행가능하면3화면 직시각검토, 실패시구체사유반환.
+
+DeepSeek42 completed exit0 session-c9e4b2eb-3c26-4855-8908-e8514492ea2d, 색토큰/버튼3variant 규칙12행 반환. 총괄실제소스와대조해사실만채택, 제목전용토큰은미명시. Cloud42 AF-VISUAL42-CLOUD-BASELINE은 공개zip첨부후 6번째요청 전송/처리중. Claude42 별도시각구현세션 준비: repo기준b456659, product/visual-design-42 새브랜치 준비, 아직프롬프트전송전.
+
+Claude42 접수완료: session_013cKbrEwsEY47DiQW4LRQce, Opus5.5높음, product/visual-design-42@b456659. 유일코드작성자로 공통토큰/기존CSS통합+홈/지도/작업3화면 시각재구성 지시. 구현후3PNG와첫SHA조기반환, 총괄/독립시각검토와회귀병렬. 체크포인트/Pages배포금지. 후속Pro반례는같은세션차이만전달예정.
+
+Pro42 completed exit0/8m04s/8608char 원문회수. 기존220/300/240x180유지+중첩표면제거/타이포위계/정렬 우선 채택, 실제앱재실행아닌PNG·공식이미지검토. Cloud42 baseline completed: 첨부zip해시일치/BUILD값일치, 기존Chromium·Playwright로1280x800 홈/선택지도/편집3PNG직접열람. 안전해제exit0, HTTP서버최초socket제한exit1후승인된정상경로exit0,캡처exit0,서버종료. 외부요청0. 증거는/workspace/work/visual42-evidence 내부에있으나출력폴더권한때문에아직총괄미회수. 독립보고5시각결함과미실행회수,소스독립조회/재빌드아님. Claude후속1준비:Pro+Cloud겹치는핵심만전달,독립결함을고정수치검사로축소하지않음.
+
+Claude42 후속1 접수: 같은 세션 UI 메시지3 queued 확인. Pro 선택과 Cloud 실제 실행5결함의 차이만 전달. 중복 제출 없음.
+Cloud42 증거 회수 후속 준비: 기존 3PNG와 capture-log.json만 정상 산출물/인라인 표시 요청. 재실행·환경수정 없음. 접수 확인 전.
+Claude42 후속1 UI메시지3 소비 확인, 새 stylesheet와 세 화면 markup 구현 중. Cloud42 증거회수 후속7 completed/19초, 기존PNG3장을 view_image로 반환했다고 보고했으나 총괄 웹 UI에는 3개 모두 '실패' 표시. 따라서 이미지원본 회수/총괄열람으로 기록하지 않는다. 기존 실행 보고+해시는 회수, root는 별도로 현재 공개홈1280 직접열람. 추가 재실행/환경설정변경 없음.
+총괄 Dify50abea nav/node 및 Penpot74add grid 공식고정소스 대조 완료. 제품 새 cycle42 DESIGN_DECISION_KO.md 초안 로컬작성(미커밋/미수용), app파일 미변경. /root/visual42_verify Sol6.1 High 독립검증 준비만 접수, 후보전 checkout/build금지. Claude 유일코드작성자 유지.
