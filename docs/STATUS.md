@@ -15,7 +15,7 @@
 | Pro / Oracle 0.22.0 | 로그인된 전용 Chrome 프로필로 실제 작업 전송·completed·전체 결과 회수 확인 | submit 부모 실행을 유지. MCP detached consult는 worker 유실로 사용하지 않음 |
 | Claude Code 웹 | 실제 구현을 GitHub 브랜치/커밋으로 회수하고 Windows에서 검증·통합 완료 | 새 세션의 브라우저 도구 접근 필요. 로컬 Claude CLI 설치와는 별개 |
 | 화면 조사·조작 | 기존 허용된 CUA 도구 | 설치된 별도 Chrome MCP의 접근 거절을 우회하지 않음 |
-| Cloud 기존 durable 환경 | 실행·후속 입력·회수, 제공한 고정 SHA 발췌 검토 | 관리형 프록시 연결 오류로 최신 GitHub 직접 조회·제품 독립 테스트 준비 안 됨. 필요시 로컬 독립 검증 |
+| Cloud 기존 durable 환경 | 실행·후속 입력·회수. 시각42에서 해시 고정 공개 runtime ZIP을 정상 첨부해 기존 Chromium 독립 실행·화면 검토 완료 | 관리형 프록시 오류로 최신 GitHub 직접 조회/소스 재빌드 불가. ZIP 제공 실행과 구별. 웹 UI 이미지 출력 실패로 총괄 원본 회수는 못 했으며 별도 Windows 원본으로 직접 검토 |
 | DeepSeek / DSH 0.2.1-rc.2 | 사용자 로컬 API 키로 실제 역할 분류 completed·exit 0·결과 회수 확인 | 좁은 텍스트 작업만. 셸·웹·파일·위임 도구는 비활성화. 비용/토큰 측정은 미제공 |
 
 [Pro 실행 방법](PRO_TASK_CLI_KO.md) · [Cloud 사용 범위](CLOUD_CHANNEL_KO.md) · [분배 기준](HARNESS_RUNBOOK_KO.md).
