@@ -226,3 +226,9 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - demo43 반환/통합: Claude374f72e·PR25, 총괄 직접1280 실제DeepSeek응답/답변카드/지도초안/새프로젝트/새로고침초안 확인. root launcher+최소docs b284182, 기존공개 preview저장접두사 보정00ca5753e46d34c42a535f7acbcea9b0a88d16b2. 최종CI40076048672 Windows120819712517/Ubuntu120819712336 진행. source/static50파일 실제키일치0. Pages27505ed018676f87c725eae742c488c471a121e5(runtime e244dca61c3ac17126d8341c1ecc5dc0e191e6f6) 준비만, CI전push안함. 중복 워커없음, 작성자 반환완료·이후총괄소유.
 
 - demo43 완료:00ca575 양OS CI40076048672 success 확인 후 PR25 merge af4675b, app tree c342d89bdc8a4edecd51d4e1c8d7d3124a57dca7 동일. Pages27505ed push 및 공개 BUILD/실제UI(새프로젝트·AI서버미연결) 확인. 최소제품상태62106be8fdd5e488db45fa9d8aaefe731834fab9 push; 병합된product/studio-demo-43 remote branch 정리. 로컬 실제AI http://127.0.0.1:4317, launcher start-local.ps1, PID32812(현재기계만 유효). 키파일 기존 .ops/demo43.env 유지·Git제외; 값공개없음. Sites는사용자결정으로중단·미게시, 생성ID의404로원격정리미완; 로컬임시starter삭제는정책거절로유지. 이 한계는최종에고지. 자동로그연결은미구현이며39의실제표본을새예제로대체하지않음. 신규독립감사/픽셀증거없음.
+
+## 지도 조작·층위 복원 + Cloudflare (2026-10-24)
+- 사용자: 43 시각은 개선됐으나 노드 드래그/일반 휠 줌/세부 층위 손실. 깔끔한 시각 유지하며 복원. 호스팅은 Cloudflare Workers로 변경.
+- Claude 기존 session_019mbJshQGDVwW5sqoPHeX7y 후속44: 기준62106be8fdd5e488db45fa9d8aaefe731834fab9, 요청 studio-map44-interactions, 접수 확인 전. UI만 담당. 총괄은 Workers 설정/통합/직접 조작/최종 CI 담당. 새 독립 감사/증거묶음 없음.
+- Cloudflare: .ops/cloudflare.env 입력 준비, DeepSeek는 기존 .ops/demo43.env 비공개 값 재사용. 인증 전 배포 주장 금지.
+- Claude 후속44 접수 확인: 동일 session_019mbJshQGDVwW5sqoPHeX7y 메시지4, Opus5.5 High 응답 중. 새 product/studio-map-44 작성 요청. 다음 회수: 중간 SHA/최종 PR.
