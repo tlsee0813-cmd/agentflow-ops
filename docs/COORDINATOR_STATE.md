@@ -80,3 +80,21 @@ Claude41 후속5 준비: 독립 e3d188 AFTER 실패(복귀 focus/caret, 긴60자
 후속5 접수: Claude41 같은 세션 UI메시지9로 queued 확인. 중복 전송 없음. e3 독립 실패/보존 통과를 구별, 집중 편집 화면 재구성 요구 전달.
 후속5 UI메시지9 소비 확인: 긴 이름 중간 생략+구별 끝, 패널 전체 이름, 짧은 편집 헤더/보고 한줄 및 편집란 우선 재구성 중. 후속6 준비: 총괄 예제닫기→홈 새 프로젝트 실행에서 draft 자동초점 때문에 프로젝트 목적이 위로 사라지고 또는 첫 요청부터 보이는 반례. 신규 진입의 시작 위치/초점만 같은 세션으로 요청.
 후속6 접수: Claude41 UI메시지11 queued, 아직 반환 전. 독립 AFTER_E3_RESULT_KO.md 실패보고 회수 완료. 총괄 자기 예제 작성/복귀/닫기/새 프로젝트 UI 확인. 공개40 유지.
+후속6 UI메시지11 소비·신규목적 초점 수정 확인. 작성자 WORK41 3크기 통과 및 editor y310/height240 중간 주장, 독립 미확인. 후속7 준비: UI 수정 후보 SHA를 먼저 push해 독립 재검증을 회귀와 병렬화하고 새 WORK41 검사를 기존 양OS CI에 추가 요청(기존 검사/timeout 유지).
+PR23 총괄 수용보류 comment6378459518 생성. 후속 판단은 같은 comment를 갱신한다.
+후속7 접수: Claude41 UI메시지13 queued. 같은 PR/세션, 중복 dispatch 없음. UI 후보 먼저 회수해 독립 실행/소스 검토 병렬 계획.
+후속7 UI메시지13 소비·반환: 7cb4710009e72c4c66e64ce824ad2915fa8d4dc2 (app5649fcf4a6f9177b92f62b60505c38bf2f6a0cbe), PR23, 회귀 수정 계속 중. 독립 /root/experience41_audit 같은SHA FOLLOWUP 접수, e3서버종료/checkout/build 단독소유 후 동일입력 재검증. 별도 /root/experience41_source_review Sol6.1 High 접수: exact7cb 정적코드/기존검사변경 검토만, 실행담당과분리. root동시checkout/build금지. 최종수용·배포없음.
+7cb 독립 재검증 대표흐름 개선확인: editor y310..550/양PC caret복귀,공백포함60자125%상당14.53px,신규목적초점/blank,보존계약통과. 후속8 준비: 정적검토+독립실행으로 확정한 두 남은경계. 무공백60자 ('가'56+예약변경/취소)125%상당9.99/10.44px. 같은선택패널이어가기→출발지도복귀→두번째이어가기에서복귀버튼소실; 대체place-space는sheetOpenstate소실(패널실제visible은유지). 같은Claude세션좁은수정,검사단언추가요청.
+후속8 접수: Claude41 UI메시지15 queued, source review와독립실행 교차확정 2건 전달. 원래3결함 개선/보존 재통과는 구별해서 전달. 작성자최종반환까지새범위추가없음.
+후속8 UI메시지15 소비 확인, 작성자무공백/3회왕복 WORK41 통과주장(독립아직미실행). 후속9 준비: 7cb run40052315142 Ubuntu120747444016 PC12 delayed file test12의숨김select-result-file에서실패(Code Review로그). 작성자기존회귀와중복작업하지않고차이만반영. WORK41의첫화면검사를시작y뿐아닌편집영역실제가시높이/하단으로강화하고125%CSS시뮬레이션표기정확화요청.
+후속9 접수: Claude41 UI메시지17 queued. 작성자현재MAP36 통과/PC12현재트리재검사중 확인. 새범위없음,CI현재7cb실패와최종후보검증구별.
+후속9 UI메시지17 소비 확인. 작성자가 PC12 실제stale workMemo 재적용으로 파일패널닫힘 버그진단/1회소비수정중. 단순검사접근경로차이로축소하지않음. 최종delta검토자에게정보전달.
+후속10 준비: 후속8/9 및PC12 workMemo수정/WORK41강화의동일 현재스냅샷을 최종후보로 먼저commit/push해 CI·독립delta·작성자전체회귀를 병렬진행. 작성자전체회귀완료 전후를구분하고새실패시같은PR에수정,미수용배포금지.
+후속10 UI메시지19 소비·반환: 최종후보42ffe4c99cf16d8e019e111be471f4a431b74cc3 /app74532c43db920c5fa72379921f5fd2fdc9a69224. 작성자정확snapshot전체회귀실행중/AUTHOR작성중. 독립/정적검토 같은세션delta재배정 준비, root동시checkout/build없음. CI도같은SHA로조회. 수용전.
+42ff정적두P2수정/독립무공백·3회origin버튼/커서/저장계약통과. 총괄실제IAB반복왕복에서page scroll127.2/maptop75.6/projectname-66.95 추가발견. 독립교차확정:1280/1440 map초기y204/scroll0→origin복귀y146/scroll58(125상당scroll45). 카메라transform은보존하나페이지·헤더위치복귀실패. 후속11 준비,정적검토자는restoreOrigin render/sizeWorkspace/anchor순서대조중. 최종수용보류.
+후속11 접수:Claude41 UI메시지21 소비(읽지않음표시없고작업중). restoreOrigin의기존beforeWorkspaceSizing hook으로스크롤/접힘복원→높이→anchor순서를맞추는좁은수정요청. 독립P2추가로42ff수용보류,기존두P2/커서/저장통과와분리.
+
+후속11 반환: c7a752e35fcf1bdfd981c65b8fa3618e2b23ff0c /app389807560d3bf409ab8dc523eb4fec1ac9d3ceb9. 작성자 새WORK41 4×3크기·PC12/13 통과주장,다른복귀회귀진행중. 기존42 CI조회409는PR HEAD변경이며인증실패가아님. 새정확SHA run40054126454 양OS진행중(Ubuntu120753499525/Windows120753499765). 같은독립실행/정적검토자에게c7 delta접수완료. checkout/build는독립실행자단독,수용·배포전.
+
+후속12 준비: c7 정상출발scroll0복귀는통과하지만rootIAB locator 경로scroll520.8 관측. 독립명시센터링후nativeclick에서교차재현:1280 departure scroll317/mapy-113,h500→return521/mapy-317,h704;1440 319→523,h680→884. 자연wheel nonzero출발도추가확인중. 작성자후속11자체회귀로12ebc2d20da3795561f758ff5d031a39fe48fc78/appa856d57f093981df6bfa4d983507f6625238fa67 반환(파일선택행상단복원,viewport30 test에서사용자가접힘맥락열기,편집높이조절). 아직수용아님. 같은복귀문제후속12전달예정.
+후속12 접수:Claude41 UI메시지23 소비/작업중. 독립자연wheel120+nativeclick에서도1280/1440/125상당 departure120→return240 및 mapheight증가 확인해도구artifact아님확정. c7/12eb 수용보류,최종후보반환전중간12eb 재검사하지않음. source정적추정과실행확정을구별. 단일goal계속/공개40유지.
