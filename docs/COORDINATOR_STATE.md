@@ -43,3 +43,18 @@
 ## 다음 총괄의 시작
 
 사용자의 새 목표를 확인하고 해당 제품 저장소의 실제 HEAD·현재 상태·미완료 변경부터 확인한다. 워커 연결을 다시 산술 시험하거나 이전 조사 전체를 반복하지 않는다. 이 파일의 기존 세션은 재사용 힌트이며 새 세션에서 로그인·도구 접근이 자동 보장되는 것은 아니다.
+
+### 연결 대기 제안40 — 수용·공개 게시 완료
+
+2026-10-24. 사용자 이어가기 요청. 기준43af7412e44c49f0460323153224cdd641a89879, 수용38 위의 새 주제. 목적은 최대3개 출처 제안·원문 왕복/제외/되돌림/근거분리, 탭 메모리만 사용. 기존 project/return 계약은 불변이다.
+
+| 담당 | 접수·반환 | 현재 상태 |
+|---|---|---|
+| Claude40 Opus5.5 High | session_014rmcC4wWchSKoq5jwVkZtF, 메시지1·반례후속2·PR후속3(화면 메시지5) | 248320d 구현→44cfc9ade567b3b7cfe66af57d9762d5bf1ead39 최종반환. 후속은 조사·복귀문구와 AUTHOR만 수정. PR22 한개, 기존37 새로 실행하지 않음 |
+| Pro40 | Oracle af-source-review-40-20261024, exec3771 | completed·exit0·5분17초. result 같은ID 회수5594자. 고정제품 링크 접근불가를 명시, 제공요약기반. Zotero/VSCode 공식2문서 총괄대조, 3반례만 선택. 제품cycle40 REVIEW_DECISION |
+| 독립 Sol6.1 High | /root/proposal40_review, 248320d→44cfc9a | 기존checkout/TS5.8.3/Python/Chrome155 재사용. 초기287unit·SOURCE40/ENTRY37/MAP36/HOME15/static·별도5반례 양PC 통과. 최종44cfc9a SOURCE40 6/6·static4/4·양PC5반례 재통과. Cloud로 표기하지 않음 |
+| CI | PR22/run40047073004, head44cfc9a | 양OS completed/success. Ubuntu120731146343,Windows120731146341. 최초 Code Review 인증오류 뒤 connector 재노출·조회 정상화; 최종 exact SHA 결론 직접 회수. 실행중 로그조회502 두회와 완료Ubuntu tail회수 구별. 재실행·계정전환·환경재설치 없음 |
+
+Pro/DeepSeek 완료된 지도연구·39분류를 다시 제출하지 않았다. 총괄 원문/후보72항목을39와 대조해 일치, 원본/행 해시 미검증 경계와 source 역할 보존. 원문16px·같은 제안/홈 초점 복귀 직접 UI확인. 44cfc9a를 checkpoint에 fast-forward, PR22 merged 확인. 기존Pages 배포d2ecd38141384ce54b69563f2512a15beb4a53f8; runtime20/HTTP19개 일치, 공개 화면 검토/기존예제전체왕복 직접확인. 공유근거426460c 및 정리 후속 커밋. 로컬ZIP/새 의존성 사본 없음. 키는 공개 전 실제값 대조하고 출력하지 않는다.
+
+40 완료 정리: 이번 전용 evidence/runtime 임시파일8,394,735bytes 및 병합된 source-proposals-40 브랜치만 삭제. GitHub cycle40의 대표2PNG·최소근거 유지. 기존dirty·키·원본JSONL·공용환경·이전38 잔여물은 보존. 같은 접수를 다시 제출하지 않는다.
