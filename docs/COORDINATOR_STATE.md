@@ -342,3 +342,18 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - Claude49후속4 취소반환완료: commit/push/test없음, 원격design/labels-50없음(ls-remote빈결과), Claude측local branch에HTML미커밋초안만보존. 이초안통합·삭제·배포하지않음. 취소본문 projection50-cancelled-labels.txt 저장후탭닫음. root제품HTML무변경.
 - 총괄 Godot/Backstage/OpenAPI3.2.1/Temporal 관련공식문장좁은대조완료. 단일설계v0.8+ACTIVE+QUESTIONS 문서3개만통합중. Sol같은세션후속은새16절중대의미모순읽기검토만. 새픽셀검사·구현·CI·배포없음.
 - 설계50 공유완료: 제품 c245996fa5887dcbc7be8d1cba18de945dff66d7 / checkpoint/2026-10-15 원격일치·clean. 3문서만변경, diff --check통과, app/공개HTML diff0. Sol읽기검토의 ‘체험판만요구=본편금지’ 오독가능성1건을 ‘본편미정/체험판관측불일치’로수정. 화면효과검증아님. Pro2·Opus2답·Sol전부반환, 취소구현1건상태회수, 활성외부작업없음. 다음은16.5 대표자료의 다른구도/이해비교이며 실제구현·버튼/치수/애니메이션상세는후속. 완료탭정리·대용량증거/ZIP추가없음.
+
+## 시각 개념 경쟁51 · 2026-10-25
+- 사용자: 문서정합성만으로성과대신하지말고 납득할시각설계결과 요구. 제품구현/버튼세부확정아닌 같은자료의다른구도를눈으로비교하는정적설계보드. 기준c245996fa5887dcbc7be8d1cba18de945dff66d7 원격일치clean. 기존49/제품45그대로, 새design산출물만.
+- Pro51 R1 구성공간표현 .ops/af-composition51-spatial.json / R2 비교·간극표현 .ops/af-composition51-gap.json 접수확인전. 이전장르분류반복금지, 공식시각자료의구도/강약/관계표현좁은조사. browserKeepBrowser:false.
+- Opus51 A 새세션: 비대칭맥락지도/포함공간; B 새세션: 사용자경험중심단면/관계대응. 동일c245996·동일등불길/예약자료, 각각 docs/design/study51-atlas.html / study51-sections.html 한파일독점작성. 후보브랜치 design/study51-atlas / design/study51-sections, checkpoint/main/gh-pages직접push금지. 실제앱기능아닌4장면정적시각보드. 접수확인전.
+- 접수확인: Pro R1 af-compositio-spatial(exec17448), R2 af-compositio-gap(exec89956), 모델/Pro thinking확인·원본부모유지. Opus A https://claude.ai/code/session_01PBNjNyN8GUTfkaA2z86Soa, B https://claude.ai/code/session_01HxroAfwR36yJF7v7bq9iqt 모두UI전송1회·Opus5.5High·자료읽기시작확인. 중복제출없음. Sol6.1High /root/visual51_meaning 고정사례핵심의미검토, 파일작성없음.
+- Pro51 두건completed·exit0·전체result저장 .ops/results/composition51-spatial.log/gap.log. 최종lease정상정리·OracleChrome종료확인. R1은공식도판LMN/USGS/TfL, R2는Juxta/Frame.io/ESA도판직접열람보고; 총괄실행과구분. R2의지도기록을탐험안에두는스케치는원자료소속과달라채택금지. Sol은실제하위부분26/27desc불일치와6핵심·4오독반환. count보정은OpusA/B각1개대기열메시지접수확인, 중복전송금지.
+- B 반환08726b96b366c6327b3e198f1d48f526e4617843/design/study51-sections 단일HTML554줄, count후속소비·수정없음·작업완료. root회수만했고미통합. 작성자Chromium1280/1440 4장면렌더·수정보고, rootWindows1280 4장면직접검토. 전체선택반려: 설명용도판풍, 03기둥의가짜포함/관측부재과단정, 예약확정대조방식만유효. Sol정적·캡처후속동일문제확인. 완료B탭닫음. 전체본문composition51-b.txt, 작은비교PNG2개ignored. rootESA원도판직접열람·참고탭닫음.
+- 설계미리보기 root생성Node exec65827 http://127.0.0.1:60637, .ops/preview-design51.cjs 단일공개design폴더만서빙. 완료후종료필요. A는4장면렌더/보정중, 원접수유지. checkpoint원격c245996재확인, B가본로컬43af741은실제origin HEAD로간주하지않음.
+- A 반환 8c63010287014e6fb0bf9161c2faba671bf9d31b/design/study51-atlas 단일HTML150줄 회수, count후속소비·추가수정없음. root Windows1280 4장면 모두직접확인. 전체채택반려: 기술도판 설명량/의역인용/빈관측눈금, 안·바깥맥락만채택.
+- root C docs/design/composition-study.html 5장면 작성: 작은비대칭포함/국소맥락/실제원문과보고/경험과성립조건/추가합성게임+웹계약. Sol6.1High 후속의 소속누락1건수정(확정화면=예약하기안,영업시간=공유일정안). 파일수정권한root만, 실제앱구현없음.
+- Opus A 같은주제후속1 UI메시지5 접수·반환완료. C 화면미열람개념검토라고명시. 본편미정의별도발언근거/공통남은자리의읽음·잡음대조 수용. 과거초기화구상을현재본편후보로확정하는해석은채택안함. composition51-a-review.txt 전체반환보존후A탭닫음. 외부활성작업/미회수없음.
+- 공유 source da5fc28750f3a60fa13306c6c3093f33ab9649d3/checkpoint/2026-10-15: 단일설계v0.9/ACTIVE/QUESTIONS+정적HTML3+대표PNG2, 약250KB의설계자료. app와기존49HTML차이0. 루트최종C1280 5장면직접확인, 원문·소속보정후해당화면재확인. 작성자1280/1440보고와구분, 실제사용성이해도/임의규모/자동정리검증아님.
+- Pages 2024ae1aa07d1932de815e5ef232e0f1e72cf078(parent2f45de3): design새파일5개만추가, 임시gitindex로배포하여delivery전체checkout안함. https://tlsee0813-cmd.github.io/agentflow-studio/design/composition-study.html HTTP200·소스완전일치. 공개C직접열림확인. 기존49/제품45/Workers보존. 설계범위라제품CI를새기능검증으로주장안함.
+- 정리완료: preview exec65827 Ctrl+C종료(exit1), 완료A/B·참고탭닫음·Oraclelease종료. 공개C한탭만결과로남김. 사용자기존탭유지, 강제프로세스종료없음. 제품workingtree clean·원격source/Pages SHA일치.
