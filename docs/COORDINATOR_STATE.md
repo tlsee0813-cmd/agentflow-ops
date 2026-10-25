@@ -327,3 +327,18 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - 49 최종완료: Claude 후속2 cb35372596325e5e7afb564e018259b839245362, 후속3 05cded8200a62d202ef5bb4e954050dcaa438eca 회수. 후속3대기열1개는UI메시지5로소비·완료, 미회수없음. root1280최종자유문장/범위일치·미반영정정격리·초안/시점복귀·Enter진입·관계선제목가독성 재확인. 1440최종비교확인·콘솔error0. 제품source c08dcbd4bb8e9f1f04393a842f34c6ed0a988223 공유, v0.7 원본문서/ACTIVE/QUESTIONS/기존PNG2개만수정. app diff0.
 - 공개49: gh-pages 2f45de3a945873a3851871dd6b27c424a5f61168(parent8b13d97), design/software-map-study.html 한파일만교체. gitblob1ad89d9dc183f0cfa073d581bd1c236d6d669613. 공개HTTP200·LF정규화소스완전일치·1280선택→비교→정정Enter→지도복귀 직접확인. 기존제품45/Workers/Pages runtime불변. 로컬작은git임시index만사용하여delivery전체checkout없음.
 - 완료Claude12/Cloud14/preview15/public16탭모두닫음, viewport복원, Nodepreview exec73595 Ctrl+C종료. 새Oracle전송없음·완료탭닫기규칙유지. 남아있는사용자탭/접근차단오류탭을강제종료하지않음. 전체반환은작은ignored .ops/results/visual49-*만, 제품GitHub대표PNG2개교체, 새증거묶음/ZIP없음. 다음은공개시안+단일설계서에대한피드백이며 자동으로제품엔진/hook구현시작하지않음.
+
+## 장르·질문별 투영 검토50 · 2026-10-25
+- 사용자외부검토49후속: 라벨관통/격자회귀/회색선/기억간극한표본/수동아이콘을직접대조하고 장르투영의채택·수정·보류판정. 기준c08dcbd4bb8e9f1f04393a842f34c6ed0a988223·원격동일clean, 제품엔진범위확장없음. 총괄만설계서작성.
+- Pro R1 af-projection50-genres / R2 af-projection50-hybrid 접수확인전. .ops/동명json, browserKeepBrowser:false, 공개요약만. 장르별화면질문/콘텐츠반례와복합프로젝트소속·계약·시각표현독립조사. 이전연구전수반복금지.
+- Opus50 새주제세션 접수확인전. 기존49구현후속과분리한 투영법설계비판·구체경험, 정확c08dcbd/관련설계서·HTML읽기전용. 아직구현/파일/PR/배포허용없음. Sol6.1High /root/projection50_source 동일기준정적주장대조중.
+- Pro50 원본부모exec R1=14758/R2=91727 유지·OracleID회수중. Opus50 접수확인 https://claude.ai/code/session_01NtjRsUYNZJQgSzN6Du4wiM, Opus5.5High UI전송1회·읽기실행중.
+- 총괄공개49 1280늑대첫지역선택/전체연결 라벨겹침재현. 검토탭닫고viewport복원. Sol정적대조5항목반환완료: 게임372/예약360의3열·가변높이, 개요선관계존재집약, 관측UI없음, 아이콘60수동/dotfallback. 문서범위정정수용.
+- Claude49 동일구현주제 후속4 접수확인전: c08dcbd 기준 단일HTML 라벨겹침/전체선중복만수정, 새후보design/labels-50. 장르배치·데이터·제품앱변경금지. fallback충돌라벨을억지출력하지않고 모든관계의명시읽기입구로보전. 최종source와1280실행반환. 총괄문서만소유.
+- Pro50 접수ID확인: R1 af-projection-genres(exec14758), R2 af-projection-hybrid(exec91727), 둘다Pro thinking실행중. Claude49후속4는UI전송확인후회수대기.
+- 사용자 범위 정정: 지금은 어떻게만들지표현설계단계, 실제구현·버튼별세부조정은후속. 총괄이앞질러배정한Claude49후속4는중지버튼클릭후취소전달(코드/commit/push/실행중단,기존작업보존·상태만반환). 제품로컬/공개판변경안함. Pro50/Opus50은개념·대표경험·대안검토계속, 상세치수/키보드규격을이번확정범위에서제외.
+- Pro50 R1 af-projection-genres / R2 af-projection-hybrid 모두 completed·원본exec exit0·전체result회수. 모델/Pro thinking선택확인. .ops/results/projection50-r1.log,r2.log ignored보존. GitHub원문접근차단으로공개요약+공식문서조사, 실행검토아님. 최종Oracle lease정상종료·Chrome정리확인, 재전송없음.
+- Opus50 첫답+후속2 반환완료, .ops/results/projection50-opus1.txt,opus2.txt 보존·탭닫음. 동일c08 기준읽기전용. 임의계약3개/질문2개/관측없음실패/미표시대상가짜포함을총괄이거절하고 성격있는개요+질문장면조합수용. 기록빈도로개요결정과점수동일성추정도최종문서에서제외.
+- Claude49후속4 취소반환완료: commit/push/test없음, 원격design/labels-50없음(ls-remote빈결과), Claude측local branch에HTML미커밋초안만보존. 이초안통합·삭제·배포하지않음. 취소본문 projection50-cancelled-labels.txt 저장후탭닫음. root제품HTML무변경.
+- 총괄 Godot/Backstage/OpenAPI3.2.1/Temporal 관련공식문장좁은대조완료. 단일설계v0.8+ACTIVE+QUESTIONS 문서3개만통합중. Sol같은세션후속은새16절중대의미모순읽기검토만. 새픽셀검사·구현·CI·배포없음.
+- 설계50 공유완료: 제품 c245996fa5887dcbc7be8d1cba18de945dff66d7 / checkpoint/2026-10-15 원격일치·clean. 3문서만변경, diff --check통과, app/공개HTML diff0. Sol읽기검토의 ‘체험판만요구=본편금지’ 오독가능성1건을 ‘본편미정/체험판관측불일치’로수정. 화면효과검증아님. Pro2·Opus2답·Sol전부반환, 취소구현1건상태회수, 활성외부작업없음. 다음은16.5 대표자료의 다른구도/이해비교이며 실제구현·버튼/치수/애니메이션상세는후속. 완료탭정리·대용량증거/ZIP추가없음.
