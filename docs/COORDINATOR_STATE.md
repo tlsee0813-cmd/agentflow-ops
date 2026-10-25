@@ -276,3 +276,8 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - 공개 설계 시안: gh-pages 8b13d973addb52e41cf72f67ddd8da9c3985c2ba, 부모407d35e6 대비 design/software-map-study.html 한 파일만 추가. https://tlsee0813-cmd.github.io/agentflow-studio/design/software-map-study.html 에서 실제 기본 D 화면 로딩 확인. 기존 Pages 제품/Workers 배포 변경 없음. 설계 산출물에 제품 CI 통과를 붙이지 않는다.
 - Dify 직접 관찰 보완: 최종 회수 중 기존 사용자 탭에서 1280 PC 전체 화면을 CDP로 확인하고 배율 메뉴/선택 가운데/전체 맞춤을 조작했다. 설정·노드·실행·게시는 건드리지 않았다. 이 확인을 이전 좁은 캡처와 구별해 설계서에 반영. 임시 viewport 복원 완료, 사용자 워크플로 화면은 공유 산출물에 넣지 않았다.
 - 설계46 접수 상태: Pro9/O1/O2/O3/내장검토 모두 반환·통합 완료, 활성 워커 없음. DeepSeek D1 실패는 재전송하지 않았고 근거에서 제외. 다음은 이 단일 설계 원본과 공개 조작 시안을 기준으로 사용자 피드백을 반영하며 새 제품 구현을 자동 시작하지 않는다.
+
+- 2026-10-25 설계46 검토 후속 O1-4 접수 확인 전: 기존 session_01A5D9zAq3HxGvGr3YeMEUKs, 기준8189da42abb2b3655298d90cbd26acceb66a24ad. 사용자 외부검토의 대화 중심 기억/10제안 우선순위 비판, 실제39 관측 연결. 읽기·답변만, 파일·구현·외부전송 금지. 내부 memory_review47 Sol High와 memory_challenge47 Astra High는 각각39 근거/제품 의존관계 독립 검토 중. 총괄만 설계 원본 수정.
+- O1-4 동일 세션 UI 전송 표시·실행 중 확인. Opus5.5 High 유지. 후속7번째 입력/8번째 반환 예정, 중복제출 없음. 내부 두 검토는 실제39 근거와 MCP 선행조건 주장을 분리해 회수 중.
+- O1-4 반환 완료·전체 답변 회수(.ops/results/design46-o1-followup4.txt). exact8189da4 지정4파일 열람·파일수정없음 작성자 보고. Sol memory_review47/Astra memory_challenge47도 반환완료. 의도+다음행동·어휘·선택형복귀 수용; MCP-first·모든첫줄사용자인용·미승인낙인·복사=요청·작업자overlay금지·연륜=안정도 주장은 총괄 수정/미채택. 공개 원문 LikeC4 DSL/Ilograph YAML/Structurizr MCP로 경쟁도구 전제 보정.
+- 설계 v0.4 제품 1b90ace75323143e9e2fb4dd8a1995269fa7a4b2 push 완료. SOFTWARE_MAP_DESIGN_KO 1/14절과 ACTIVE/QUESTIONS 3문서만 변경, git diff --check 통과·clean. 실제39 기존8발췌/3후보를 문서상 대입, 연속초기개발/실행/새화면 검증아님. 공개HTML v0.3·제품45·Workers/Pages runtime 그대로. 대화기억 방향수용을 입력/출력/MCP/hook 구현승인으로 해석하지 않는다. 모든 이번 검토 회수완료·활성워커없음. 다음은 사용자 피드백에 따라 같은 설계 원본 수정.
