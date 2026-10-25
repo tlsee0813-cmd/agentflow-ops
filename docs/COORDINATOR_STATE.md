@@ -311,3 +311,10 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - 총괄은 기존시안1280 맞춤·선택, Felt1280 줌17.1→15·표열기/닫기, Linear공식전후이미지 직접열람. 임시 viewport 복원/연구탭닫음. 제품/공개시안수정없음. v0.6는 SOFTWARE_MAP_DESIGN_KO 12절중심+ACTIVE+QUESTIONS 3문서만. Sol6.1 High 읽기검토의 하단접힘-키보드초점 모순1건 수정. 오른쪽레일자동팬/상시96px예약/조합3열/원문소급수정은 미채택. 새표현의화면효과는미검증.
 - 사용자 노트북재부팅 후 복구: 제품HEAD9d20378 유지, 위3문서 dirty와 ignored원문4개 보존확인. 환경재설치·조사재실행 없이 diff확인/공유마무리 진행. 활성외부워커없음.
 - 48 공유완료: 제품 checkpoint/2026-10-15 ab07ed34fbbb20bf25a50e788ce6ee7262d900cf push성공·clean, 3문서만 변경/diff --check통과. 설계v0.6 12절·부록F가 다음설계기준. Pro3/Opus후속2/Sol모두반환완료. 공개HTMLv0.3·제품45·Workers/Pages배포·CI실행 변경없음. 다음은12.8의 같은자료/같은이름으로 화면비교, 문서에적힌치수·가림처리는미검증가설이며 완료제품으로표시하지않음.
+
+## 조작 시안49 · 2026-10-25
+- 사용자 승인: 문서만 완료로 끝내지 말고 새 설계를 실제 화면으로 만들어 복잡한 사례까지 비교·다듬기. 기준 ab07ed34fbbb20bf25a50e788ce6ee7262d900cf 로컬/원격일치·clean 확인. 제품45 runtime 변경없이 단일공개설계HTML 개선 후 기존설계URL 갱신 예정.
+- Claude49 신규구현세션 접수확인전. 주제는 연구발산이 아닌 시각시안 구현이므로 새세션. repo tlsee0813-cmd/agentflow-studio, UI기준checkpoint/2026-10-15, Opus5.5 High 확인. 작업 slug design-experience-49, 허용파일 docs/design/software-map-study.html 단일, 후보브랜치 design/experience-49에서만 commit/push; 기준/gh-pages직접push금지. 총괄은문서·통합·실제화면, 다른담당HTML작성없음.
+- Claude49 접수확인: https://claude.ai/code/session_01RRdp1EjiArAkupMhw2319n, Opus5.5 High, 실행중 checkout 확인. 원본전송1회. Cloud 앱도구durable unavailable지만 기존웹세션정상열람, 이전42결과와분리한 새검토세션UI 준비중·아직미전송. 공개단일HTML 반환후 해시고정첨부로독립실행예정, 환경복구하지않음.
+- RAM압박 사용자지적: 총13.84GB 중97.2%/free0.38GB, ChatGPT48process 작업집합합계10031MB. root 완료/중복IAB7탭(2/3/4/5/7/8/13) 닫음; 사용자가 다른세션탭도직접닫음. 이후57.4%/free5.89GB/ChatGPT19process2707MB, 효과를root단독으로귀속하지않음. 끊긴localhost탭6은data URL정책으로handle접근차단되어우회안함. 복구URL은ignored .ops/visual49-tab-recovery.json. 사용자앱/프로세스강제종료없음.
+- 사용자 운영선호: Oracle도 결과회수완료한탭은닫는다. 향후 Pro submit에서 browserKeepBrowser:true를기본사용하지말고최종lease정상정리. 다른실행중lease가있으면원래보호규칙유지. 재부팅전Oracle chromePID12408은현재없고 현재Chromemain은Oracle프로필로식별되지않음. 과거결과재전송/재연결없음. Cloud49 새Work화면은미전송상태로닫았으며후보반환때만다시준비, 현재열린활성작업은Claude49.

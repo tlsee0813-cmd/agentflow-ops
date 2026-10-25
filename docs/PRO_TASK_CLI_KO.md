@@ -16,8 +16,10 @@ $LASTEXITCODE
 작업 JSON 자체는 `.ops`에 두어도 되지만 `files`의 첨부 경로는 다르다. Oracle 파일 수집은 `.gitignore`를 존중하므로 `.ops` 안의 파일은 실제로 존재해도 첨부되지 않는다. 추적되는 공개 파일을 첨부하거나 짧은 공개 자료를 prompt에 포함한다. 비공개 파일의 ignore 규칙을 풀어 첨부하지 않는다. 요청 준비 후 dry-run으로 파일 수집을 확인할 수 있다.
 
 ~~~json
-{"prompt":"Review the requested public code","model":"gpt-6-pro","browserThinkingTime":"pro","browserArchive":"never","browserAttachments":"always","browserKeepBrowser":true,"files":["docs/DESIGN_KO.md"]}
+{"prompt":"Review the requested public code","model":"gpt-6-pro","browserThinkingTime":"pro","browserArchive":"never","browserAttachments":"always","browserKeepBrowser":false,"files":["docs/DESIGN_KO.md"]}
 ~~~
+
+2026-10-25 사용자 요청: 결과 회수가 끝난 Oracle 탭은 닫는다. `browserKeepBrowser`는 기본적으로 생략하거나 false로 두어 원본 CLI의 정상 정리를 사용한다. 다른 작업 lease가 실행 중이면 공유 브라우저를 강제 종료하지 않는다. 모든 완료 결과·접수 ID를 회수한 뒤 남은 작업 탭도 정리한다. `browserArchive:never`는 대화 기록을 보관한다는 뜻이며 탭을 계속 열어 두라는 뜻이 아니다.
 
 submit --dry-run은 원본 CLI 미리보기이며 세션·질문을 생성하지 않는다. 실제 submit은 원본 출력 형식을 유지하고 원본 CLI가 정상 종료하면 0, 실패하면 1을 반환한다. 실패 또는 출력 중단 시 다시 전송하지 말고 기존 sessionId나 Oracle sessions 목록을 확인한다. 프롬프트는 native CLI argv에 전달되므로 이 경로의 요청에는 공개 자료만 사용한다.
 
