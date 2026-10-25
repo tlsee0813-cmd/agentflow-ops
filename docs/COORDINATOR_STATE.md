@@ -300,3 +300,14 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - N2 후속2 UI접수·실행 확인. R2/R3 completed·exit0 전체답변회수. 시간축은재생위치/개발이력 구별; 같은이용장면의대안비교·부분조합 전제·예정결과간조건차이 후보. R5만Pro실행중.
 - 연구47 Pro6개 모두 completed·exit0·result전체저장. N1/N2 첫답+후속2 전체회수완료, Opus5.5 High 확인. N2 원문오독/동일성해결/두상태 철회, 뜻정정-새변경·역할별이름 제안반영. 루트는 범위축소=반대영역요구확정·정정=작업없음·자동초안폐기 추가수정. Sol은VIKI/Patchwork/Potluck/Onshape 및Letta/EntireBrain/GraphitiPR 원문대조 완료. 모든외부워커반환, 제품문서v0.5 통합중·제품45변경없음.
 - 연구47 통합 완료: 제품 9d203785f57e737f63116d800a1087c3a272c9df / checkpoint/2026-10-15 push확인·clean. 단일설계v0.5+ACTIVE+QUESTIONS 3문서만, diff --check통과. Sol 마지막읽기대조 중요모순없음, 화면효과미검증은유지. 기본구성+질문장면/분류전함께보기/국소대안·조합/뜻정정범위/실제산출물입구 선택; 현재판7줄·결정장부기본·가짜실물·확정잠정두상태 반려. 제품45/공개HTMLv0.3/Workers/Pages runtime/CI 변경·재실행없음. Pro6·Opus신규2후속·Sol 모두완료, 활성외부워커없음. 다음사용자설계피드백과 15.6 같은자료의 화면비교에서이어감. 연구용Potluck임시탭닫음, 새Opus2는 후속가능하게보존. 전체조사로그는ignored .ops/results, GitHub에는최소선택근거만.
+
+## 시각·상호작용 정밀설계48 · 2026-10-25
+- 사용자: 직관적·세련된표현의일관성/세부디테일설계문서 요구. 기준9d203785f57e737f63116d800a1087c3a272c9df 원격일치·clean. 제품변경없음.
+- Pro R1 공간시선 .ops/af-visual48-r1.json af-visual48-spatial / R2 비교·정정 .ops/af-visual48-r2.json af-visual48-compare / R3 시각공예 .ops/af-visual48-r3.json af-visual48-craft 접수확인전. 기존47조사반복없음, 실제표현/미시동작에한정.
+- Opus N1 기존session_01Vruv6L486tuRXuGgMYgwqb 후속3 접수확인전. 동일표현설계의짧은후속, 전체설계재발산아닌 일관화면문법. 파일작성금지·총괄만문서소유.
+- 48 접수확인: Pro R1 af-visual48-spatial exec88030 / R2 af-visual48-compare exec13126 / R3 af-visual48-craft exec43811 원본부모유지. N1후속3 UI메시지5 전송·실행확인, Opus5.5 High. 첫UI호출은JS문자열문법오류로미전송 후교정1회전송, 중복접수없음.
+- N1후속3 전체반환 회수. 단일주화면+교대표현 채택후보. 후속4 접수확인전: 비교와원문겹침/하단선택설명vs오른쪽레일/조합원본보존/Enter·3노드오판만좁게교정. 제품작성없음.
+- N1후속4는 Enter시간초과 후 미전송 draft 확인, 보내기 버튼1회 클릭으로 UI메시지7 접수·반환완료. 후속3/4 전체본문 .ops/results/visual48-n1-followup3.txt 및 followup4.txt 보존. Pro R1/R2/R3 모두 completed·submit exit0·result전체저장, 실제모델/Pro thinking 확인. 재부팅 전 외부작업 전부완료, 중복전송금지.
+- 총괄은 기존시안1280 맞춤·선택, Felt1280 줌17.1→15·표열기/닫기, Linear공식전후이미지 직접열람. 임시 viewport 복원/연구탭닫음. 제품/공개시안수정없음. v0.6는 SOFTWARE_MAP_DESIGN_KO 12절중심+ACTIVE+QUESTIONS 3문서만. Sol6.1 High 읽기검토의 하단접힘-키보드초점 모순1건 수정. 오른쪽레일자동팬/상시96px예약/조합3열/원문소급수정은 미채택. 새표현의화면효과는미검증.
+- 사용자 노트북재부팅 후 복구: 제품HEAD9d20378 유지, 위3문서 dirty와 ignored원문4개 보존확인. 환경재설치·조사재실행 없이 diff확인/공유마무리 진행. 활성외부워커없음.
+- 48 공유완료: 제품 checkpoint/2026-10-15 ab07ed34fbbb20bf25a50e788ce6ee7262d900cf push성공·clean, 3문서만 변경/diff --check통과. 설계v0.6 12절·부록F가 다음설계기준. Pro3/Opus후속2/Sol모두반환완료. 공개HTMLv0.3·제품45·Workers/Pages배포·CI실행 변경없음. 다음은12.8의 같은자료/같은이름으로 화면비교, 문서에적힌치수·가림처리는미검증가설이며 완료제품으로표시하지않음.
