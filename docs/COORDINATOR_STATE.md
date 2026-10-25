@@ -281,3 +281,22 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - O1-4 동일 세션 UI 전송 표시·실행 중 확인. Opus5.5 High 유지. 후속7번째 입력/8번째 반환 예정, 중복제출 없음. 내부 두 검토는 실제39 근거와 MCP 선행조건 주장을 분리해 회수 중.
 - O1-4 반환 완료·전체 답변 회수(.ops/results/design46-o1-followup4.txt). exact8189da4 지정4파일 열람·파일수정없음 작성자 보고. Sol memory_review47/Astra memory_challenge47도 반환완료. 의도+다음행동·어휘·선택형복귀 수용; MCP-first·모든첫줄사용자인용·미승인낙인·복사=요청·작업자overlay금지·연륜=안정도 주장은 총괄 수정/미채택. 공개 원문 LikeC4 DSL/Ilograph YAML/Structurizr MCP로 경쟁도구 전제 보정.
 - 설계 v0.4 제품 1b90ace75323143e9e2fb4dd8a1995269fa7a4b2 push 완료. SOFTWARE_MAP_DESIGN_KO 1/14절과 ACTIVE/QUESTIONS 3문서만 변경, git diff --check 통과·clean. 실제39 기존8발췌/3후보를 문서상 대입, 연속초기개발/실행/새화면 검증아님. 공개HTML v0.3·제품45·Workers/Pages runtime 그대로. 대화기억 방향수용을 입력/출력/MCP/hook 구현승인으로 해석하지 않는다. 모든 이번 검토 회수완료·활성워커없음. 다음은 사용자 피드백에 따라 같은 설계 원본 수정.
+
+## 새 관점 연구47 · 2026-10-25
+- 사용자 요청: 웹Pro 넓은 새 자료조사와 새 Opus5.5 세션 설계 재검토. 제품구현 없이 기존 단일설계 원본만 개정. 기준1b90ace75323143e9e2fb4dd8a1995269fa7a4b2, 로컬clean/원격일치 확인.
+- Pro r1 thinking: .ops/af-research47-r1.json / slug af-research47-thinking, 접수 확인 전. 새 세션, 다른 분야와 독립.
+- Pro r2 time: .ops/af-research47-r2.json / slug af-research47-time, 접수 확인 전. 새 세션, 다른 분야와 독립.
+- Pro r3 coordination: .ops/af-research47-r3.json / slug af-research47-coordination, 접수 확인 전. 새 세션, 다른 분야와 독립.
+- Pro r4 agent_memory: .ops/af-research47-r4.json / slug af-research47-agent_memory, 접수 확인 전. 새 세션, 다른 분야와 독립.
+- Pro r5 hci: .ops/af-research47-r5.json / slug af-research47-hci, 접수 확인 전. 새 세션, 다른 분야와 독립.
+- Pro r6 young_projects: .ops/af-research47-r6.json / slug af-research47-young_projects, 접수 확인 전. 새 세션, 다른 분야와 독립.
+- Opus N1 새 기본입구 발산 / N2 현행설계 구조적 반론: 새 세션2개 접수 확인 전. 동일 SHA, 답변만·파일작성금지. 총괄만문서작성.
+- Pro submit 원본 부모 exec 유지: R1=39962 R2=90649 R3=78496 R4=31068 R5=94645 R6=70922. 실제 Oracle sessionId는 로그에서 회수 중, 재전송하지 않음.
+- Pro 원본 접수 ID 확정: R1 af-research47-thinking, R2 af-research47-time, R3 af-research47-coordinati, R4 af-research47-agent-memory, R5 af-research47-hci, R6 af-research47-young-projects. 기본 동시3slot, 나머지 원본대기; 6동시실행 주장 금지.
+- Opus N1 session_01Vruv6L486tuRXuGgMYgwqb / N2 session_01KpPCqHD95vgdeKWXrDXNn9 전송 표시·실행 확인, 모두 Opus5.5 High. N1 첫 입력Enter 도구시간초과였으나 실제접수확인, 재전송하지 않음. N2 새탭이전초안은 전송전 고유본문으로 교체. 두세션 모두 읽기·답변만, 파일작성권한없음.
+- R1 af-research47-thinking completed/submit exit0 전체회수, result 저장명령 exec44827 진행. VIKI 암묵묶음·Potluck 점진구조·Patchwork 뒤늦은갈래·Tana선택필드. N1 첫발산 반환·원문보존, 실물투시/대안거울/약속장부 제안은 미수용. N1 후속2 접수확인전: R1공식근거+기준1b90ace 설계 대조, 보고=확인·시각추정·자동별칭/증거없음=없음 오류 교정 및 양립불명한구상 처리. 새세션추가없음.
+- N1 후속2 UI전송·실행확인. N2 첫반환 완료, 기존문서3개 exact1b90ace 읽음/저장소무변경 주장, 임시scratchpad만작성. 결정갈래기본+두독자번역 제안은 미수용: v0.4도 미연결의도/서로다른읽기 이미허용, 결정투영만으로동일성해결 주장성립안함. 다음후속은 실제원문/신규조사 대조만, 글자수맞추기 반복불필요.
+- R4/R6 completed·exit0·전체원문회수 및 result저장 완료. N2 후속2 접수확인전: 기존v0.4 오독 교정, R4 적용범위 정정/R6 초기OSS 의미변경 실제사례 대입. 새구현/파일작성없음. 기존결정갈래 제안을 한개 긍정흐름으로 재검토.
+- N2 후속2 UI접수·실행 확인. R2/R3 completed·exit0 전체답변회수. 시간축은재생위치/개발이력 구별; 같은이용장면의대안비교·부분조합 전제·예정결과간조건차이 후보. R5만Pro실행중.
+- 연구47 Pro6개 모두 completed·exit0·result전체저장. N1/N2 첫답+후속2 전체회수완료, Opus5.5 High 확인. N2 원문오독/동일성해결/두상태 철회, 뜻정정-새변경·역할별이름 제안반영. 루트는 범위축소=반대영역요구확정·정정=작업없음·자동초안폐기 추가수정. Sol은VIKI/Patchwork/Potluck/Onshape 및Letta/EntireBrain/GraphitiPR 원문대조 완료. 모든외부워커반환, 제품문서v0.5 통합중·제품45변경없음.
+- 연구47 통합 완료: 제품 9d203785f57e737f63116d800a1087c3a272c9df / checkpoint/2026-10-15 push확인·clean. 단일설계v0.5+ACTIVE+QUESTIONS 3문서만, diff --check통과. Sol 마지막읽기대조 중요모순없음, 화면효과미검증은유지. 기본구성+질문장면/분류전함께보기/국소대안·조합/뜻정정범위/실제산출물입구 선택; 현재판7줄·결정장부기본·가짜실물·확정잠정두상태 반려. 제품45/공개HTMLv0.3/Workers/Pages runtime/CI 변경·재실행없음. Pro6·Opus신규2후속·Sol 모두완료, 활성외부워커없음. 다음사용자설계피드백과 15.6 같은자료의 화면비교에서이어감. 연구용Potluck임시탭닫음, 새Opus2는 후속가능하게보존. 전체조사로그는ignored .ops/results, GitHub에는최소선택근거만.
