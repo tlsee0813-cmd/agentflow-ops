@@ -4,6 +4,12 @@
 
 ## 진행59 / 사용자 시각 품질 반려 후 새 Claude 평가
 
+후속61 f4011b909c2a91a6ced1e475a20882fb762c3094 / PR33 draft 반환·회수·부착. source 정확 CI40354262561 진행 중. root build/type 통과·1280 변환기 fallback 직접 확인. 독립judge3의420c 실제평가: 이전①wanted부재②잘못된fallback③실명대상찾기는 해소, 변환기는 구매 매력 인정. 전체는 Node-RED의 기존 관계가 미리보기에서 배경 frame 뒤에 가려지는 문제와 현재↔미리보기의 임시펼침/치수 재배치로 반려. f401 좁은 추가 확인 중. 총괄은 기존 관계 가시성/같은 비교 장면 유지 두 방향 채택하되 관계의 의미를 필수로 바꾸는 새 graph 조작은 하지 않는다. 같은 Claude61 후속3 준비·접수 확인 전, 배포/병합 보류.
+
+AF-DESIGN59-JUDGE-3 기존 judge 메시지6에 실제 접수 확인(로컬 첫 JS 구문 오류는 전송 전 실패였고 재전송 중복 아님). 정확420c 실제 UI 경험을 검토 중. Claude61 후속2는 초기 status=plan의 한 줄 wanted/list 높이 부족을 실제 재현하고 접힌 부모의 안쪽 표시까지 보정 중이다. root420c 변환기1280에서 세 변경이 함께 읽히는 개선을 직접 확인했으며, 최종 수용/배포는 아직 아니다.
+
+61 후보 420c027980ac1a1d9dc36b5335bf250f95e4653e 반환·회수. 작성자 관련 Node 59검사/실제 1280·1440 3사례, Python suite는 미실행을 구별했다. root Node-RED 1280 안정 화면에서 wanted 직접 표시·leader 글자 우회 확인. 동일 작성자 AF-VISUAL61-IMPLEMENT-2 메시지7 접수: 비교 미작성과 자료 없음 구별 문구, 기록 없는 초기 list/row의 한 줄 wanted 높이 의심을 실제 확인·보정. 유일 작성자 유지. 독립 AF-DESIGN59-JUDGE-3는 기존 session_017YKSW4pPsdBFG4P5vacZj2에서 후보420c 기준 가독성·변경 이해·전체 매력 검토 준비/접수 확인 전. 진행 중 두 작은 보정은 평가 시 명시하고 최종 SHA로 재표기하지 않는다.
+
 00:44 KST Claude61의 짧은 표시 제약 후속은 원본 세션에 접수·소비된 것을 확인했다. 변경 대상 행에만 wanted 높이를 배정하며 기본 지도 전체 높이 확장은 하지 않는다. 작성자는 구현 후 실제 화면 확인 중이고 아직 반환 SHA는 없다. 원격 checkpoint cf429fa / work/visual61-readable-changes 7a084dc, 로컬 제품 clean 확인. 중복 제출 없음. 기존 coordinator 스킬과 활성 품질 goal을 이어간다.
 
 00:37KST 새Opus5.5High AF-VISUAL61-IMPLEMENT-1 접수완료 https://claude.ai/code/session_018oisFJFoKNbrvLGg9DZGJg 메시지1,기준7a084dc/appc310275확인·실행중. 전용work/visual61-readable-changes 유일코드작성자,지도wanted줄+역할fallback분리/잘못된합성pres2개생략,새schema/graphoperation/자동zoom금지. 기존judge2완료탭닫음;같은judgeURL은후속최종검토때재사용가능.60정확93cb CI40347988164 양OS성공·PR32merge7a084dc/동일app확인후Workers/Pages55807604897af392518fbed422af2bc213a3459e배포·공개BUILD/화면확인. 공유결과는기존59폴더에추가해새문서묶음늘리지않았고최신checkpoint cf429faf6f3a46535402ce7f3c9cbe8d1e5a40eb stablePNG교체. 제품로컬checkpoint clean. goalactive/미완성.
