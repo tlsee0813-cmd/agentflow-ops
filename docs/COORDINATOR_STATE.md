@@ -2,7 +2,17 @@
 
 2026-10-26. Ops 채널 운영용이다. AgentFlow Studio 제품의 최신 상태는 해당 저장소의 ACTIVE를 따른다. 이 제품 총괄 실행은 환경 재설치나 계정 전환을 수행하지 않았다.
 
-## 최신 완료57 / 다음은 실제 기록에 따른 기억 갱신의 좁은 범위
+## 최신 완료58 / 사용자 우선순위는 시각 UI·UX
+
+제품 source52e8c44c817e494cfd5c367f6a116b728ec293ee, PR30 merge0a54b653229b34ece45348a8aea086dfdf20850e, app tree dcc73a819d3b7c8b44cab63f6692c77a54c51af1 동일. 정확source CI40312210728 Ubuntu121535917321/Windows121535917649 모두성공 후 기존Workers와 보조Pages59879592a5f4db76fd7816243882d3ddb5959f7b 배포. 두 공개BUILD source일치, Workers1280미리보기 직접확인. 공유결과는 제품4fb9ffe3696351c7989e5abcbbd7745eb55f3006 docs/cycles/2026-10-26-visual-experience-58/RESULT.md 및 출처자료·생성기·PNG3장.
+
+Pro af-visual58-workspace 완료·선택반영, Claude session_019n5WTcmb9Hb2GcmkC2JPZh 메시지13까지완료·결합. Cloud AF-CLOUD-20261026-58 request1은6자료×2해상도실행후시각2건반려; request2는d64f74a의두반례+변환기3장면수용. 이후52e8의글꼴보정은총괄직접화면/CI로확인했으며Cloud최종SHA수용으로재표기하지않음. Sol ui58_oss_cases 출처·fixture완료, ui58_interaction_review 메뉴/좁은폭반례발견및수정읽기확인. 미회수외부작업없음. 실제OSS실행/자동이해/이번실제API재검증으로확대하지않음.
+
+사용자 최신 범위는 입력 자동수집·출력문서 확장을 제외한 시각·탐색이다. 아래57의 실제기억갱신 제안보다 우선한다. 후속도 작은 좌표 검사나 새예제 증식으로 돌아가지 말고 실제자료의 이해·판단을 방해하는 화면 문제를 우선한다.
+
+정리: 이번원격work/visual58-accepted·work/visual58-workspace와로컬accepted브랜치삭제, 제품checkpoint clean/pushed. localhost4358 exec48212 종료·LISTEN없음. Pro/Claude/Cloud탭닫음, IAB17공개홈deliverable만남기고user원본tab1보존·화면에뮬레이션해제. 임시검토파일1141488bytes 삭제는자동승인검토가정책차단(실제절대경로확인후literal삭제도거절); 우회하지않고유지. Temp의agentflow-ui58-oss-fixtures-20261026-a/b,agentflow-visual58-bundle,agentflow-visual58.zip,agentflow-ui58-static.log,agentflow-ui58-node.tap가남음. .ops의58원문·요청·작은화면복사도로컬비공개기록이다. 공개인계는GitHub에완료.
+
+## 이전 완료57 / 당시 다음 범위 제안
 
 설계 v1.3.1의 첫 변경안 왕복 구현을 수용·배포했다. 제품 source93cbff963c064a24de1438e2dba5cd07efde0840, PR29 merge8e1101843989d29706d9a9001982c55385dda0bd의 app 내용 동일. 정확source CI40297714933 Windows121487909509/Ubuntu121487909868 모두성공. 기존 Workers와 보조Pages fb657951c7e34c0f7d3de46e949293acf1769618의 공개BUILD 일치. 배포된 실제AI 분석→한항목선택→scope검토→제외항목명시요청문 성공, 배포A/B scope HTTP200과기존수단/부족전제차이 확인. 제품 docs/cycles/2026-10-26-change-plan-57/RESULT.md가 최소 공유 결과다.
 
@@ -428,3 +438,22 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - Finalcandidate93cbff9/PR29 CI40297714933 pending. Claude visual4edc807 combined; directroot1280 screenshot read, selected result pans into viewport. Saved project actual DeepSeek analyzed public synthetic device/PC code, retained two-line draft/material/analysis afterF5. Scope actualA/B uses reasoninglow4096/30s; planlow8192/60s. Broad nonthinking graph and two-pass attempts rejected. DSH worker failed; product API actualsuccess not relabeled DSHsuccess. Cloudrequest2 sent sameID, awaiting exactfinaldelta.
 
 - Cloud57 request2 returned ACCEPT at18:15KST, exact93cbff9/ZIP verified. Bscopephrasefixed,1280targetright850<panel916,1440right1027.3<panel1076,currentbadges0,closecamera restored. Independentactualstaticexecution exit0/serverstopped; actualAI notCloud. RootactualAIUI separatelypassed; authored/sessionallclosed. FinalCI Windows browser install pending, Ubuntu success. No57deploymentyet.
+
+## 진행58 — 시각 UI/UX 우선, 2026-10-26
+사용자 최신 범위: 입력/출력 확장 제외. 홈→지도→선택/내부→변경 비교→복귀를 세련되게 통합, 실제 OSS 자료로 복잡도 시험. 기준 cb5b8eea313920a92cfb82560e629ba67d89e5e3. Pro slug af-visual58-workspace / .ops/visual58-pro.json 접수 확인 전. Claude 새 시각 주제 접수 준비. Sol ui58_interaction_review 읽기 검토, ui58_oss_cases 고정OSS추출 진행. 57미회수 없음.
+
+58접수: Pro af-visual58-workspace / exec7600 실행중. Claude session_019n5WTcmb9Hb2GcmkC2JPZh 메시지1접수완료 Opus5.5High / work/visual58-workspace. 다음원본회수,재전송금지. Sol구조검토완료,OSS3건추출중.
+
+58진행: Pro af-visual58-workspace completed/exec7600 exit0,8m51s,원문 .ops/results/visual58-pro.log 회수. 공식Linear/Figma/LikeC4+라이브1363x936 관찰(작성자주장),지정설계SHA조회실패·1280미실행구별. 단일동일폭dock·상단맥락·정보위계채택,항상빈352px예약은보정. Claude 메시지3 OSS,5 Pro선택/실제긴이름반례접수(5대기). 제품ebca421에OSS3+합성스트레스3·재현생성기공유. 로컬4358/exec48212는키없는UI전용. 6개사본만전용origin에import,실제노드/관계읽기테스트중. 새입출력개발없음.
+
+58후보5e62b0e1114b5437c7d8c5f3c098101ce165b3c5 회수,work/visual58-accepted/PR30 draft. Cloud AF-CLOUD-20261026-58 request1 접수확인전,기존durableURL .zip177728bytes sha25656d4aeca68fa6d1325af4a57f67d068c4c7802961d1e4795981f36acd49c0e71 첨부준비. source와정적BUILD일치,6개의출처보존fixture. 독립UI검토,실제API미실행.
+
+58 회수: Cloud request1 실제접수+동일작업 범위보충 메시지 확인, 6fixture×2해상도 독립 화면검토 진행중(중복작업 아님). Claude 1e2c546 테스트/경로 보완 회수·PR30 head FF. 5e62 CI40308272555 success. Claude 메시지9 후속4 접수: 미리보기 가림·그룹긴제목·700px 폭계산·메뉴Esc 우선순위 수정. Sol 읽기검토 두 결함, root 실제화면 반례와 구별. 아직 배포/수용 안함.
+
+58 Cloud 중간판정:6fixture×1280/1440 실행·화면확인, 전환종료후camera/접힘/선택/초안 복귀 통과. Node-RED TLS선의무관TCP/UDP관통·Joplin그룹끝점모호함은시각반려사유. Claude 메시지11 후속5로두반례보정접수(같은주제,추가작업중복없음). 전체미리보기가림수정후에도이오독을수용조건으로유지.
+
+58 최종후보 d64f74af20f0daf4434968ce59e08b67afc02831: Claude4b860a4(가림/제목/폭/Esc)+d64f74a(연결형제우선배치/그룹머리끝점/우회) 회수·PR30headpush. Cloud request1 시각반려2건 회수완료. request2 실제접수:181157bytes SHA2565370fc6c841087c278dd3e43e547e80fc7a2334e492309665143e2f783ff9084, 같은6fixtures/정적d64f,두반례+미리보기가림차이만재검토. Sol두결함코드상해소·root4b700sheet676/MenuEsc/1280preview/1440실화면확인. 아직배포안함.
+
+58 d64f Cloudrequest2 시각수용(1280/1440의Joplin/NodeRED/변환기3장면,exit0서버종료). 그러나 CI40310904531 Ubuntu121531542893 studio_browser.py386 긴prefix노드잘림실패. Node/type통과. Claude메시지13후속6으로글꼴차이긴노드폭보정접수. tests완화/이름축약금지,짧은카드배치유지. 배포보류는실패검사수정중이며사용자승인필요없음.
+
+58 후보갱신52e8c44c817e494cfd5c367f6a116b728ec293ee 회수·PR30push. 실제페이지글꼴canvas폭으로긴노드만최대320까지확장,짧은카드200유지. 작성자DejaVuSans반례재현→수정,Node323/브라우저8통과주장. root새배치9검사통과·52e8긴prefix3개잘림없음 및Joplin/TLS최종화면직접확인. Cloud수용SHA는d64f이며52e8로재표기하지않음. 새정확SHA CI대기.
