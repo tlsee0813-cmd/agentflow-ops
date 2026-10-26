@@ -42,6 +42,12 @@ AF-CLOUD-20261026-59 request2 접수확인전: 기존 https://chatgpt.com/local/
 
 request2 동일Cloud원세션 22:53KST 접수본문/첨부 확인, 작업중(대화최적화중). 중복접수아님. 제품 PR31 https://github.com/tlsee0813-cmd/agentflow-studio/pull/31 draft생성/첨부, 정확b4c10e CI40334735917 queued. 아직최종CI·Cloud수용·배포전.
 
+request2 반환완료: b4의 기존sheet pan/기본Joplin가림해소,실명nav·단일비교·대상유지확인. b4의설명→editor/renderer선택시선택node가lens뒤가림을독립재현. 81c568의근거최초open/close및수동pan복귀는양해상도성공. 총괄81Windows새localhost프로젝트사본에서가림재현(선택renderer y557–630/lens445–656), a4eb802ad4b33aca1f00873894db3295a613c803에서선택renderer y349–421/lens445–656로해소확인. 같은target근거refit은유지하고명시새target전환만최소pan. 7be1134는partial presentation이없던명시target도nav에남기는2줄수정,별도Sol읽기검토새높은영향결함없음.
+
+AF-CLOUD-20261026-59 request3 접수확인전: 같은세션에서a4의위가림반례한건+81왕복비퇴행만재검증. 번들209777bytes SHA256 1b52eb57829db32b44b161a8284a432fd1587421394b6f667b76493cd206f1dd. PR31최신a4, CI40342207738 진행중. b4좁은시각표현은Astra실제PNG수용,현재전체제품/가격가치보증아님. 미배포·goal active.
+
+request3 23:44KST 접수·23:48 반환완료: 정확a4 ZIP/hash/BUILD 확인,1280/1440 editor/renderer선택card와제목이설명면위에서보임,확대율/배치유지,근거첫open/close와직접pan후복귀보존. 독립실행자가실제PNG열람후해당반례수용,다른자료/API/전체suite는재실행하지않음. 브라우저/서버exit0. root같은새사본에서선택card/lens비겹침직접대조. 전체제품구매가치보증과구별. CI40342207738 Windows성공/Ubuntu계속진행중(23:48기준). Cloud사용탭종료예정.
+
 ## 이전 완료58 / 사용자 우선순위는 시각 UI·UX
 
 제품 source52e8c44c817e494cfd5c367f6a116b728ec293ee, PR30 merge0a54b653229b34ece45348a8aea086dfdf20850e, app tree dcc73a819d3b7c8b44cab63f6692c77a54c51af1 동일. 정확source CI40312210728 Ubuntu121535917321/Windows121535917649 모두성공 후 기존Workers와 보조Pages59879592a5f4db76fd7816243882d3ddb5959f7b 배포. 두 공개BUILD source일치, Workers1280미리보기 직접확인. 공유결과는 제품4fb9ffe3696351c7989e5abcbbd7745eb55f3006 docs/cycles/2026-10-26-visual-experience-58/RESULT.md 및 출처자료·생성기·PNG3장.
