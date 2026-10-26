@@ -383,3 +383,11 @@ Cloud요청10 UI메시지10접수·완료1m54/exit0. exact6cf/runtime20검증,90
 - Opus54 후속 접수확인·완료: 기존 session_01NdARrivEmLUmect6fNecEi 메시지3/4, 정확d90c113의4~5/7절git show 확인·Opus5.5High. 전체반환 .ops/results/design54-opus.txt 회수·탭닫음. 제안중기록대안만허용/판단1개고정/미확인구조없음표현은총괄수정. Pro새조사미실행(53근거유지), Cloud/DSH실행없음.
 - Sol54 읽기반례3건과 최종본문대조완료: 실제보정/표기구별·명시요구/제안/구현구별·전제의존범위만재계산·확인관문없음. 실질결함없음반환. 총괄은4.4역할분담,3질문밖발견,5파생효력,7.4복귀3/7.5요구발전4로단일문서통합, 기존6예외장면중복제거. 제품/HTML변경없음.
 - 54 완료: 제품 checkpoint/2026-10-15 07c15dec0e5e91645c1285447e4170b4b4143e01 원격일치·clean. docs3개만수정·diffcheck통과. 단일설계 v1.2 https://github.com/tlsee0813-cmd/agentflow-studio/blob/07c15dec0e5e91645c1285447e4170b4b4143e01/docs/SOFTWARE_MAP_DESIGN_KO.md . 제품45/HTML/배포변경0·자동정리/실제화면검증주장없음. 모든배정회수완료, 새서버/ZIP/작업트리없음. 다음PC시각설계는7.4복귀/7.5요구발전/근거초안왕복을같은구조로대조.
+
+## 변경안 왕복·자료 보강 설계55 · 2026-10-26
+- 사용자첨부질문/검토전문읽음. 기준07c15de원격동일·clean. 현재/변경안미리보기/작업AI용요청문/부분반영대조를단일설계에통합, 자료연결은선택적보강. 구현/설치/새통합착수아님. 총괄만본문작성.
+- Pro af-plan55-evidence .ops/af-plan55-evidence.json 접수확인전:GitHub공식자료의근거/판본/이벤트한계 좁은조사1건. Opus새55세션접수확인전:변경안왕복의경험설계. Sol기존structure52_coverage본문충돌·전이반례읽기전용배정.
+- 55 접수확인: Pro af-plan55-evidence (원본exec48478), Pro thinking 확인·원본부모유지. Opus새세션 https://claude.ai/code/session_01DyNpazdxgtSJ97aXJZXwBr Opus5.5High·정확07c15de git show 반환중. Sol55충돌4건(모드범위/기준과요청문판본/부분반영/파일경로동일성) 회수. 중복전송없음.
+- Pro55 completed·원본exec48478 exit0·전체반환 .ops/results/plan55-evidence.log. GPT6Pro/Pro thinking 확인·최종leaseChrome종료. 정확원문접근차단으로제공요약기준·공식Contents/Checks/Webhooks검토,총괄원문대조. Opus55 정확07c15de읽기반환전체 .ops/results/plan55-opus.txt 회수·탭닫음. Sol55최종본문실질충돌없음반환.
+- 총괄55선택:선택자료보강·판단깊이·가상변경모드·미리보기·요청문스냅샷·항목별부분반영 채택. Opus의자동새기준덮기/미리보기와요청문자동결합/판번호만전달확정/미정하위폴더제외예시수정. 같은본문1/4/7/8/9절과ACTIVE/QUESTIONS만수정. 코드/HTML/배포/커넥터/수신계약변경0.
+- 55 완료: 제품 checkpoint/2026-10-15 7b138081d46b9a7ee1f0c9924c58d11e9996f1e8 원격일치·clean. 단일설계 v1.3 https://github.com/tlsee0813-cmd/agentflow-studio/blob/7b138081d46b9a7ee1f0c9924c58d11e9996f1e8/docs/SOFTWARE_MAP_DESIGN_KO.md . docs3개만·diffcheck통과·앱/HTML/배포0. 전체연동/AI품질/화면사용성검증아님. 모든배정회수완료·완료브라우저정리·새서버/ZIP/작업트리0. 다음시각설계는현재→변경미리보기→요청문→부분반영의동일공간왕복.
